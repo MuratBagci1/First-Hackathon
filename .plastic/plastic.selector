@@ -1,0 +1,4 @@
+repository "grad Deneme@MuratBagci@cloud"
+  path "/"
+    br "/main"
+    co "/main"
