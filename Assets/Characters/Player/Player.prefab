@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 7341760314298919510}
   - component: {fileID: 7369332681025464117}
   - component: {fileID: 8294257339762119536}
+  - component: {fileID: 3272473506939014806}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -425,14 +426,9 @@ MonoBehaviour:
   healthChanged:
     m_PersistentCalls:
       m_Calls: []
-  armorChanged:
-    m_PersistentCalls:
-      m_Calls: []
   _maxHealth: 100
-  _maxArmor: 100
   goldReward: 10
   _health: 100
-  _armor: 10
   isInvincible: 0
   invinciblityTime: 1
 --- !u!114 &8294257339762119536
@@ -449,6 +445,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchPoint: {fileID: 472175285443809601}
   projectilePrefab: {fileID: 8416613098978750369, guid: 52f1d46f4147ecd43bedc50fc2637cd1, type: 3}
+--- !u!114 &3272473506939014806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241387067917771608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bedd42f9ed395f44a49624c386ce505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gold: 0
 --- !u!1 &704687550596378215
 GameObject:
   m_ObjectHideFlags: 0

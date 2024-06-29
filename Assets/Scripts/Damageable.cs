@@ -173,8 +173,7 @@ public class Damageable : MonoBehaviour
             }
             else
             {
-                if (damage<=Armor)
-                {
+
                 Armor -= damage;
                 isInvincible = true;         
                 LockVelocity = true;
@@ -183,27 +182,7 @@ public class Damageable : MonoBehaviour
 
                 CharacterEvents.characterDamaged.Invoke(gameObject, damage);
 
-                return true; 
-                }
-                else
-                {
-                    damage = damage - Armor;
-                    Armor = 0;
-                    Health -= damage;
-                    isInvincible = true; 
-
-                    LockVelocity = true;
-                    animator.SetTrigger(AnimationStrings.hitTrigger);
-                    damageableHit?.Invoke(damage, knockback);
-
-                    CharacterEvents.characterDamaged.Invoke(gameObject, damage);
-
-                    return true;
-
-                }
-
-
-
+                return true;
             }
         }
         else
