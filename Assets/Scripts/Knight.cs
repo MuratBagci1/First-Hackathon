@@ -12,10 +12,13 @@ public class Knight : MonoBehaviour
     public DetectionZone attackZone;
     public DetectionZone cliffDetectionZone;
 
+    public float detectionRange; // Düþmanýn oyuncuyu algýlama mesafesi
+
     Rigidbody2D rb;
     TouchingDirections touchingDirections;
     Animator animator;
     Damageable damageable;
+    Transform target; // Oyuncu karakterin Transform'u
 
     public enum WalkableDirection
     {
@@ -95,6 +98,17 @@ public class Knight : MonoBehaviour
         touchingDirections = GetComponent<TouchingDirections>();
         animator = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
+
+        // Oyuncu karakterin Transform'unu bul
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            target = player.transform;
+        }
+        else
+        {
+            Debug.LogWarning("Player with tag 'Player' not found.");
+        }
     }
 
     // Update is called once per frame
@@ -102,10 +116,13 @@ public class Knight : MonoBehaviour
     {
         HasTarget = attackZone.detectedColliders.Count > 0;
 
-        if(AttackCooldown > 0)
+        if (AttackCooldown > 0)
         {
             AttackCooldown -= Time.deltaTime;
         }
+
+        // Karakterin algýlanmasý ve yön deðiþtirmesi
+        DetectAndChaseTarget();
     }
 
     private void FixedUpdate()
@@ -114,9 +131,9 @@ public class Knight : MonoBehaviour
         {
             FlipDirection();
         }
-        if(!damageable.LockVelocity)
+        if (!damageable.LockVelocity)
         {
-            if (CanMove && touchingDirections.IsGrounded)
+            if (CanMove && touchingDirections.IsGrounded && !HasTarget) // Sadece hedef yokken hareket et
             {
                 float xVelocity = Mathf.Clamp(rb.velocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime),
                     -maxSpeed, maxSpeed);
@@ -124,7 +141,7 @@ public class Knight : MonoBehaviour
             }
             else
             {
-                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y);
+                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y); //animasyon durdurulmalý
             }
         }
     }
@@ -148,9 +165,37 @@ public class Knight : MonoBehaviour
 
     public void OnCliffDetected()
     {
-        if(touchingDirections.IsGrounded)
+        if (touchingDirections.IsGrounded)
         {
             FlipDirection();
+        }
+    }
+
+    private void DetectAndChaseTarget()
+    {
+        if (target != null)
+        {
+            float distanceToTarget = Vector2.Distance(transform.position, target.position);
+          
+            if (distanceToTarget <= detectionRange)
+            {
+                Vector3 directionToTarget = (target.position - transform.position).normalized;
+
+                if (directionToTarget.x > 0 && WalkDirection != WalkableDirection.Right)
+                {
+                    WalkDirection = WalkableDirection.Right;
+                }
+                else if (directionToTarget.x < 0 && WalkDirection != WalkableDirection.Left)
+                {
+                    WalkDirection = WalkableDirection.Left;
+                }
+
+                HasTarget = true;
+            }
+            else
+            {
+                HasTarget = false;
+            }
         }
     }
 
@@ -159,5 +204,4 @@ public class Knight : MonoBehaviour
     {
 
     }
-
 }
