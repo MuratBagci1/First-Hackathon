@@ -13,6 +13,8 @@ public class Damageable : MonoBehaviour
 
     [SerializeField]
     private int _maxHealth = 100;
+
+    public int goldReward = 10; // Düþmanýn öldüðünde verdiði altýn miktarý
     public int MaxHealth 
     {
         get
@@ -60,6 +62,10 @@ public class Damageable : MonoBehaviour
             if(!value)
             {
                 damageableDeath.Invoke();
+                if (gameObject.CompareTag("Enemy"))
+                {
+                    GiveGoldToPlayer(goldReward);
+                }
             }
         }        
     }
@@ -153,6 +159,15 @@ public class Damageable : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+    private void GiveGoldToPlayer(int gold)
+    {
+        // Oyuncuyu bul ve altýn ekle
+        PlayerData playerData = FindObjectOfType<PlayerData>();
+        if (playerData != null)
+        {
+            playerData.AddGold(gold);
         }
     }
 }
