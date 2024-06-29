@@ -216,4 +216,9 @@ public class Damageable : MonoBehaviour
             playerData.AddGold(gold);
         }
     }
+    public void UpgradeArmor(int amount)
+    {
+        Armor += amount;
+        Debug.Log("Armor upgraded by: " + amount + ". New armor: " + Armor);
+    }
 }
