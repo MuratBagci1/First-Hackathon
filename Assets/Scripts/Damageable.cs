@@ -8,11 +8,14 @@ public class Damageable : MonoBehaviour
     public UnityEvent<int, Vector2> damageableHit;
     public UnityEvent damageableDeath;
     public UnityEvent<int, int> healthChanged;
+    public UnityEvent<int, int> armorChanged;
 
     Animator animator;
 
     [SerializeField]
     private int _maxHealth = 100;
+    [SerializeField]
+    private int _maxArmor = 100;
 
     public int goldReward = 10; // Düþmanýn öldüðünde verdiði altýn miktarý
     public int MaxHealth 
@@ -24,6 +27,17 @@ public class Damageable : MonoBehaviour
         set
         {
             _maxHealth = value;
+        }
+    }
+       public int MaxArmor 
+    {
+        get
+        {
+            return _maxArmor;
+        }
+        set
+        {
+            _maxArmor = value;
         }
     }
 
@@ -43,6 +57,20 @@ public class Damageable : MonoBehaviour
             {
                 IsAlive = false;
             }
+        }
+    }
+    [SerializeField]
+    private int _armor = 10;
+    public int Armor 
+    {
+        get
+        {
+            return _armor;
+        }
+        set
+        {
+            _armor = value;
+            armorChanged?.Invoke(_armor, MaxArmor);
         }
     }
 
@@ -125,19 +153,37 @@ public class Damageable : MonoBehaviour
     {
         if(IsAlive && !isInvincible)
         {
-            Health -= damage;
-            isInvincible = true;
+            if (Armor<=0)
+            {
 
-            //isHit bool çalýþýyor, hitTrigger yerine kullanýlabilir!
-            //IsHit = true;
+                Health -= damage;
+                isInvincible = true;
 
-            LockVelocity = true;
-            animator.SetTrigger(AnimationStrings.hitTrigger);
-            damageableHit?.Invoke(damage, knockback);
+                //isHit bool çalýþýyor, hitTrigger yerine kullanýlabilir!
+                //IsHit = true;
 
-            CharacterEvents.characterDamaged.Invoke(gameObject, damage);
+                LockVelocity = true;
+                animator.SetTrigger(AnimationStrings.hitTrigger);
+                damageableHit?.Invoke(damage, knockback);
 
-            return true;
+                CharacterEvents.characterDamaged.Invoke(gameObject, damage);
+
+                return true;
+
+            }
+            else
+            {
+
+                Armor -= damage;
+                isInvincible = true;         
+                LockVelocity = true;
+                animator.SetTrigger(AnimationStrings.hitTrigger);
+                damageableHit?.Invoke(damage, knockback);
+
+                CharacterEvents.characterDamaged.Invoke(gameObject, damage);
+
+                return true;
+            }
         }
         else
         {
