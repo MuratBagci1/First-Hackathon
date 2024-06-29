@@ -230,6 +230,9 @@ MonoBehaviour:
   healthChanged:
     m_PersistentCalls:
       m_Calls: []
+  baseHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
   armorChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -271,8 +274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 364b0cce6e3bd114793257a2decf1a2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launchPoint: {fileID: 0}
-  projectilePrefab: {fileID: 0}
+  launchPoint: {fileID: 2968338744869011412}
+  projectilePrefab: {fileID: 7919818615456771289, guid: 5f2cbf664ce9fec4cb433a665e17598a, type: 3}
 --- !u!1 &258021892959116331
 GameObject:
   m_ObjectHideFlags: 0
