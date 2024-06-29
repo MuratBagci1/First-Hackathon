@@ -53,7 +53,9 @@ public class PlayerData: MonoBehaviour
 
         if (gold >= upgradeCost)
         {
-            gold -= upgradeCost;
+            
+            AddGold(-upgradeCost);
+
             Damageable damageable = transform.GetComponent<Damageable>();
 
             if (damageable != null)
