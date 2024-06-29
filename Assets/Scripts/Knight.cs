@@ -122,7 +122,7 @@ public class Knight : MonoBehaviour
         }
 
         // Karakterin algýlanmasý ve yön deðiþtirmesi
-        DetectAndChaseTarget();
+        //DetectAndChaseTarget();
     }
 
     private void FixedUpdate()
@@ -130,6 +130,7 @@ public class Knight : MonoBehaviour
         if (touchingDirections.IsGrounded && touchingDirections.IsOnWall)
         {
             FlipDirection();
+            Debug.Log("On wall");
         }
         if (!damageable.LockVelocity)
         {
@@ -168,36 +169,37 @@ public class Knight : MonoBehaviour
         if (touchingDirections.IsGrounded)
         {
             FlipDirection();
+            Debug.Log("Cliff Detected");
         }
     }
 
-    private void DetectAndChaseTarget()
-    {
-        if (target != null)
-        {
-            float distanceToTarget = Vector2.Distance(transform.position, target.position);
+    //private void DetectAndChaseTarget()
+    //{
+    //    if (target != null)
+    //    {
+    //        float distanceToTarget = Vector2.Distance(transform.position, target.position);
           
-            if (distanceToTarget <= detectionRange)
-            {
-                Vector3 directionToTarget = (target.position - transform.position).normalized;
+    //        if (distanceToTarget <= detectionRange)
+    //        {
+    //            Vector3 directionToTarget = (target.position - transform.position).normalized;
 
-                if (directionToTarget.x > 0 && WalkDirection != WalkableDirection.Right)
-                {
-                    WalkDirection = WalkableDirection.Right;
-                }
-                else if (directionToTarget.x < 0 && WalkDirection != WalkableDirection.Left)
-                {
-                    WalkDirection = WalkableDirection.Left;
-                }
+    //            if (directionToTarget.x > 0 && WalkDirection != WalkableDirection.Right)
+    //            {
+    //                WalkDirection = WalkableDirection.Right;
+    //            }
+    //            else if (directionToTarget.x < 0 && WalkDirection != WalkableDirection.Left)
+    //            {
+    //                WalkDirection = WalkableDirection.Left;
+    //            }
 
-                HasTarget = true;
-            }
-            else
-            {
-                HasTarget = false;
-            }
-        }
-    }
+    //            HasTarget = true;
+    //        }
+    //        else
+    //        {
+    //            HasTarget = false;
+    //        }
+    //    }
+    //}
 
     // Start is called before the first frame update
     void Start()

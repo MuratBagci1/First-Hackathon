@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6852685919457352103}
   - component: {fileID: 265732212625753899}
+  - component: {fileID: 8107177319273592997}
   m_Layer: 0
   m_Name: AttackCollider
   m_TagString: Untagged
@@ -88,6 +89,20 @@ PolygonCollider2D:
       - {x: 0.16047633, y: -0.90191007}
       - {x: 1.9914598, y: -0.7499643}
   m_UseDelaunayMesh: 0
+--- !u!114 &8107177319273592997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3705850564534819214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f6212a90086c1a4ca1177e16f084439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 10
+  knockback: {x: 0, y: 0}
 --- !u!1 &5467693971476934939
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,6 +113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7031362653232506389}
   - component: {fileID: 7550822342210079075}
+  - component: {fileID: 3432916840741530519}
   m_Layer: 0
   m_Name: CliffDetection
   m_TagString: Untagged
@@ -165,6 +181,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0175667, y: 1.0526993}
   m_EdgeRadius: 0
+--- !u!114 &3432916840741530519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467693971476934939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe1d6d3c3ac41441a7d1c89da258f6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noCollidersRemain:
+    m_PersistentCalls:
+      m_Calls: []
+  detectedColliders: []
 --- !u!1 &5617926390703095010
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,14 +507,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   castFilter:
     useTriggers: 0
-    useLayerMask: 0
+    useLayerMask: 1
     useDepth: 0
     useOutsideDepth: 0
     useNormalAngle: 0
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 64
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
