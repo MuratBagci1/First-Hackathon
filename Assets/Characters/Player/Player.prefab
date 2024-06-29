@@ -451,6 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchPoint: {fileID: 472175285443809601}
   projectilePrefab: {fileID: 8416613098978750369, guid: 52f1d46f4147ecd43bedc50fc2637cd1, type: 3}
+<<<<<<< HEAD
 --- !u!114 &8022373278871866977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,6 +478,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goldText: {fileID: 0}
+=======
+>>>>>>> 1fd7dfd8ab72b542f48b4e0869ca06ea4ec2bf25
 --- !u!1 &704687550596378215
 GameObject:
   m_ObjectHideFlags: 0
