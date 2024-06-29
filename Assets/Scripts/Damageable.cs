@@ -85,7 +85,10 @@ public class Damageable : MonoBehaviour
         set
         {
             _isAlive = value;
-            animator.SetBool(AnimationStrings.isAlive, value);
+            if (animator != null)
+            {
+                animator.SetBool(AnimationStrings.isAlive, value);
+            }
             Debug.Log("IsAlive set " + value);
             if(!value)
             {
@@ -102,11 +105,25 @@ public class Damageable : MonoBehaviour
     {
         get
         {
-            return animator.GetBool(AnimationStrings.lockVelocity);
+            if (animator != null)
+            {
+                return animator.GetBool(AnimationStrings.lockVelocity);
+            }
+            else
+            {
+                return false;
+            }
         }
         set
         {
-            animator.SetBool(AnimationStrings.lockVelocity, value);
+            if (animator != null)
+            {
+                animator.SetBool(AnimationStrings.lockVelocity, value);
+            }
+            else
+            {
+                value = false;
+            }
         }
     }
 
@@ -163,7 +180,10 @@ public class Damageable : MonoBehaviour
                 //IsHit = true;
 
                 LockVelocity = true;
-                animator.SetTrigger(AnimationStrings.hitTrigger);
+                if (animator != null)
+                {
+                    animator.SetTrigger(AnimationStrings.hitTrigger);
+                }
                 damageableHit?.Invoke(damage, knockback);
 
                 CharacterEvents.characterDamaged.Invoke(gameObject, damage);
@@ -177,7 +197,10 @@ public class Damageable : MonoBehaviour
                 Armor -= damage;
                 isInvincible = true;         
                 LockVelocity = true;
-                animator.SetTrigger(AnimationStrings.hitTrigger);
+                if (animator != null)
+                {
+                    animator.SetTrigger(AnimationStrings.hitTrigger);
+                }
                 damageableHit?.Invoke(damage, knockback);
 
                 CharacterEvents.characterDamaged.Invoke(gameObject, damage);

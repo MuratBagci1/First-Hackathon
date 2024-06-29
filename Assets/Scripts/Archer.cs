@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
-public class Knight : MonoBehaviour
+public class Archer : MonoBehaviour
 {
     public float walkAcceleration = 30f;
     public float maxSpeed = 3f;
@@ -68,14 +68,11 @@ public class Knight : MonoBehaviour
         private set
         {
             _hasTarget = value;
-            if (animator != null)
-            {
-                animator.SetBool(AnimationStrings.hasTarget, value);
-            }
+            animator.SetBool(AnimationStrings.hasTarget, value);
         }
     }
 
-    public bool CanMove 
+    public bool CanMove
     {
         get
         {
@@ -83,7 +80,7 @@ public class Knight : MonoBehaviour
         }
     }
 
-    public float AttackCooldown 
+    public float AttackCooldown
     {
         get
         {
@@ -181,7 +178,7 @@ public class Knight : MonoBehaviour
     //    if (target != null)
     //    {
     //        float distanceToTarget = Vector2.Distance(transform.position, target.position);
-          
+
     //        if (distanceToTarget <= detectionRange)
     //        {
     //            Vector3 directionToTarget = (target.position - transform.position).normalized;

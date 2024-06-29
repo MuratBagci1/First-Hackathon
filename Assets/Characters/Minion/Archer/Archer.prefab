@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3464176179455394672}
   - component: {fileID: 3308985098280294749}
   - component: {fileID: 8033080657464817232}
+  - component: {fileID: 2110326463874349931}
   m_Layer: 0
   m_Name: Archer
   m_TagString: Untagged
@@ -258,6 +259,20 @@ MonoBehaviour:
   cliffDetectionZone: {fileID: 0}
   detectionRange: 0
   _hasTarget: 0
+--- !u!114 &2110326463874349931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172293664649615175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 364b0cce6e3bd114793257a2decf1a2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  launchPoint: {fileID: 0}
+  projectilePrefab: {fileID: 0}
 --- !u!1 &258021892959116331
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +420,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1717105813779930886}
   - component: {fileID: 8803525694184203138}
+  - component: {fileID: 648550141618084838}
   m_Layer: 0
   m_Name: DetectionZone
   m_TagString: Untagged
@@ -472,3 +488,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.041412, y: 0.44094175}
   m_EdgeRadius: 0
+--- !u!114 &648550141618084838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809393286755799973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe1d6d3c3ac41441a7d1c89da258f6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noCollidersRemain:
+    m_PersistentCalls:
+      m_Calls: []
+  detectedColliders: []
