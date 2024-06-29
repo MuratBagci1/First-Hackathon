@@ -471,6 +471,7 @@ MonoBehaviour:
   walkStopRate: 1
   attackZone: {fileID: 594633857692174374}
   cliffDetectionZone: {fileID: 1312036390116993426}
+  detectionRange: 3
   _hasTarget: 0
 --- !u!114 &6728589308833946954
 MonoBehaviour:
@@ -538,6 +539,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageableHit:
+    m_PersistentCalls:
+      m_Calls: []
+  damageableDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  healthChanged:
     m_PersistentCalls:
       m_Calls: []
   _maxHealth: 100
