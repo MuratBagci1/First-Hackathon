@@ -28,4 +28,9 @@ public class Attack : MonoBehaviour
             }
         }
     }
+    public void UpgradeAttackDamage(int amount)
+    {
+        attackDamage += amount;
+        Debug.Log("Attack damage upgraded by: " + amount + ". New attack damage: " + attackDamage);
+    }
 }
