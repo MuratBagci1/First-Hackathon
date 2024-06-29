@@ -60,7 +60,7 @@ public class Damageable : MonoBehaviour
         }
     }
     [SerializeField]
-    private int _armor = 10;
+    private int _armor = 0;
     public int Armor 
     {
         get

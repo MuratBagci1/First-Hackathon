@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6852685919457352103}
   - component: {fileID: 265732212625753899}
   - component: {fileID: 8107177319273592997}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 7031362653232506389}
   - component: {fileID: 7550822342210079075}
   - component: {fileID: 3432916840741530519}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CliffDetection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.9072752, y: -2.1870441}
+  m_Offset: {x: 2.8497574, y: -2.065132}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -179,7 +179,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0175667, y: 1.0526993}
+  m_Size: {x: 0.90253115, y: 0.9051299}
   m_EdgeRadius: 0
 --- !u!114 &3432916840741530519
 MonoBehaviour:
@@ -195,7 +195,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noCollidersRemain:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Knight, Assembly-CSharp
+        m_MethodName: OnCliffDetected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   detectedColliders: []
 --- !u!1 &5617926390703095010
 GameObject:
@@ -208,7 +220,7 @@ GameObject:
   - component: {fileID: 5309042422895177620}
   - component: {fileID: 418495226992140578}
   - component: {fileID: 1056499109459743882}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: DetectionCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -307,9 +319,9 @@ GameObject:
   - component: {fileID: 5624245367234526389}
   - component: {fileID: 7971835953680603903}
   - component: {fileID: 599210159871027104}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Skeleton Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -410,7 +422,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &-7709919524764137190
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -443,8 +455,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.16637087, y: -0.20410502}
-  m_Size: {x: 1.0493174, y: 3.0980976}
+  m_Offset: {x: 0.16637087, y: -0.14101672}
+  m_Size: {x: 1.0493174, y: 2.971921}
   m_Direction: 0
 --- !u!95 &565695692307430770
 Animator:
@@ -488,9 +500,14 @@ MonoBehaviour:
   healthChanged:
     m_PersistentCalls:
       m_Calls: []
+  armorChanged:
+    m_PersistentCalls:
+      m_Calls: []
   _maxHealth: 100
+  _maxArmor: 100
   goldReward: 10
   _health: 100
+  _armor: 10
   isInvincible: 0
   invinciblityTime: 1
 --- !u!114 &7971835953680603903
@@ -540,7 +557,7 @@ MonoBehaviour:
   walkAcceleration: 30
   maxSpeed: 3
   walkStopRate: 0.05
-  attackZone: {fileID: 0}
-  cliffDetectionZone: {fileID: 0}
-  detectionRange: 0
+  attackZone: {fileID: 1056499109459743882}
+  cliffDetectionZone: {fileID: 3432916840741530519}
+  detectionRange: 3
   _hasTarget: 0

@@ -14,14 +14,28 @@ public class HealthBar : MonoBehaviour
 
     private void Awake()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-        if(player == null)
+        if (transform.parent.tag == "Base")
         {
-            Debug.Log("No player found in the scene. Make sure it has tag 'player'");
+            GameObject _base = GameObject.FindGameObjectWithTag("Base");
+            if (_base == null)
+            {
+                Debug.Log("No player found in the scene. Make sure it has tag 'player'");
+            }
+
+            playerDamageable = _base.GetComponent<Damageable>();
+        }
+        else
+        {
+
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null)
+            {
+                Debug.Log("No player found in the scene. Make sure it has tag 'player'");
+            }
+
+            playerDamageable = player.GetComponent<Damageable>();
         }
 
-        playerDamageable = player.GetComponent<Damageable>();
     }
 
     // Start is called before the first frame update
