@@ -195,6 +195,9 @@ GameObject:
   - component: {fileID: -1372853494309464050}
   - component: {fileID: -7709919524764137190}
   - component: {fileID: 565695692307430770}
+  - component: {fileID: 5624245367234526389}
+  - component: {fileID: 7971835953680603903}
+  - component: {fileID: 599210159871027104}
   m_Layer: 0
   m_Name: Skeleton Enemy
   m_TagString: Untagged
@@ -343,7 +346,7 @@ Animator:
   m_GameObject: {fileID: 8397238034190592316}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 612270efc3f9c0848a5da986f6d8f32e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -354,3 +357,80 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5624245367234526389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8397238034190592316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08c76b07677932d42b1b845b2a758b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageableHit:
+    m_PersistentCalls:
+      m_Calls: []
+  damageableDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  healthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  _maxHealth: 100
+  goldReward: 10
+  _health: 100
+  isInvincible: 0
+  invinciblityTime: 1
+--- !u!114 &7971835953680603903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8397238034190592316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e11aacfc06a8b4498b8f90fcc49cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  castFilter:
+    useTriggers: 0
+    useLayerMask: 0
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  groundDistance: 0.05
+  wallDistance: 0.2
+  ceilingDistance: 0.05
+  _isGrounded: 1
+  _isOnWall: 0
+  _isOnCeiling: 0
+--- !u!114 &599210159871027104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8397238034190592316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014f3d64d9f063d49ac6118382cdf902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkAcceleration: 30
+  maxSpeed: 3
+  walkStopRate: 0.05
+  attackZone: {fileID: 0}
+  cliffDetectionZone: {fileID: 0}
+  detectionRange: 0
+  _hasTarget: 0
