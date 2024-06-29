@@ -9,7 +9,12 @@ public class PlayerData: MonoBehaviour
 
     public TextMeshProUGUI goldText;
     private int gold = 100;
- 
+
+    private void Awake()
+    {
+        AddGold(1);
+    }
+
 
     public void AddGold(int amount)
     {
