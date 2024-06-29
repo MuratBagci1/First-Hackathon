@@ -2,19 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerData
+public class PlayerData: MonoBehaviour
 {
-    //public int level;
-    //public int health;
-    //public float[] position;
+    
+ 
+    public int gold = 0;
 
-    //public PlayerData(PlayerController player, Damageable damageable)
-    //{
-    //    level = player.level;
-    //    health = damageable.Health;
-    //    position = new float[3];
-    //    position[0] = player.transform.position.x;
-    //    position[1] = player.transform.position.y;
-    //    position[2] = player.transform.position.z;
-    //}
+    public void AddGold(int amount)
+    {
+        gold += amount;
+        Debug.Log("Gold added: " + amount + ". Total Gold: " + gold);
+        // Altýn miktarýný güncellemek için UI gibi baþka iþlemler de yapabilirsiniz.
+    }
+
 }
