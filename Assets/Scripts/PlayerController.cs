@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed = 5f;
     public float runSpeed = 8f;
     public float airWalkSpeed = 3f;
-    public float jumpImpulse = 10f;
+    //public float jumpImpulse = 10f;
     Vector2 moveInput;
     TouchingDirections touchingDirections;
     Damageable damageable;
@@ -222,15 +222,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        //Check if alive as well!!
-        if (context.started && touchingDirections.IsGrounded && CanMove)
-        {
-            animator.SetTrigger(AnimationStrings.jumpTrigger);
-            rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
-        }
-    }
+    //public void OnJump(InputAction.CallbackContext context)
+    //{
+    //    //Check if alive as well!!
+    //    if (context.started && touchingDirections.IsGrounded && CanMove)
+    //    {
+    //        animator.SetTrigger(AnimationStrings.jumpTrigger);
+    //        rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
+    //    }
+    //}
 
     public void OnAttack(InputAction.CallbackContext context)
     {
