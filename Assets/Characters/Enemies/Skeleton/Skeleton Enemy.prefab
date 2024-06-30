@@ -516,7 +516,7 @@ MonoBehaviour:
   _health: 100
   _armor: 10
   isInvincible: 0
-  invinciblityTime: 1
+  invinciblityTime: 0.25
 --- !u!114 &7971835953680603903
 MonoBehaviour:
   m_ObjectHideFlags: 0
