@@ -5331,7 +5331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &419131240
 Transform:
   m_ObjectHideFlags: 0
@@ -6890,7 +6890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 1437637704}
+  - {fileID: 172293664649615175, guid: f2ea44dea5ccbaf42a49f108aecf1a8f, type: 3}
   spawnInterval: 5
   knightParent: {fileID: 1942676745}
   quantity: 0
@@ -20656,11 +20656,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1437637704 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 172293664649615175, guid: f2ea44dea5ccbaf42a49f108aecf1a8f, type: 3}
-  m_PrefabInstance: {fileID: 1304011870}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1449601836
 GameObject:
   m_ObjectHideFlags: 0
@@ -21696,7 +21691,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10
+  m_text: 50
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a352a60bac31dc0449e4ea372e53b64b, type: 2}
   m_sharedMaterial: {fileID: -3005630554294528961, guid: a352a60bac31dc0449e4ea372e53b64b, type: 2}
