@@ -6,22 +6,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class Archer : MonoBehaviour
 {
-    public float walkAcceleration = 30f;
-    public float maxSpeed = 3f;
-    public float walkStopRate = 0.05f;    
+    public float speed = 2f;
+    public float waypointReachDistance = 0.1f;
     public DetectionZone attackZone;
     public DetectionZone cliffDetectionZone;
-
-    public float waypointReachDistance = 0.1f;
+    public float detectionRange;
     public List<Transform> waypoints;
-
-    public float detectionRange; // Düþmanýn oyuncuyu algýlama mesafesi
 
     Rigidbody2D rb;
     TouchingDirections touchingDirections;
     Animator animator;
     Damageable damageable;
-    Transform target; // Oyuncu karakterin Transform'u
+    Transform target;
+
+    Transform nextWaypoint;
+    int waypointNum = 0;
 
     public enum WalkableDirection
     {
@@ -102,7 +101,6 @@ public class Archer : MonoBehaviour
         animator = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
 
-        // Oyuncu karakterin Transform'unu bul
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
@@ -112,9 +110,17 @@ public class Archer : MonoBehaviour
         {
             Debug.LogWarning("Player with tag 'Player' not found.");
         }
+
+        if (waypoints.Count > 0)
+        {
+            nextWaypoint = waypoints[waypointNum];
+        }
+        else
+        {
+            Debug.LogWarning("No waypoints set for Archer.");
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
         HasTarget = attackZone.detectedColliders.Count > 0;
@@ -123,42 +129,62 @@ public class Archer : MonoBehaviour
         {
             AttackCooldown -= Time.deltaTime;
         }
-
-        // Karakterin algýlanmasý ve yön deðiþtirmesi
-        //DetectAndChaseTarget();
     }
 
     private void FixedUpdate()
     {
-        if (touchingDirections.IsGrounded && touchingDirections.IsOnWall)
+        if (damageable.IsAlive)
         {
-            FlipDirection();
-            Debug.Log("On wall");
-        }
-        if (!damageable.LockVelocity)
-        {
-            if (CanMove && touchingDirections.IsGrounded && !HasTarget) // Sadece hedef yokken hareket et
+            if (CanMove && !HasTarget)
             {
-                float xVelocity = Mathf.Clamp(rb.velocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime),
-                    -maxSpeed, maxSpeed);
-                rb.velocity = new Vector2(xVelocity, rb.velocity.y);
+                MoveTowardsWaypoint();
             }
             else
             {
-                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y); //animasyon durdurulmalý
+                rb.velocity = Vector3.zero;
             }
         }
     }
 
-    private void FlipDirection()
+    private void MoveTowardsWaypoint()
     {
-        if (WalkDirection == WalkableDirection.Right)
+        if (nextWaypoint == null) return;
+
+        Vector2 directionToWaypoint = (nextWaypoint.position - transform.position).normalized;
+        float distance = Vector2.Distance(nextWaypoint.position, transform.position);
+
+        rb.velocity = directionToWaypoint * speed;
+        UpdateDirection();
+
+        if (distance <= waypointReachDistance)
         {
-            WalkDirection = WalkableDirection.Left;
+            waypointNum++;
+
+            if (waypointNum >= waypoints.Count)
+            {
+                waypointNum = 0;
+            }
+
+            nextWaypoint = waypoints[waypointNum];
         }
-        else if (WalkDirection == WalkableDirection.Left)
+    }
+
+    private void UpdateDirection()
+    {
+        Vector3 currentLocalScale = transform.localScale;
+        if (transform.localScale.x > 0)
         {
-            WalkDirection = WalkableDirection.Right;
+            if (rb.velocity.x < 0)
+            {
+                transform.localScale = new Vector3(-1 * currentLocalScale.x, currentLocalScale.y, currentLocalScale.z);
+            }
+        }
+        else
+        {
+            if (rb.velocity.x > 0)
+            {
+                transform.localScale = new Vector3(-1 * currentLocalScale.x, currentLocalScale.y, currentLocalScale.z);
+            }
         }
     }
 
@@ -176,37 +202,50 @@ public class Archer : MonoBehaviour
         }
     }
 
+    private void FlipDirection()
+    {
+        if (WalkDirection == WalkableDirection.Right)
+        {
+            WalkDirection = WalkableDirection.Left;
+        }
+        else if (WalkDirection == WalkableDirection.Left)
+        {
+            WalkDirection = WalkableDirection.Right;
+        }
+    }
 
-    //private void DetectAndChaseTarget()
-    //{
-    //    if (target != null)
-    //    {
-    //        float distanceToTarget = Vector2.Distance(transform.position, target.position);
 
-    //        if (distanceToTarget <= detectionRange)
-    //        {
-    //            Vector3 directionToTarget = (target.position - transform.position).normalized;
 
-    //            if (directionToTarget.x > 0 && WalkDirection != WalkableDirection.Right)
-    //            {
-    //                WalkDirection = WalkableDirection.Right;
-    //            }
-    //            else if (directionToTarget.x < 0 && WalkDirection != WalkableDirection.Left)
-    //            {
-    //                WalkDirection = WalkableDirection.Left;
-    //            }
+//private void DetectAndChaseTarget()
+//{
+//    if (target != null)
+//    {
+//        float distanceToTarget = Vector2.Distance(transform.position, target.position);
 
-    //            HasTarget = true;
-    //        }
-    //        else
-    //        {
-    //            HasTarget = false;
-    //        }
-    //    }
-    //}
+//        if (distanceToTarget <= detectionRange)
+//        {
+//            Vector3 directionToTarget = (target.position - transform.position).normalized;
 
-    // Start is called before the first frame update
-    void Start()
+//            if (directionToTarget.x > 0 && WalkDirection != WalkableDirection.Right)
+//            {
+//                WalkDirection = WalkableDirection.Right;
+//            }
+//            else if (directionToTarget.x < 0 && WalkDirection != WalkableDirection.Left)
+//            {
+//                WalkDirection = WalkableDirection.Left;
+//            }
+
+//            HasTarget = true;
+//        }
+//        else
+//        {
+//            HasTarget = false;
+//        }
+//    }
+//}
+
+// Start is called before the first frame update
+void Start()
     {
 
     }
