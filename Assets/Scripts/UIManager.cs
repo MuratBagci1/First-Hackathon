@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
         shop.SetActive(!shop.activeSelf);
         if (shop.activeSelf)
         {
-            shopButtonText.text = "Close Shop";
+            shopButtonText.text = "Close";
         }
         else
         {
