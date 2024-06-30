@@ -15,10 +15,8 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        //If you want the projectile to be effected by gravity by default, make it dynamic mode rigidbody!
         rb.velocity = new Vector2(moveSpeed.x * transform.localScale.x, moveSpeed.y);
     }
 

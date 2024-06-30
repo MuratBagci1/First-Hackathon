@@ -20,12 +20,9 @@ public class BaseHealthBar : MonoBehaviour
                 Debug.Log("No player found in the scene. Make sure it has tag 'player'");
             }
 
-            playerDamageable = player.GetComponent<Damageable>();
-        
+            playerDamageable = player.GetComponent<Damageable>(); 
 
-    }
-
-    // Start is called before the first frame update
+    } 
     void Start()
     {        
         healthSlider.value = CalculateSliderPercentage(playerDamageable.Health, playerDamageable.MaxHealth);
@@ -52,10 +49,5 @@ public class BaseHealthBar : MonoBehaviour
         healthSlider.value = CalculateSliderPercentage(currentHealth, maxHealth);
         healthBarText.text = "Base HP " + playerDamageable.Health + " / " + playerDamageable.MaxHealth;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+     
 }

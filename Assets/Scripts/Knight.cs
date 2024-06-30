@@ -58,8 +58,7 @@ public class Knight : MonoBehaviour
     }
 
     public bool _hasTarget;
-
-    public bool HasTarget
+        public bool HasTarget
     {
         get
         {
@@ -102,7 +101,6 @@ public class Knight : MonoBehaviour
         animator = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
 
-        // Oyuncu karakterin Transform'unu bul
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {
@@ -114,7 +112,6 @@ public class Knight : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         HasTarget = attackZone.detectedColliders.Count > 0;
@@ -124,8 +121,6 @@ public class Knight : MonoBehaviour
             AttackCooldown -= Time.deltaTime;
         }
 
-        // Karakterin algýlanmasý ve yön deðiþtirmesi
-        //DetectAndChaseTarget();
     }
 
     private void FixedUpdate()
@@ -174,39 +169,5 @@ public class Knight : MonoBehaviour
             FlipDirection();
             Debug.Log("Cliff Detected");
         }
-    }
-
-    //private void DetectAndChaseTarget()
-    //{
-    //    if (target != null)
-    //    {
-    //        float distanceToTarget = Vector2.Distance(transform.position, target.position);
-          
-    //        if (distanceToTarget <= detectionRange)
-    //        {
-    //            Vector3 directionToTarget = (target.position - transform.position).normalized;
-
-    //            if (directionToTarget.x > 0 && WalkDirection != WalkableDirection.Right)
-    //            {
-    //                WalkDirection = WalkableDirection.Right;
-    //            }
-    //            else if (directionToTarget.x < 0 && WalkDirection != WalkableDirection.Left)
-    //            {
-    //                WalkDirection = WalkableDirection.Left;
-    //            }
-
-    //            HasTarget = true;
-    //        }
-    //        else
-    //        {
-    //            HasTarget = false;
-    //        }
-    //    }
-    //}
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
     }
 }

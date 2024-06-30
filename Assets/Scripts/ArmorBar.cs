@@ -21,9 +21,7 @@ public class ArmorBar : MonoBehaviour
         }
 
         playerDamageable = player.GetComponent<Damageable>();
-    }
-
-    // Start is called before the first frame update
+    } 
     void Start()
     {
         armorSlider.value = CalculateSliderPercentage(playerDamageable.Armor, playerDamageable.MaxArmor);
@@ -51,9 +49,4 @@ public class ArmorBar : MonoBehaviour
         armorBarText.text = "Armor " + playerDamageable.Armor + " / " + playerDamageable.MaxArmor;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

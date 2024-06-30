@@ -12,13 +12,11 @@ public class Damageable : MonoBehaviour
     public UnityEvent<int, int> armorChanged;
     public UnityEvent<Collider2D> damageableDestroyed;
     
-
     Animator animator;
 
     [SerializeField]
     private int _maxHealth = 100;
-    //[SerializeField]
-    //private int _maxBaseHealth = 1234;
+
     [SerializeField]
     private int _maxArmor = 100;
 
@@ -34,17 +32,7 @@ public class Damageable : MonoBehaviour
             _maxHealth = value;
         }
     }
-    //public int MaxBaseHealth 
-    //{
-    //    get
-    //    {
-    //        return _maxBaseHealth;
-    //    }
-    //    set
-    //    {
-    //        _maxBaseHealth = value;
-    //    }
-    //}
+
        public int MaxArmor 
     {
         get
@@ -58,9 +46,7 @@ public class Damageable : MonoBehaviour
     }
 
     [SerializeField]
-    private int _health = 100;
-    //[SerializeField]
-    //private int _baseHealth = 1234;
+    private int _health = 100; 
     public int Health 
     {
         get
@@ -76,23 +62,8 @@ public class Damageable : MonoBehaviour
                 IsAlive = false;
             }
         }
-    } 
-    //public int BaseHealth 
-    //{
-    //    get
-    //    {
-    //        return _baseHealth;
-    //    }
-    //    set
-    //    {
-    //        _baseHealth = value;
-    //        healthChanged?.Invoke(_baseHealth, MaxBaseHealth);
-    //        //if(_baseHealth <= 0)
-    //        //{
-    //        //    IsAlive = false;
-    //        //}
-    //    }
-    //}
+    }  
+
     [SerializeField]
     private int _armor = 0;
     public int Armor 
@@ -163,19 +134,6 @@ public class Damageable : MonoBehaviour
 
     public bool isInvincible = false;
 
-    /*
-    public bool IsHit 
-    { 
-        get
-        {
-            return animator.GetBool(AnimationStrings.isHit);
-        }
-        private set
-        {
-            animator.SetBool(AnimationStrings.isHit, value);
-        }
-    }
-    */
 
     private float timeSinceHit = 0;
     public float invinciblityTime = 1f;
@@ -206,13 +164,8 @@ public class Damageable : MonoBehaviour
         {
             if (Armor<=0)
             {
-
                 Health -= damage;
                 isInvincible = true;
-
-                //isHit bool çalýþýyor, hitTrigger yerine kullanýlabilir!
-                //IsHit = true;
-
                 LockVelocity = true;
                 if (animator != null)
                 {
@@ -260,8 +213,6 @@ public class Damageable : MonoBehaviour
 
                     return true;
                 }
-
-
             }
         }
         else
@@ -288,7 +239,6 @@ public class Damageable : MonoBehaviour
     }
     private void GiveGoldToPlayer(int gold)
     {
-        // Oyuncuyu bul ve altýn ekle
         PlayerData playerData = FindObjectOfType<PlayerData>();
         if (playerData != null)
         {
