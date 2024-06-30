@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
 {
     public GameObject damageTextPrefab;
     public GameObject healthTextPrefab;
+    public GameObject shop;
+    public TextMeshProUGUI shopButtonText;
     public Canvas gameCanvas;
 
     private void Awake()
@@ -45,7 +47,19 @@ public class UIManager : MonoBehaviour
 
         tmpText.text = healthRestored.ToString();
     }
+    public void OpenCloseShop()
+    {
+        shop.SetActive(!shop.activeSelf);
+        if (shop.activeSelf)
+        {
+            shopButtonText.text = "Close Shop";
+        }
+        else
+        {
+            shopButtonText.text = "Shop";
 
+        }
+    }
     //ESC'ye basýnca oyundan çýkmaya yarayan kod, pause menu ekleniyor
     //public void OnExitGame(InputAction.CallbackContext context)
     //{
