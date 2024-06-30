@@ -10,6 +10,8 @@ public class Damageable : MonoBehaviour
     public UnityEvent<int, int> healthChanged;
     public UnityEvent<int, int> baseHealthChanged;
     public UnityEvent<int, int> armorChanged;
+    public UnityEvent<Collider2D> damageableDestroyed;
+    
 
     Animator animator;
 
@@ -299,5 +301,15 @@ public class Damageable : MonoBehaviour
         Debug.Log("Armor upgraded by: " + amount + ". New armor: " + Armor);
     }
 
-    
+    public void OnDeath()
+    {
+        damageableDestroyed?.Invoke(GetComponent<Collider2D>()); // Notify listeners before destruction
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        // Ensure any necessary cleanup happens here if needed
+        damageableDestroyed?.Invoke(GetComponent<Collider2D>());
+    }
 }

@@ -15,16 +15,36 @@ public class DetectionZone : MonoBehaviour
         col = GetComponent<Collider2D>();
     }
 
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    detectedColliders.Add(collision);
+    //}
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Damageable damageable = collision.GetComponent<Damageable>();
+        if (damageable != null)
+        {
+            damageable.damageableDestroyed.AddListener(OnColliderDestroyed);
+        }
         detectedColliders.Add(collision);
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        detectedColliders.Remove(collision);
+        RemoveCollider(collision);
+    }
 
-        if(detectedColliders.Count <= 0)
+    private void OnColliderDestroyed(Collider2D collider)
+    {
+        RemoveCollider(collider);
+    }
+
+    private void RemoveCollider(Collider2D collider)
+    {
+        detectedColliders.Remove(collider);
+
+        if (detectedColliders.Count <= 0)
         {
             noCollidersRemain.Invoke();
         }
