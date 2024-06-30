@@ -277,9 +277,7 @@ MonoBehaviour:
   attackZone: {fileID: 648550141618084838}
   cliffDetectionZone: {fileID: 9187415307564426915}
   detectionRange: 0
-  waypoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  waypoints: []
   _hasTarget: 0
 --- !u!1 &258021892959116331
 GameObject:

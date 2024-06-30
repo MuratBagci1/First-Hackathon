@@ -101,6 +101,13 @@ public class Archer : MonoBehaviour
         animator = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
 
+        GameObject[] waypointObjects = GameObject.FindGameObjectsWithTag("WayPoint");
+        foreach (GameObject waypointObject in waypointObjects)
+        {
+            waypoints.Add(waypointObject.transform);
+        }
+
+
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
         {

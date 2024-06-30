@@ -4991,8 +4991,8 @@ GameObject:
   m_Component:
   - component: {fileID: 263223079}
   m_Layer: 0
-  m_Name: EyeWayPoint2
-  m_TagString: Untagged
+  m_Name: WayPoint2
+  m_TagString: WayPoint
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5313,7 +5313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &419131240
 Transform:
   m_ObjectHideFlags: 0
@@ -20432,8 +20432,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1449601837}
   m_Layer: 0
-  m_Name: EyeWayPoint1
-  m_TagString: Untagged
+  m_Name: WayPoint1
+  m_TagString: WayPoint
   m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
