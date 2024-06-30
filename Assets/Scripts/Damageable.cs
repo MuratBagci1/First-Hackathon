@@ -11,6 +11,8 @@ public class Damageable : MonoBehaviour
     public UnityEvent<int, int> baseHealthChanged;
     public UnityEvent<int, int> armorChanged;
     public UnityEvent<Collider2D> damageableDestroyed;
+
+    public GameOverScreen gameOver;
     
     Animator animator;
 
@@ -141,6 +143,7 @@ public class Damageable : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        //Debug.Log("deneme"+gameObject.CompareTag("Base").ToString());
     }
 
     private void Update()
@@ -154,6 +157,15 @@ public class Damageable : MonoBehaviour
             }
 
             timeSinceHit += Time.deltaTime;
+
+        }
+        if (!IsAlive)
+        {
+            Debug.Log("if calýstý isalive");
+            if (gameObject.CompareTag("Base"))
+            {
+                gameOver.Setup();
+            }
 
         }
     }
@@ -254,6 +266,8 @@ public class Damageable : MonoBehaviour
     public void OnDeath()
     {
         damageableDestroyed?.Invoke(GetComponent<Collider2D>()); // Notify listeners before destruction
+       
+
         Destroy(gameObject);
     }
 

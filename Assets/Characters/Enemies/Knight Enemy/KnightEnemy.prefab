@@ -65,7 +65,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.69737625, y: -0.09247899}
+  m_Offset: {x: 0.31385255, y: -0.09247899}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -76,7 +76,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.3408232, y: 2.0980368}
+  m_Size: {x: 1.5737758, y: 2.0980368}
   m_EdgeRadius: 0
 --- !u!114 &594633857692174374
 MonoBehaviour:
@@ -556,6 +556,7 @@ MonoBehaviour:
   damageableDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  gameOver: {fileID: 0}
   _maxHealth: 150
   _maxArmor: 100
   goldReward: 20

@@ -8,11 +8,11 @@ public class PlayerData: MonoBehaviour
 
 
     public TextMeshProUGUI goldText;
-    public int gold = 100;
+    public int gold = 0;
 
     private void Awake()
     {
-        AddGold(1);
+        AddGold(50);
     }
 
 
