@@ -547,7 +547,19 @@ MonoBehaviour:
   healthChanged:
     m_PersistentCalls:
       m_Calls: []
-  _maxHealth: 100
-  _health: 100
+  baseHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  armorChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  damageableDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  _maxHealth: 150
+  _maxArmor: 100
+  goldReward: 20
+  _health: 150
+  _armor: 0
   isInvincible: 0
   invinciblityTime: 0.25
