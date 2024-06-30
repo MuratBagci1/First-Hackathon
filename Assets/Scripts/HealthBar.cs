@@ -13,8 +13,7 @@ public class HealthBar : MonoBehaviour
     private Damageable playerDamageable;
 
     private void Awake()
-    {
-   
+    {   
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player == null)
             {
@@ -26,7 +25,6 @@ public class HealthBar : MonoBehaviour
 
     }
 
-    // Start is called before the first frame update
     void Start()
     {        
         healthSlider.value = CalculateSliderPercentage(playerDamageable.Health, playerDamageable.MaxHealth);
@@ -54,9 +52,4 @@ public class HealthBar : MonoBehaviour
         healthBarText.text = "HP " + playerDamageable.Health + " / " + playerDamageable.MaxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

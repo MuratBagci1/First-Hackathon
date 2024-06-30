@@ -16,7 +16,6 @@ public class KnightSpawner : MonoBehaviour
         StartCoroutine(SpawnEnemy());
         }
     }
-
     private IEnumerator SpawnEnemy()
     {
         while (true)
@@ -40,7 +39,7 @@ public class KnightSpawner : MonoBehaviour
     }
     public void SpawnSingleEnemy()
     {
-        // Oyuncuyu bul ve altýn azalt
+
         PlayerData playerData = FindObjectOfType<PlayerData>();
         if (playerData != null)            
         {
@@ -53,9 +52,6 @@ public class KnightSpawner : MonoBehaviour
                 Instantiate(randomEnemy, transform.position, Quaternion.identity, knightParent);
 
             }
-        }
-
-
-         
+        }         
     }
 }

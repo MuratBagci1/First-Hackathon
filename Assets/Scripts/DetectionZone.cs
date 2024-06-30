@@ -14,12 +14,6 @@ public class DetectionZone : MonoBehaviour
     {
         col = GetComponent<Collider2D>();
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    detectedColliders.Add(collision);
-    //}
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Damageable damageable = collision.GetComponent<Damageable>();
@@ -49,5 +43,4 @@ public class DetectionZone : MonoBehaviour
             noCollidersRemain.Invoke();
         }
     }
-
 }

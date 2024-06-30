@@ -220,40 +220,5 @@ public class Archer : MonoBehaviour
             WalkDirection = WalkableDirection.Right;
         }
     }
-
-
-
-//private void DetectAndChaseTarget()
-//{
-//    if (target != null)
-//    {
-//        float distanceToTarget = Vector2.Distance(transform.position, target.position);
-
-//        if (distanceToTarget <= detectionRange)
-//        {
-//            Vector3 directionToTarget = (target.position - transform.position).normalized;
-
-//            if (directionToTarget.x > 0 && WalkDirection != WalkableDirection.Right)
-//            {
-//                WalkDirection = WalkableDirection.Right;
-//            }
-//            else if (directionToTarget.x < 0 && WalkDirection != WalkableDirection.Left)
-//            {
-//                WalkDirection = WalkableDirection.Left;
-//            }
-
-//            HasTarget = true;
-//        }
-//        else
-//        {
-//            HasTarget = false;
-//        }
-//    }
-//}
-
-// Start is called before the first frame update
-void Start()
-    {
-
-    }
+     
 }

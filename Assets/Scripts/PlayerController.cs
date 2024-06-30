@@ -4,37 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-//Rigidbody2D'nin varolduðundan emin olur.
 [RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 
 public class PlayerController : MonoBehaviour
 {
-    ////level eklenince þekillendirilecek
-    //public int level = 1;
-
-    //public void SavePlayer()
-    //{
-    //    SaveSystem.SavePlayer(this, damageable);
-    //}
-
-    //public void LoadPlayer()
-    //{
-    //    PlayerData data = SaveSystem.LoadPlayer();
-    //    level = data.level;
-    //    damageable.Health = data.health;
-    //    Vector3 position;
-    //    position.x = data.position[0];
-    //    position.y = data.position[1];
-    //    position.z = data.position[2];
-    //    transform.position = position;
-    //}
-    ////https://www.youtube.com/watch?v=XOjd_qU2Ido
-
     public GameOverScreen gameOver;
     public float walkSpeed = 5f;
     public float runSpeed = 8f;
     public float airWalkSpeed = 3f;
-    //public float jumpImpulse = 10f;
     Vector2 moveInput;
     TouchingDirections touchingDirections;
     Damageable damageable;
@@ -60,26 +37,22 @@ public class PlayerController : MonoBehaviour
                     }
                     else
                     {
-                        //air moves
                         return airWalkSpeed;
                     }
                 }
                 else
                 {
-                    //idle speed == 0
                     return 0;
                 }
             }
             else
             {
-                //movement locked
                 return 0;
             }
         }
     }
 
     [SerializeField]
-    //animator sekmesindeki isMoving ve isRunning deðerleri
     private bool _isMoving = false;
     public bool IsMoving
     {
@@ -154,19 +127,6 @@ public class PlayerController : MonoBehaviour
         damageable = GetComponent<Damageable>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    // rb.velocity = new Vector2(moveInput.x * walkSpeed * Time.fixedDeltaTime, rb.velocity.y);
     private void FixedUpdate()
     {
         if(!damageable.LockVelocity)
@@ -222,16 +182,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //public void OnJump(InputAction.CallbackContext context)
-    //{
-    //    //Check if alive as well!!
-    //    if (context.started && touchingDirections.IsGrounded && CanMove)
-    //    {
-    //        animator.SetTrigger(AnimationStrings.jumpTrigger);
-    //        rb.velocity = new Vector2(rb.velocity.x, jumpImpulse);
-    //    }
-    //}
-
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -256,7 +206,6 @@ public class PlayerController : MonoBehaviour
             OnGameOver();
         }
     }
-
     public void OnGameOver()
     {
         gameOver.Setup();

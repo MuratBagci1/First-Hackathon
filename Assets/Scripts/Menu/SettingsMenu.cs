@@ -11,7 +11,6 @@ public class SettingsMenu : MonoBehaviour
     public TMP_Dropdown resolutionDropdown;
     public TMP_Dropdown qualityDropdown;
     public Toggle fullScreenToggle;
-    //float currentvolume;
     public Resolution[] resolutions;
     private bool isFullScreen;
 

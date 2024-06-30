@@ -9,7 +9,6 @@ public class HealthPickup : MonoBehaviour
 
     AudioSource pickupSource;
 
-    // Start is called before the first frame update
     private void Awake()
     {
         pickupSource = GetComponent<AudioSource>();
@@ -32,7 +31,6 @@ public class HealthPickup : MonoBehaviour
             }
         }
     }
-
     private void Update()
     {
         transform.eulerAngles += spinRotationSpeed * Time.deltaTime;
