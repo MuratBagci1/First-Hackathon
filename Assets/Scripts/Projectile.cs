@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public int damage = 15;
-    public Vector2 moveSpeed = new Vector2(20f, 0);
+    public int damage = 25;
+    public Vector2 moveSpeed = new Vector2(30f, 0);
     public Vector2 knockback = new Vector2(4f, 0);
 
     Rigidbody2D rb;

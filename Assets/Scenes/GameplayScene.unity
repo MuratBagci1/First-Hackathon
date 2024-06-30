@@ -22984,7 +22984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6466043471370560376, guid: dc9e158a2fd0f0541819d4dc4532b2b1, type: 3}
       propertyPath: _health
-      value: 500
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -36722,7 +36722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4578676930350767634, guid: bf5179a7e48b4d6409bf5c8d4737c7ed, type: 3}
       propertyPath: _health
-      value: 1000
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4578676930350767634, guid: bf5179a7e48b4d6409bf5c8d4737c7ed, type: 3}
       propertyPath: gameOver

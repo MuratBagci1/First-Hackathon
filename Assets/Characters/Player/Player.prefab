@@ -141,8 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOver: {fileID: 0}
-  walkSpeed: 5
-  runSpeed: 8
+  walkSpeed: 6
+  runSpeed: 10
   airWalkSpeed: 3
   _isMoving: 0
   _isRunning: 0
@@ -426,9 +426,16 @@ MonoBehaviour:
   healthChanged:
     m_PersistentCalls:
       m_Calls: []
+  baseHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
   armorChanged:
     m_PersistentCalls:
       m_Calls: []
+  damageableDestroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  gameOver: {fileID: 0}
   _maxHealth: 10000
   _maxArmor: 100
   goldReward: 10
@@ -450,6 +457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchPoint: {fileID: 472175285443809601}
   projectilePrefab: {fileID: 8416613098978750369, guid: 52f1d46f4147ecd43bedc50fc2637cd1, type: 3}
+  arrowsParent: {fileID: 0}
 --- !u!114 &5026011281492480642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -463,6 +471,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goldText: {fileID: 0}
+  gold: 0
 --- !u!1 &704687550596378215
 GameObject:
   m_ObjectHideFlags: 0
