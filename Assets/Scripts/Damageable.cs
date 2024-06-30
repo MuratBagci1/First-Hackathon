@@ -298,4 +298,6 @@ public class Damageable : MonoBehaviour
         Armor += amount;
         Debug.Log("Armor upgraded by: " + amount + ". New armor: " + Armor);
     }
+
+    
 }
