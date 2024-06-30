@@ -6893,6 +6893,7 @@ MonoBehaviour:
   - {fileID: 1437637704}
   spawnInterval: 5
   knightParent: {fileID: 1942676745}
+  quantity: 0
 --- !u!4 &778317993
 Transform:
   m_ObjectHideFlags: 0
@@ -7034,6 +7035,7 @@ MonoBehaviour:
   - {fileID: 8397238034190592316, guid: 2eb98cef378f5c240b63e20023c037c0, type: 3}
   spawnInterval: 5
   knightParent: {fileID: 419131240}
+  quantity: 0
 --- !u!4 &1016088573
 Transform:
   m_ObjectHideFlags: 0
@@ -20599,10 +20601,6 @@ PrefabInstance:
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 1258727534}
-    - target: {fileID: 3308985098280294749, guid: f2ea44dea5ccbaf42a49f108aecf1a8f, type: 3}
-      propertyPath: _health
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20642,6 +20640,7 @@ MonoBehaviour:
   - {fileID: 8397238034190592316, guid: 2eb98cef378f5c240b63e20023c037c0, type: 3}
   spawnInterval: 5
   knightParent: {fileID: 419131240}
+  quantity: 0
 --- !u!4 &1392430578
 Transform:
   m_ObjectHideFlags: 0
