@@ -8,9 +8,12 @@ public class Archer : MonoBehaviour
 {
     public float walkAcceleration = 30f;
     public float maxSpeed = 3f;
-    public float walkStopRate = 0.05f;
+    public float walkStopRate = 0.05f;    
     public DetectionZone attackZone;
     public DetectionZone cliffDetectionZone;
+
+    public float waypointReachDistance = 0.1f;
+    public List<Transform> waypoints;
 
     public float detectionRange; // Düþmanýn oyuncuyu algýlama mesafesi
 
@@ -172,6 +175,7 @@ public class Archer : MonoBehaviour
             Debug.Log("Cliff Detected");
         }
     }
+
 
     //private void DetectAndChaseTarget()
     //{
