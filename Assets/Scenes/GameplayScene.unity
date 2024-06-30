@@ -22986,6 +22986,10 @@ PrefabInstance:
       propertyPath: _health
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 6466043471370560376, guid: dc9e158a2fd0f0541819d4dc4532b2b1, type: 3}
+      propertyPath: invinciblityTime
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36399,6 +36403,10 @@ PrefabInstance:
       propertyPath: _health
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 6466043471370560376, guid: dc9e158a2fd0f0541819d4dc4532b2b1, type: 3}
+      propertyPath: invinciblityTime
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -36728,6 +36736,10 @@ PrefabInstance:
       propertyPath: gameOver
       value: 
       objectReference: {fileID: 49481819}
+    - target: {fileID: 4578676930350767634, guid: bf5179a7e48b4d6409bf5c8d4737c7ed, type: 3}
+      propertyPath: invinciblityTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5158437925719727711, guid: bf5179a7e48b4d6409bf5c8d4737c7ed, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

@@ -8,7 +8,7 @@ public class FollowCamera : MonoBehaviour
 
     private Transform playerTransform;
 
-    void Start()
+    void Awake()
     { 
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
@@ -18,6 +18,17 @@ public class FollowCamera : MonoBehaviour
         else
         {
             Debug.LogError("Player nesnesi bulunamadý!");
+        }
+    }
+    private void Start()
+    {
+        if (playerTransform != null)
+        {
+            Vector3 newPosition = new Vector3(playerTransform.position.x, playerTransform.position.y + yOffset, playerTransform.position.z);
+            transform.position = newPosition;
+
+            transform.rotation = playerTransform.rotation;
+            transform.localScale = playerTransform.localScale;
         }
     }
 
