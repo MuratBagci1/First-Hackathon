@@ -8,11 +8,15 @@ public class GameOverScreen : MonoBehaviour
     public void Setup()
     {
         gameObject.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void RestartButton()
     {
+
         SceneManager.LoadScene("GameplayScene");
+        Time.timeScale = 1;
+
     }
 
     public void QuitButton()
