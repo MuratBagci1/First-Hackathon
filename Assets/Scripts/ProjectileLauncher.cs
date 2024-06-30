@@ -6,10 +6,17 @@ public class ProjectileLauncher : MonoBehaviour
 {
     public Transform launchPoint;
     public GameObject projectilePrefab;
+    public Transform arrowsParent;
+
+    private void Awake()
+    {
+        arrowsParent = GameObject.FindGameObjectWithTag("ArcherArrows").transform;
+    }
 
     public void FireProjectile()
     {
-        GameObject projectile = Instantiate(projectilePrefab, launchPoint.position, projectilePrefab.transform.rotation);
+
+        GameObject projectile = Instantiate(projectilePrefab, launchPoint.position, projectilePrefab.transform.rotation,arrowsParent);
         Vector3 origScale = projectile.transform.localScale;
 
         //Flip the projectile's facing direction and movement based on the direction the character is facing at time of launch
