@@ -512,7 +512,7 @@ MonoBehaviour:
   _maxHealth: 100
   _maxArmor: 100
   goldReward: 10
-  _health: 50
+  _health: 10
   _armor: 10
   isInvincible: 0
   invinciblityTime: 1

@@ -644,10 +644,10 @@ MonoBehaviour:
   damageableDestroyed:
     m_PersistentCalls:
       m_Calls: []
-  _maxHealth: 9999
+  _maxHealth: 1000
   _maxArmor: 0
   goldReward: 0
-  _health: 8888
+  _health: 1000
   _armor: 0
   isInvincible: 0
   invinciblityTime: 1

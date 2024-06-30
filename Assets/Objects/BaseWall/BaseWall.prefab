@@ -190,10 +190,10 @@ MonoBehaviour:
   damageableDestroyed:
     m_PersistentCalls:
       m_Calls: []
-  _maxHealth: 100
+  _maxHealth: 500
   _maxArmor: 100
   goldReward: 10
-  _health: 100
+  _health: 500
   _armor: 0
   isInvincible: 0
   invinciblityTime: 1
