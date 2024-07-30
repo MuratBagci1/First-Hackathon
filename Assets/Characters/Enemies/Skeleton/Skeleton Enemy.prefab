@@ -543,12 +543,8 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  groundDistance: 0.05
   wallDistance: 0.2
-  ceilingDistance: 0.05
-  _isGrounded: 1
   _isOnWall: 0
-  _isOnCeiling: 0
 --- !u!114 &599210159871027104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,6 +561,21 @@ MonoBehaviour:
   maxSpeed: 3
   walkStopRate: 0.05
   attackZone: {fileID: 1056499109459743882}
-  cliffDetectionZone: {fileID: 3432916840741530519}
   detectionRange: 3
+  castFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 64
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  wallDistance: 0.2
+  _isOnWall: 0
   _hasTarget: 0

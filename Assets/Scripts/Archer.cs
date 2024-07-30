@@ -3,18 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Damageable))]
 public class Archer : MonoBehaviour
 {
     public float speed = 2f;
     public float waypointReachDistance = 0.1f;
     public DetectionZone attackZone;
-    public DetectionZone cliffDetectionZone;
     public float detectionRange;
     public List<Transform> waypoints;
 
     Rigidbody2D rb;
-    TouchingDirections touchingDirections;
     Animator animator;
     Damageable damageable;
     Transform target;
@@ -97,7 +95,6 @@ public class Archer : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        touchingDirections = GetComponent<TouchingDirections>();
         animator = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
 
@@ -198,15 +195,6 @@ public class Archer : MonoBehaviour
     public void OnHit(int damage, Vector2 knockback)
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
-    }
-
-    public void OnCliffDetected()
-    {
-        if (touchingDirections.IsGrounded)
-        {
-            FlipDirection();
-            Debug.Log("Cliff Detected");
-        }
     }
 
     private void FlipDirection()
