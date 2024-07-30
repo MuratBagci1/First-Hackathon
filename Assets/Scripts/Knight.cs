@@ -16,7 +16,6 @@ public class Knight : MonoBehaviour
     Rigidbody2D rb;
     Animator animator;
     Damageable damageable;
-    Transform target; // Oyuncu karakterin Transform'u
 
     public ContactFilter2D castFilter;
     public float wallDistance = 0.2f;
@@ -120,20 +119,13 @@ public class Knight : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
-        touchingCol = GetComponent<CapsuleCollider2D>();
-        if (transform.localPosition.x < 0)
+        touchingCol = GetComponent<CapsuleCollider2D>();        
+    }
+    private void OnEnable()
+    {
+        if (transform.localPosition.x > 0)
         {
             FlipDirection();
-        }
-
-        GameObject player = GameObject.FindWithTag("Player");
-        if (player != null)
-        {
-            target = player.transform;
-        }
-        else
-        {
-            Debug.LogWarning("Player with tag 'Player' not found.");
         }
     }
 
