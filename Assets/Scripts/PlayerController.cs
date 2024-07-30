@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Damageable))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,46 +13,36 @@ public class PlayerController : MonoBehaviour
     public float runSpeed = 8f;
     public float airWalkSpeed = 3f;
     Vector2 moveInput;
+    TouchingDirections touchingDirections;
     Damageable damageable;
 
-
-    public ContactFilter2D castFilter;
-    public float wallDistance = 0.2f;
-    CapsuleCollider2D touchingCol;
-    Animator animator;
-
-    RaycastHit2D[] wallHits = new RaycastHit2D[5];
-
-    Rigidbody2D rb;
-
-    [SerializeField]
-    private bool _isOnWall;
-    private Vector2 wallCheckDirection => gameObject.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
-    public bool IsOnWall
-    {
-        get
-        {
-            return _isOnWall;
-        }
-        set
-        {
-            _isOnWall = value;
-            animator.SetBool(AnimationStrings.isOnWall, value);
-        }
-    }
     public float currentWoveSpeed
     {
         get
         {
             if(CanMove)
             {
-                if (IsRunning)
+                if (IsMoving && !touchingDirections.IsOnWall)
                 {
-                    return runSpeed;
+                    if (touchingDirections.IsGrounded)
+                    {
+                        if (IsRunning)
+                        {
+                            return runSpeed;
+                        }
+                        else
+                        {
+                            return walkSpeed;
+                        }
+                    }
+                    else
+                    {
+                        return airWalkSpeed;
+                    }
                 }
                 else
                 {
-                    return walkSpeed;
+                    return 0;
                 }
             }
             else
@@ -126,18 +116,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    Rigidbody2D rb;
+    Animator animator;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        touchingDirections = GetComponent<TouchingDirections>();
         damageable = GetComponent<Damageable>();
-        touchingCol = GetComponent<CapsuleCollider2D>();
     }
 
     private void FixedUpdate()
     {
-        IsOnWall = touchingCol.Cast(wallCheckDirection, castFilter, wallHits, wallDistance) > 0;
-        if (!damageable.LockVelocity)
+        if(!damageable.LockVelocity)
         {
             rb.velocity = new Vector2(moveInput.x * currentWoveSpeed, rb.velocity.y);
         }

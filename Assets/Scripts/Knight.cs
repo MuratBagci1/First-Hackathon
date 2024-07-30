@@ -3,43 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Damageable))]
+[RequireComponent(typeof(Rigidbody2D), typeof(TouchingDirections), typeof(Damageable))]
 public class Knight : MonoBehaviour
 {
     public float walkAcceleration = 30f;
     public float maxSpeed = 3f;
     public float walkStopRate = 0.05f;
     public DetectionZone attackZone;
+    public DetectionZone cliffDetectionZone;
 
     public float detectionRange; // Düþmanýn oyuncuyu algýlama mesafesi
 
     Rigidbody2D rb;
+    TouchingDirections touchingDirections;
     Animator animator;
     Damageable damageable;
     Transform target; // Oyuncu karakterin Transform'u
-
-    public ContactFilter2D castFilter;
-    public float wallDistance = 0.2f;
-    CapsuleCollider2D touchingCol;
-
-    RaycastHit2D[] wallHits = new RaycastHit2D[5];
-
-
-    [SerializeField]
-    private bool _isOnWall;
-    private Vector2 wallCheckDirection => gameObject.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
-    public bool IsOnWall
-    {
-        get
-        {
-            return _isOnWall;
-        }
-        set
-        {
-            _isOnWall = value;
-            animator.SetBool(AnimationStrings.isOnWall, value);
-        }
-    }
 
     public enum WalkableDirection
     {
@@ -118,13 +97,9 @@ public class Knight : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        touchingDirections = GetComponent<TouchingDirections>();
         animator = GetComponent<Animator>();
         damageable = GetComponent<Damageable>();
-        touchingCol = GetComponent<CapsuleCollider2D>();
-        if (transform.localPosition.x < 0)
-        {
-            FlipDirection();
-        }
 
         GameObject player = GameObject.FindWithTag("Player");
         if (player != null)
@@ -150,10 +125,14 @@ public class Knight : MonoBehaviour
 
     private void FixedUpdate()
     {
-        IsOnWall = touchingCol.Cast(wallCheckDirection, castFilter, wallHits, wallDistance) > 0;
+        if (touchingDirections.IsGrounded && touchingDirections.IsOnWall)
+        {
+            FlipDirection();
+            Debug.Log("On wall");
+        }
         if (!damageable.LockVelocity)
         {
-            if (CanMove && !HasTarget) // Sadece hedef yokken hareket et
+            if (CanMove && touchingDirections.IsGrounded && !HasTarget) // Sadece hedef yokken hareket et
             {
                 float xVelocity = Mathf.Clamp(rb.velocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime),
                     -maxSpeed, maxSpeed);
@@ -163,10 +142,6 @@ public class Knight : MonoBehaviour
             {
                 rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y); //animasyon durdurulmalý
             }
-        }
-        if(IsOnWall)
-        {
-            FlipDirection();
         }
     }
 
@@ -185,5 +160,14 @@ public class Knight : MonoBehaviour
     public void OnHit(int damage, Vector2 knockback)
     {
         rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
+    }
+
+    public void OnCliffDetected()
+    {
+        if (touchingDirections.IsGrounded)
+        {
+            FlipDirection();
+            Debug.Log("Cliff Detected");
+        }
     }
 }
