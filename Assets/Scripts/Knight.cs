@@ -11,8 +11,8 @@ public class Knight : MonoBehaviour
     public float walkStopRate = 0.05f;
     public DetectionZone attackZone;
 
-    Rigidbody2D rb;
-    Animator animator;
+    protected Rigidbody2D rb;
+    protected Animator animator;
 
     public enum WalkableDirection
     {
@@ -29,7 +29,7 @@ public class Knight : MonoBehaviour
         {
             return _walkDirection;
         }
-        set
+        protected set
         {
             if (_walkDirection != value)
             {
@@ -58,7 +58,7 @@ public class Knight : MonoBehaviour
         {
             return _hasTarget;
         }
-        private set
+        protected set
         {
             _hasTarget = value;
             if (animator != null)
@@ -82,7 +82,7 @@ public class Knight : MonoBehaviour
         {
             return animator.GetFloat(AnimationStrings.attackCooldown);
         }
-        private set
+        protected set
         {
             animator.SetFloat(AnimationStrings.attackCooldown, Mathf.Max(value, 0));
         }
@@ -92,6 +92,10 @@ public class Knight : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
         if (transform.localPosition.x > 0)
         {
             FlipDirection();
@@ -120,7 +124,7 @@ public class Knight : MonoBehaviour
 
     }
 
-    private void FlipDirection()
+    protected void FlipDirection()
     {
         if (WalkDirection == WalkableDirection.Right)
         {

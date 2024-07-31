@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2665221505149340008}
   - component: {fileID: -4753816561285507573}
   - component: {fileID: 237552470830423157}
-  - component: {fileID: 3464176179455394672}
   - component: {fileID: 3308985098280294749}
   - component: {fileID: 2110326463874349931}
   - component: {fileID: 6419381918100905876}
@@ -177,38 +176,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3464176179455394672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 172293664649615175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8e11aacfc06a8b4498b8f90fcc49cb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  castFilter:
-    useTriggers: 0
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 8256
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  groundDistance: 0.05
-  wallDistance: 0.2
-  ceilingDistance: 0.05
-  _isGrounded: 1
-  _isOnWall: 0
-  _isOnCeiling: 0
 --- !u!114 &3308985098280294749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +206,7 @@ MonoBehaviour:
   damageableDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  gameOver: {fileID: 0}
   _maxHealth: 100
   _maxArmor: 100
   goldReward: 10
@@ -260,6 +228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   launchPoint: {fileID: 2968338744869011412}
   projectilePrefab: {fileID: 7919818615456771289, guid: 5f2cbf664ce9fec4cb433a665e17598a, type: 3}
+  arrowsParent: {fileID: 0}
 --- !u!114 &6419381918100905876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,7 +244,6 @@ MonoBehaviour:
   speed: 2
   waypointReachDistance: 0.1
   attackZone: {fileID: 648550141618084838}
-  cliffDetectionZone: {fileID: 9187415307564426915}
   detectionRange: 0
   waypoints: []
   _hasTarget: 0

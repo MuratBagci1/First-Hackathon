@@ -390,7 +390,6 @@ AnimatorState:
   - {fileID: -7456131246228953223}
   m_StateMachineBehaviours:
   - {fileID: -7911507093768665456}
-  - {fileID: 5189290388650257035}
   - {fileID: -6868861807083929849}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -594,23 +593,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!114 &5189290388650257035
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd79a22ba1f6b4047a7cab327299a0ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boolName: lockVelocity
-  updateOnState: 1
-  updateOnStateMachine: 0
-  valueOnEnter: 1
-  valueOnExit: 0
 --- !u!1107 &5369861677580307016
 AnimatorStateMachine:
   serializedVersion: 6
