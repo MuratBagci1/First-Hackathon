@@ -11,34 +11,8 @@ public class Knight : MonoBehaviour
     public float walkStopRate = 0.05f;
     public DetectionZone attackZone;
 
-    public float detectionRange; // Düþmanýn oyuncuyu algýlama mesafesi
-
     Rigidbody2D rb;
     Animator animator;
-    Damageable damageable;
-
-    public ContactFilter2D castFilter;
-    public float wallDistance = 0.2f;
-    CapsuleCollider2D touchingCol;
-
-    RaycastHit2D[] wallHits = new RaycastHit2D[5];
-
-
-    [SerializeField]
-    private bool _isOnWall;
-    private Vector2 wallCheckDirection => gameObject.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
-    public bool IsOnWall
-    {
-        get
-        {
-            return _isOnWall;
-        }
-        set
-        {
-            _isOnWall = value;
-            animator.SetBool(AnimationStrings.isOnWall, value);
-        }
-    }
 
     public enum WalkableDirection
     {
@@ -78,7 +52,7 @@ public class Knight : MonoBehaviour
     }
 
     public bool _hasTarget;
-        public bool HasTarget
+    public bool HasTarget
     {
         get
         {
@@ -94,7 +68,7 @@ public class Knight : MonoBehaviour
         }
     }
 
-    public bool CanMove 
+    public bool CanMove
     {
         get
         {
@@ -102,7 +76,7 @@ public class Knight : MonoBehaviour
         }
     }
 
-    public float AttackCooldown 
+    public float AttackCooldown
     {
         get
         {
@@ -118,11 +92,6 @@ public class Knight : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        damageable = GetComponent<Damageable>();
-        touchingCol = GetComponent<CapsuleCollider2D>();        
-    }
-    private void OnEnable()
-    {
         if (transform.localPosition.x > 0)
         {
             FlipDirection();
@@ -138,28 +107,17 @@ public class Knight : MonoBehaviour
             AttackCooldown -= Time.deltaTime;
         }
 
-    }
+        if (CanMove && !HasTarget) // Sadece hedef yokken hareket et
+        {
+            float xVelocity = Mathf.Clamp(rb.velocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime),
+                -maxSpeed, maxSpeed);
+            rb.velocity = new Vector2(xVelocity, rb.velocity.y);
+        }
+        else
+        {
+            rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y); //animasyon durdurulmalý
+        }
 
-    private void FixedUpdate()
-    {
-        IsOnWall = touchingCol.Cast(wallCheckDirection, castFilter, wallHits, wallDistance) > 0;
-        if (!damageable.LockVelocity)
-        {
-            if (CanMove && !HasTarget) // Sadece hedef yokken hareket et
-            {
-                float xVelocity = Mathf.Clamp(rb.velocity.x + (walkAcceleration * walkDirectionVector.x * Time.fixedDeltaTime),
-                    -maxSpeed, maxSpeed);
-                rb.velocity = new Vector2(xVelocity, rb.velocity.y);
-            }
-            else
-            {
-                rb.velocity = new Vector2(Mathf.Lerp(rb.velocity.x, 0, walkStopRate), rb.velocity.y); //animasyon durdurulmalý
-            }
-        }
-        if(IsOnWall)
-        {
-            FlipDirection();
-        }
     }
 
     private void FlipDirection()

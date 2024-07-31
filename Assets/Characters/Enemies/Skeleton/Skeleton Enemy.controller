@@ -74,23 +74,6 @@ MonoBehaviour:
   playOnExit: 0
   playAfterDelay: 0
   playDelay: 0.4
---- !u!114 &-7623451095664566731
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd79a22ba1f6b4047a7cab327299a0ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boolName: lockVelocity
-  updateOnState: 1
-  updateOnStateMachine: 0
-  valueOnEnter: 1
-  valueOnExit: 0
 --- !u!1101 &-6722879005101330193
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -155,7 +138,6 @@ AnimatorState:
   m_StateMachineBehaviours:
   - {fileID: 2064718157338758078}
   - {fileID: 1757966169936439913}
-  - {fileID: -7623451095664566731}
   - {fileID: -7628567515962137497}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -185,23 +167,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeTime: 0.5
   fadeDelay: 0.5
---- !u!114 &-4703536073136038342
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd79a22ba1f6b4047a7cab327299a0ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boolName: lockVelocity
-  updateOnState: 1
-  updateOnStateMachine: 0
-  valueOnEnter: 1
-  valueOnExit: 0
 --- !u!1101 &-4151046663476519450
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -364,55 +329,31 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: isAlive
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 1
-    m_Controller: {fileID: 9100000}
-  - m_Name: lockVelocity
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: canMove
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 1
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: hit
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: attackCooldown
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: isOnWall
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: isGrounded
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: isOnCeiling
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -719,7 +660,6 @@ AnimatorState:
   - {fileID: -1563662085409181504}
   m_StateMachineBehaviours:
   - {fileID: 1825408731959172291}
-  - {fileID: -4703536073136038342}
   - {fileID: 1859310024095677734}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
