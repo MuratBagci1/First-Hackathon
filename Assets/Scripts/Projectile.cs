@@ -20,20 +20,25 @@ public class Projectile : MonoBehaviour
         rb.velocity = new Vector2(moveSpeed.x * transform.localScale.x, moveSpeed.y);
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Damageable damageable = collision.GetComponent<Damageable>();
 
         if (damageable != null)
         {
-            Vector2 deliveredKnockback = transform.localScale.x > 0 ? knockback : new Vector2(-knockback.x, knockback.y);
-            //hit the target
+            Vector2 deliveredKnockback = GetKnockback();
             bool gotHit = damageable.Hit(damage, deliveredKnockback);
             if (gotHit)
             {
                 Destroy(gameObject);
-                Debug.Log(collision.name + " hit for " + damage);
+                Debug.Log($"{collision.name} hit for {damage}");
             }
         }
+    }
+
+    private Vector2 GetKnockback()
+    {
+        return transform.localScale.x > 0 ? knockback : new Vector2(-knockback.x, knockback.y);
     }
 }

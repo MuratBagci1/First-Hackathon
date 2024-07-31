@@ -24,36 +24,28 @@ public class UIManager : MonoBehaviour
         CharacterEvents.characterHealed -= CharacterHealed;
     }
 
-    public void CharacterDamaged(GameObject character, int damageRecieved)
+    public void CharacterDamaged(GameObject character, int damageReceived)
     {
-        //Create text at character hit
-        Vector3 spawnPosition = Camera.main.WorldToScreenPoint(character.transform.position);
-
-        TMP_Text tmpText = Instantiate(damageTextPrefab, spawnPosition, Quaternion.identity, gameCanvas.transform).GetComponent<TMP_Text>();
-
-        tmpText.text = damageRecieved.ToString();
+        CreateText(damageTextPrefab, character.transform.position, damageReceived.ToString());
     }
 
     public void CharacterHealed(GameObject character, int healthRestored)
     {
-        Vector3 spawnPosition = Camera.main.WorldToScreenPoint(character.transform.position);
-
-        TMP_Text tmpText = Instantiate(healthTextPrefab, spawnPosition, Quaternion.identity, gameCanvas.transform).GetComponent<TMP_Text>();
-
-        tmpText.text = healthRestored.ToString();
+        CreateText(healthTextPrefab, character.transform.position, healthRestored.ToString());
     }
+
+    private void CreateText(GameObject textPrefab, Vector3 position, string text)
+    {
+        Vector3 spawnPosition = Camera.main.WorldToScreenPoint(position);
+        TMP_Text tmpText = Instantiate(textPrefab, spawnPosition, Quaternion.identity, gameCanvas.transform).GetComponent<TMP_Text>();
+        tmpText.text = text;
+    }
+
     public void OpenCloseShop()
     {
-        shop.SetActive(!shop.activeSelf);
-        if (shop.activeSelf)
-        {
-            shopButtonText.text = "Close";
-        }
-        else
-        {
-            shopButtonText.text = "Shop";
-
-        }
+        bool isActive = shop.activeSelf;
+        shop.SetActive(!isActive);
+        shopButtonText.text = isActive ? "Shop" : "Close";
     }
-   
+
 }

@@ -20,8 +20,8 @@ public class HealthPickup : MonoBehaviour
 
         if(damageable)
         {
-            bool wasHealed = damageable.Heal(healthRestore);
-            if (wasHealed)
+            
+            if (damageable.Heal(healthRestore))
             {
                 if(pickupSource)
                 {
