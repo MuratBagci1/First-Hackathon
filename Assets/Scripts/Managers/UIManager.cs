@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class UIManager : MonoBehaviour
 {
     public GameObject damageTextPrefab;
+    public GameObject damageArmorTextPrefab;
     public GameObject healthTextPrefab;
     public GameObject shop;
     public TextMeshProUGUI shopButtonText;
@@ -24,9 +25,20 @@ public class UIManager : MonoBehaviour
         CharacterEvents.characterHealed -= CharacterHealed;
     }
 
-    public void CharacterDamaged(GameObject character, int damageReceived)
-    {
-        CreateText(damageTextPrefab, character.transform.position, damageReceived.ToString());
+    public void CharacterDamaged(GameObject character, int damageReceivedHealth, int damageRecievedArmor)
+    {        
+        if( damageRecievedArmor == 0)
+        {
+            CreateText(damageTextPrefab, character.transform.position, damageReceivedHealth.ToString());
+        }
+        else if (damageReceivedHealth == 0)
+        {
+            CreateText(damageArmorTextPrefab, character.transform.position, damageRecievedArmor.ToString());
+        }
+        else
+        {
+            CreateText(damageTextPrefab, character.transform.position, (damageReceivedHealth + damageRecievedArmor).ToString());
+        }
     }
 
     public void CharacterHealed(GameObject character, int healthRestored)

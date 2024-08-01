@@ -17360,8 +17360,8 @@ Tilemap:
   - first: {x: -8, y: -4, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 14
-      m_TileSpriteIndex: 1
+      m_TileIndex: 28
+      m_TileSpriteIndex: 14
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -17370,8 +17370,8 @@ Tilemap:
   - first: {x: -7, y: -4, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 14
-      m_TileSpriteIndex: 1
+      m_TileIndex: 28
+      m_TileSpriteIndex: 14
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -20857,7 +20857,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1925
+  - m_RefCount: 1923
     m_Data: {fileID: 11400000, guid: 5441669cb4f05af4d982b009bc284d13, type: 2}
   - m_RefCount: 25
     m_Data: {fileID: 11400000, guid: 8def8cfde5111094ea46b150be16f999, type: 2}
@@ -20885,8 +20885,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 9a2c4bd459586f145acf8cedccb4af24, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 2
+    m_Data: {fileID: 11400000, guid: 6359062e2e25b934db5a935d4bcf1ff9, type: 2}
   - m_RefCount: 8
     m_Data: {fileID: 11400000, guid: d2c81206cf6c6604980b14a9d0e763cd, type: 2}
   - m_RefCount: 1
@@ -20896,7 +20896,7 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1929
+  - m_RefCount: 1927
     m_Data: {fileID: 925300391, guid: b425613db706e0a49821a35253ec9db1, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -20922,8 +20922,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 2
+    m_Data: {fileID: 378772308, guid: b425613db706e0a49821a35253ec9db1, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -911022537, guid: b425613db706e0a49821a35253ec9db1, type: 3}
   - m_RefCount: 1
@@ -23581,8 +23581,7 @@ Transform:
   m_LocalPosition: {x: 21.42, y: -2.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 244903314}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &876537272 stripped
@@ -24010,7 +24009,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 778317993}
+    m_TransformParent: {fileID: 1942676745}
     m_Modifications:
     - target: {fileID: 172293664649615175, guid: f2ea44dea5ccbaf42a49f108aecf1a8f, type: 3}
       propertyPath: m_Name
@@ -24018,11 +24017,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 920296934156396500, guid: f2ea44dea5ccbaf42a49f108aecf1a8f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.87
+      value: -1.9154034
       objectReference: {fileID: 0}
     - target: {fileID: 920296934156396500, guid: f2ea44dea5ccbaf42a49f108aecf1a8f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.20433617
+      value: -4.82072
       objectReference: {fileID: 0}
     - target: {fileID: 920296934156396500, guid: f2ea44dea5ccbaf42a49f108aecf1a8f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -35649,7 +35648,8 @@ Transform:
   m_LocalPosition: {x: 31.205404, y: 1.8263842, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 244903314}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1969059653
@@ -36759,6 +36759,10 @@ PrefabInstance:
       propertyPath: shopButtonText
       value: 
       objectReference: {fileID: 876537272}
+    - target: {fileID: 4208996610224377573, guid: 9d15efe9e17310a4e95264e837b362f9, type: 3}
+      propertyPath: damageArmorTextPrefab
+      value: 
+      objectReference: {fileID: 1774189217866075118, guid: 0a6c49a222e323c4b974af5bcac2f1fe, type: 3}
     - target: {fileID: 5362675406221633451, guid: 9d15efe9e17310a4e95264e837b362f9, type: 3}
       propertyPath: m_Name
       value: UIManager
@@ -36880,6 +36884,10 @@ PrefabInstance:
       propertyPath: goldText
       value: 
       objectReference: {fileID: 2120075882}
+    - target: {fileID: 7369332681025464117, guid: 9fec78db82b4a4b4d9cfd02301986729, type: 3}
+      propertyPath: _armor
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7528589040335234111, guid: 9fec78db82b4a4b4d9cfd02301986729, type: 3}
       propertyPath: m_Name
       value: CameraFollow
@@ -36888,7 +36896,8 @@ PrefabInstance:
       propertyPath: gameOver
       value: 
       objectReference: {fileID: 49481819}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7341760314298919510, guid: 9fec78db82b4a4b4d9cfd02301986729, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

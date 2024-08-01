@@ -155,7 +155,7 @@ public class Damageable : MonoBehaviour
                 }
                 damageableHit?.Invoke(damage, knockback);
 
-                CharacterEvents.characterDamaged.Invoke(gameObject, damage);
+                CharacterEvents.characterDamaged.Invoke(gameObject, damage, 0);
 
                 return true;
 
@@ -172,12 +172,13 @@ public class Damageable : MonoBehaviour
                     }
                     damageableHit?.Invoke(damage, knockback);
 
-                    CharacterEvents.characterDamaged.Invoke(gameObject, damage);
+                    CharacterEvents.characterDamaged.Invoke(gameObject, 0, damage);
 
                     return true;
                 }
                 else
                 {
+                    int damageToArmor = Armor;
                     damage -= Armor;
                     Armor = 0;
 
@@ -189,7 +190,7 @@ public class Damageable : MonoBehaviour
                     }
                     damageableHit?.Invoke(damage, knockback);
 
-                    CharacterEvents.characterDamaged.Invoke(gameObject, damage);
+                    CharacterEvents.characterDamaged.Invoke(gameObject, damage, damageToArmor);
 
                     return true;
                 }
