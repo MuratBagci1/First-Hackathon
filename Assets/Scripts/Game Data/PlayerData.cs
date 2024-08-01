@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
-public class PlayerData: MonoBehaviour
+public class PlayerData : MonoBehaviour
 {
-
-
     public TextMeshProUGUI goldText;
     public int gold = 0;
 
@@ -15,18 +11,17 @@ public class PlayerData: MonoBehaviour
         AddGold(50);
     }
 
-
     public void AddGold(int amount)
     {
         gold += amount;
-        Debug.Log("Gold added: " + amount + ". Total Gold: " + gold); 
+        Debug.Log("Gold added: " + amount + ". Total Gold: " + gold);
         goldText.text = gold.ToString();
     }
-    public void UpgradeChildAttackDamage(int amount)
 
+    public void UpgradeChildAttackDamage(int amount)
     {
-        Debug.Log("Total Gold: " + gold); 
-        int upgradeCost = amount * 1; // Örnek maliyet hesaplama: Her saldýrý deðeri için 10 altýn
+        Debug.Log("Total Gold: " + gold);
+        int upgradeCost = amount * 1; // Örnek maliyet hesaplama: Her saldýrý deðeri için 1 altýn
 
         if (gold >= upgradeCost)
         {
@@ -47,15 +42,14 @@ public class PlayerData: MonoBehaviour
             Debug.Log("Not enough gold to upgrade.");
         }
     }
+
     public void UpgradeArmor(int amount)
     {
-        int upgradeCost = amount * 1; 
+        int upgradeCost = amount * 1;
 
         if (gold >= upgradeCost)
         {
-            
             AddGold(-upgradeCost);
-
             Damageable damageable = transform.GetComponent<Damageable>();
 
             if (damageable != null)
@@ -70,5 +64,4 @@ public class PlayerData: MonoBehaviour
             Debug.Log("Not enough gold to upgrade armor.");
         }
     }
-
 }
