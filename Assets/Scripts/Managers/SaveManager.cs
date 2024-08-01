@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 
 public class SaveManager : MonoBehaviour
 {
@@ -22,35 +23,65 @@ public class SaveManager : MonoBehaviour
     public void SaveGame()
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        FileStream file = File.Create(GetFilePath());
-
-        PlayerDataSave data = new PlayerDataSave
+        using (FileStream file = File.Create(GetFilePath()))
         {
-            currentLevel = GameManager.Instance.currentLevel,
-            currentWave = GameManager.Instance.currentWave,
-            gold = FindObjectOfType<PlayerData>().gold,
-            // Diðer oyuncu verilerini de ekleyin
-        };
+            PlayerDataSave data = new PlayerDataSave
+            {
+                currentLevel = GameManager.Instance.currentLevel,
+                currentWave = GameManager.Instance.currentWave,
+                gold = FindObjectOfType<PlayerData>().gold,
+                // Diðer oyuncu verilerini de ekleyin
+            };
 
-        formatter.Serialize(file, data);
-        file.Close();
+            formatter.Serialize(file, data);
+            Debug.Log("Oyun kaydedildi.");
+        }
     }
 
     public void LoadGame()
     {
-        if (File.Exists(GetFilePath()))
+        string filePath = GetFilePath();
+        if (File.Exists(filePath))
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream file = File.Open(GetFilePath(), FileMode.Open);
+            FileInfo fileInfo = new FileInfo(filePath);
+            if (fileInfo.Length == 0)
+            {
+                Debug.LogWarning("Save dosyasý boþ.");
+                LoadDefaultValues();
+                return;
+            }
 
-            PlayerDataSave data = (PlayerDataSave)formatter.Deserialize(file);
-            file.Close();
-
-            GameManager.Instance.currentLevel = data.currentLevel;
-            GameManager.Instance.currentWave = data.currentWave;
-            FindObjectOfType<PlayerData>().gold = data.gold;
-            // Diðer oyuncu verilerini de yükleyin
+            try
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                using (FileStream file = File.Open(filePath, FileMode.Open))
+                {
+                    PlayerDataSave data = (PlayerDataSave)formatter.Deserialize(file);
+                    GameManager.Instance.currentLevel = data.currentLevel;
+                    GameManager.Instance.currentWave = data.currentWave;
+                    FindObjectOfType<PlayerData>().gold = data.gold;
+                    Debug.Log("Save dosyasý okundu.");
+                }
+            }
+            catch (SerializationException e)
+            {
+                Debug.LogError("Save dosyasý okunamadý: " + e.Message);
+                LoadDefaultValues();
+            }
         }
+        else
+        {
+            Debug.LogWarning("Save dosyasý bulunamadý.");
+            LoadDefaultValues();
+        }
+    }
+
+    private void LoadDefaultValues()
+    {
+        GameManager.Instance.currentLevel = 1;
+        GameManager.Instance.currentWave = 1;
+        FindObjectOfType<PlayerData>().gold = 0;
+        // Diðer varsayýlan deðerler buraya eklenir
     }
 
     private string GetFilePath()
