@@ -14,13 +14,11 @@ public class PlayerData : MonoBehaviour
     public void AddGold(int amount)
     {
         gold += amount;
-        Debug.Log("Gold added: " + amount + ". Total Gold: " + gold);
         goldText.text = gold.ToString();
     }
 
     public void UpgradeChildAttackDamage(int amount)
     {
-        Debug.Log("Total Gold: " + gold);
         int upgradeCost = amount * 1; // Örnek maliyet hesaplama: Her saldýrý deðeri için 1 altýn
 
         if (gold >= upgradeCost)
@@ -34,13 +32,11 @@ public class PlayerData : MonoBehaviour
                     attackScript.UpgradeAttackDamage(amount);
                 }
             }
-
-            Debug.Log("Upgrade successful. Remaining gold: " + gold);
         }
-        else
-        {
-            Debug.Log("Not enough gold to upgrade.");
-        }
+        //else
+        //{
+        //    Debug.Log("Not enough gold to upgrade.");
+        //}
     }
 
     public void UpgradeArmor(int amount)
@@ -56,12 +52,10 @@ public class PlayerData : MonoBehaviour
             {
                 damageable.UpgradeArmor(amount);
             }
-
-            Debug.Log("Armor upgrade successful. Remaining gold: " + gold);
         }
-        else
-        {
-            Debug.Log("Not enough gold to upgrade armor.");
-        }
+        //else
+        //{
+        //    Debug.Log("Not enough gold to upgrade armor.");
+        //}
     }
 }

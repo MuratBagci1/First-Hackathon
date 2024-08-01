@@ -13,7 +13,7 @@ public class Damageable : MonoBehaviour
     public UnityEvent<Collider2D> damageableDestroyed;
 
     public GameOverScreen gameOver;
-    
+
     Animator animator;
 
     [SerializeField]
@@ -23,7 +23,7 @@ public class Damageable : MonoBehaviour
     private int _maxArmor = 100;
 
     public int goldReward = 10; // Düþmanýn öldüðünde verdiði altýn miktarý
-    public int MaxHealth 
+    public int MaxHealth
     {
         get
         {
@@ -35,7 +35,7 @@ public class Damageable : MonoBehaviour
         }
     }
 
-       public int MaxArmor 
+    public int MaxArmor
     {
         get
         {
@@ -48,8 +48,8 @@ public class Damageable : MonoBehaviour
     }
 
     [SerializeField]
-    private int _health = 100; 
-    public int Health 
+    private int _health = 100;
+    public int Health
     {
         get
         {
@@ -59,16 +59,16 @@ public class Damageable : MonoBehaviour
         {
             _health = value;
             healthChanged?.Invoke(_health, MaxHealth);
-            if(_health <= 0)
+            if (_health <= 0)
             {
                 IsAlive = false;
             }
         }
-    }  
+    }
 
     [SerializeField]
     private int _armor = 0;
-    public int Armor 
+    public int Armor
     {
         get
         {
@@ -83,7 +83,7 @@ public class Damageable : MonoBehaviour
 
     private bool _isAlive = true;
 
-    public bool IsAlive 
+    public bool IsAlive
     {
         get
         {
@@ -97,7 +97,7 @@ public class Damageable : MonoBehaviour
                 animator.SetBool(AnimationStrings.isAlive, value);
             }
             Debug.Log("IsAlive set " + value);
-            if(!value)
+            if (!value)
             {
                 damageableDeath.Invoke();
                 if (gameObject.CompareTag("Enemy"))
@@ -105,35 +105,8 @@ public class Damageable : MonoBehaviour
                     GiveGoldToPlayer(goldReward);
                 }
             }
-        }        
-    }
-
-    public bool LockVelocity
-    {
-        get
-        {
-            if (animator != null)
-            {
-                return animator.GetBool(AnimationStrings.lockVelocity);
-            }
-            else
-            {
-                return false;
-            }
-        }
-        set
-        {
-            if (animator != null)
-            {
-                animator.SetBool(AnimationStrings.lockVelocity, value);
-            }
-            else
-            {
-                value = false;
-            }
         }
     }
-
     public bool isInvincible = false;
 
 
@@ -143,14 +116,13 @@ public class Damageable : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        //Debug.Log("deneme"+gameObject.CompareTag("Base").ToString());
     }
 
     private void Update()
     {
-        if(isInvincible)
+        if (isInvincible)
         {
-            if(timeSinceHit > invinciblityTime)
+            if (timeSinceHit > invinciblityTime)
             {
                 isInvincible = false;
                 timeSinceHit = 0;
@@ -161,7 +133,6 @@ public class Damageable : MonoBehaviour
         }
         if (!IsAlive)
         {
-            Debug.Log("if calýstý isalive");
             if (gameObject.CompareTag("Base"))
             {
                 gameOver.Setup();
@@ -172,13 +143,12 @@ public class Damageable : MonoBehaviour
 
     public bool Hit(int damage, Vector2 knockback)
     {
-        if(IsAlive && !isInvincible)
+        if (IsAlive && !isInvincible)
         {
-            if (Armor<=0)
+            if (Armor <= 0)
             {
                 Health -= damage;
                 isInvincible = true;
-                LockVelocity = true;
                 if (animator != null)
                 {
                     animator.SetTrigger(AnimationStrings.hitTrigger);
@@ -192,11 +162,10 @@ public class Damageable : MonoBehaviour
             }
             else
             {
-                if (Armor>=damage)
+                if (Armor >= damage)
                 {
                     Armor -= damage;
                     isInvincible = true;
-                    LockVelocity = true;
                     if (animator != null)
                     {
                         animator.SetTrigger(AnimationStrings.hitTrigger);
@@ -209,12 +178,11 @@ public class Damageable : MonoBehaviour
                 }
                 else
                 {
-                    damage = damage - Armor;
+                    damage -= Armor;
                     Armor = 0;
 
                     Health -= damage;
                     isInvincible = true;
-                    LockVelocity = true;
                     if (animator != null)
                     {
                         animator.SetTrigger(AnimationStrings.hitTrigger);
@@ -235,7 +203,7 @@ public class Damageable : MonoBehaviour
 
     public bool Heal(int healthRestore)
     {
-        if(IsAlive && Health != MaxHealth)
+        if (IsAlive && Health != MaxHealth)
         {
             int maxHeal = Mathf.Max((MaxHealth - Health), 0);
             int actualHeal = Mathf.Min(maxHeal, healthRestore);
@@ -260,13 +228,12 @@ public class Damageable : MonoBehaviour
     public void UpgradeArmor(int amount)
     {
         Armor += amount;
-        Debug.Log("Armor upgraded by: " + amount + ". New armor: " + Armor);
     }
 
     public void OnDeath()
     {
         damageableDestroyed?.Invoke(GetComponent<Collider2D>()); // Notify listeners before destruction
-       
+
 
         Destroy(gameObject);
     }

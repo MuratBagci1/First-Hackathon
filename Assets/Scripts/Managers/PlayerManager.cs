@@ -137,7 +137,7 @@ public class PlayerManager : MonoBehaviour
     private void FixedUpdate()
     {
         IsOnWall = touchingCol.Cast(wallCheckDirection, castFilter, wallHits, wallDistance) > 0;
-        if (!damageable.LockVelocity)
+        if (CanMove)
         {
             rb.velocity = new Vector2(moveInput.x * currentWoveSpeed, rb.velocity.y);
         }
