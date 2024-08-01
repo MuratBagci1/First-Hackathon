@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Damageable))]
 
-public class PlayerController : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
     public GameOverScreen gameOver;
     public float walkSpeed = 5f;
