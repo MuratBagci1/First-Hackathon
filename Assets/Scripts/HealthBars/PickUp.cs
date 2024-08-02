@@ -7,12 +7,16 @@ public class PickUp : MonoBehaviour
     public int healthRestore = 20;
     public Vector3 spinRotationSpeed = new Vector3(0, 180, 0);
 
+    public string objectType = "Coin";
+    public int goldReward;
+
     AudioSource pickupSource;
     Damageable damageable;
 
     private void Awake()
     {
         pickupSource = GetComponent<AudioSource>();
+        gameObject.name = objectType;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -21,21 +25,18 @@ public class PickUp : MonoBehaviour
 
         if (damageable)
         {
-            if (gameObject.name == "HealthPickup")
+            if (gameObject.name == "HealthPotion")
             {
-
-                if (damageable.Heal(healthRestore))
+                damageable.Heal(healthRestore);
+                if (pickupSource)
                 {
-                    if (pickupSource)
-                    {
-                        AudioSource.PlayClipAtPoint(pickupSource.clip, gameObject.transform.position, pickupSource.volume);
-                    }
-                    Destroy(gameObject);
+                    AudioSource.PlayClipAtPoint(pickupSource.clip, gameObject.transform.position, pickupSource.volume);
                 }
+                Destroy(gameObject);
             }
-            else if (gameObject.name == "Coin(Clone)")
+            else if (gameObject.name == "Coin")
             {
-                int goldReward = Random.Range(0, 5) * 5;
+                goldReward *= 5;
                 damageable.GiveGoldToPlayer(goldReward);
                 if (pickupSource)
                 {
@@ -44,9 +45,8 @@ public class PickUp : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-
-
     }
+
     private void Update()
     {
         transform.eulerAngles += spinRotationSpeed * Time.deltaTime;

@@ -364,6 +364,7 @@ MonoBehaviour:
   attackZone: {fileID: 594633857692174374}
   _hasTarget: 0
   coin: {fileID: 2349707491297089850, guid: 28056acfcb39f7b4cb783cabad6104c4, type: 3}
+  potion: {fileID: 809284293343136390, guid: 5395a318b9c54a949a839531f2bda396, type: 3}
   coinParent: {fileID: 0}
 --- !u!95 &8412273256948950003
 Animator:
@@ -416,10 +417,8 @@ MonoBehaviour:
   damageableDestroyed:
     m_PersistentCalls:
       m_Calls: []
-  gameOver: {fileID: 0}
   _maxHealth: 150
   _maxArmor: 100
-  goldReward: 20
   _health: 150
   _armor: 0
   isInvincible: 0

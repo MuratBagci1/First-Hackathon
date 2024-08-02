@@ -7,6 +7,7 @@ using UnityEngine;
 public class Knight : Dummy
 {
     public GameObject coin;
+    public GameObject potion;
     public Transform coinParent;
 
     private void Start()
@@ -18,7 +19,19 @@ public class Knight : Dummy
     }
     public void GiveReward()
     {
-        coinParent = GameObject.FindGameObjectWithTag("Coins").transform;
-        Instantiate(coin, transform.position, Quaternion.identity, coinParent);
+        int reward = UnityEngine.Random.Range(1, 6);
+        if(reward == 5)
+        {
+            coinParent = GameObject.FindGameObjectWithTag("Coins").transform;
+            potion = Instantiate(potion, transform.position, Quaternion.identity, coinParent);
+            potion.GetComponent<PickUp>().objectType = "HealthPotion";
+        }
+        else if (reward > 1)
+        {
+            coinParent = GameObject.FindGameObjectWithTag("Coins").transform;            
+            coin = Instantiate(coin, transform.position, Quaternion.identity, coinParent);
+            coin.GetComponent<PickUp>().objectType = "Coin";
+            coin.GetComponent<PickUp>().goldReward = reward;
+        }
     }
 }

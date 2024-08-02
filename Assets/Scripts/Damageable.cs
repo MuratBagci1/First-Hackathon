@@ -13,7 +13,7 @@ public class Damageable : MonoBehaviour
     public UnityEvent<Collider2D> damageableDestroyed;
     Knight enemy;
 
-    public GameOverScreen gameOver;
+    private GameOverScreen gameOver;
 
     Animator animator;
 
@@ -22,8 +22,6 @@ public class Damageable : MonoBehaviour
 
     [SerializeField]
     private int _maxArmor = 100;
-
-    public int goldReward = 0; // Düþmanýn öldüðünde verdiði altýn miktarý
     public int MaxHealth
     {
         get
@@ -236,7 +234,6 @@ public class Damageable : MonoBehaviour
     public void OnDeath()
     {
         damageableDestroyed?.Invoke(GetComponent<Collider2D>()); // Notify listeners before destruction
-
 
         Destroy(gameObject);
     }
