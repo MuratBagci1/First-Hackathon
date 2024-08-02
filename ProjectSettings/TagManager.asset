@@ -8,6 +8,7 @@ TagManager:
   - Base
   - WayPoint
   - ArcherArrows
+  - Coins
   layers:
   - Default
   - TransparentFX

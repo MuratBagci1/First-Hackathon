@@ -313,7 +313,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &-7709919524764137190
 CapsuleCollider2D:
@@ -425,21 +425,6 @@ MonoBehaviour:
   maxSpeed: 3
   walkStopRate: 0.05
   attackZone: {fileID: 1056499109459743882}
-  detectionRange: 0
-  castFilter:
-    useTriggers: 0
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 64
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
-  wallDistance: 0.2
-  _isOnWall: 0
   _hasTarget: 0
+  coin: {fileID: 2349707491297089850, guid: 28056acfcb39f7b4cb783cabad6104c4, type: 3}
+  coinParent: {fileID: 0}

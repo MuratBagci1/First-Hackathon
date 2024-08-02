@@ -11,6 +11,7 @@ public class Damageable : MonoBehaviour
     public UnityEvent<int, int> baseHealthChanged;
     public UnityEvent<int, int> armorChanged;
     public UnityEvent<Collider2D> damageableDestroyed;
+    Knight enemy;
 
     public GameOverScreen gameOver;
 
@@ -22,7 +23,7 @@ public class Damageable : MonoBehaviour
     [SerializeField]
     private int _maxArmor = 100;
 
-    public int goldReward = 10; // Düþmanýn öldüðünde verdiði altýn miktarý
+    public int goldReward = 0; // Düþmanýn öldüðünde verdiði altýn miktarý
     public int MaxHealth
     {
         get
@@ -100,9 +101,9 @@ public class Damageable : MonoBehaviour
             if (!value)
             {
                 damageableDeath.Invoke();
-                if (gameObject.CompareTag("Enemy"))
+                if(gameObject.CompareTag("Enemy"))
                 {
-                    GiveGoldToPlayer(goldReward);
+                    enemy.GiveReward();
                 }
             }
         }
@@ -116,6 +117,7 @@ public class Damageable : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        enemy = GetComponent<Knight>();
     }
 
     private void Update()
@@ -218,7 +220,7 @@ public class Damageable : MonoBehaviour
             return false;
         }
     }
-    private void GiveGoldToPlayer(int gold)
+    public void GiveGoldToPlayer(int gold)
     {
         PlayerData playerData = FindObjectOfType<PlayerData>();
         if (playerData != null)

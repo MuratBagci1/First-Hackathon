@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Damageable))]
-public class Archer : Knight
+public class Archer : Dummy
 {
     public float waypointReachDistance = 0.1f;
     public List<Transform> waypoints;
@@ -17,7 +17,7 @@ public class Archer : Knight
     {
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
-        damageable = GetComponent<Damageable>();
+        this.damageable = GetComponent<Damageable>();
 
         GameObject[] waypointObjects = GameObject.FindGameObjectsWithTag("WayPoint");
         foreach (GameObject waypointObject in waypointObjects)
@@ -100,4 +100,5 @@ public class Archer : Knight
             }
         }
     }
+
 }

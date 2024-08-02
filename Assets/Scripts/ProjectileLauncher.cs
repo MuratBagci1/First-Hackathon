@@ -6,7 +6,7 @@ public class ProjectileLauncher : MonoBehaviour
 {
     public Transform launchPoint;
     public GameObject projectilePrefab;
-    public Transform arrowsParent;
+    private Transform arrowsParent;
 
     private void Awake()
     {
