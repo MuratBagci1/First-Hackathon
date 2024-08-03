@@ -5,6 +5,7 @@ public class PlayerDataSave
     public int currentWave;
     public int gold;
     public int weaponUpgrade;
-    public int armorUpgrade;
+    public int armor;
+    public int health;
     // Diðer oyuncu verileri
 }

@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public List<KnightSpawner> KnightSpawners;
+    public Attack attack;
     public SaveManager saveManager;
 
 

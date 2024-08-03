@@ -10,7 +10,12 @@ public class PlayerData : MonoBehaviour
 
     private void Awake()
     {
-        damageable = transform.GetComponent<Damageable>();
+        damageable = transform.GetComponent<Damageable>();        
+    }
+
+    private void Start()
+    {
+        goldText.text = gold.ToString();
     }
 
     public void AddGold(int amount)
