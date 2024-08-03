@@ -23396,8 +23396,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1245560554}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+      - m_Target: {fileID: 1664934269}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:
@@ -23675,8 +23675,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1245560554}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+      - m_Target: {fileID: 1664934269}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -23781,7 +23781,6 @@ GameObject:
   - component: {fileID: 1245560552}
   - component: {fileID: 1245560551}
   - component: {fileID: 1245560550}
-  - component: {fileID: 1245560554}
   m_Layer: 5
   m_Name: PauseCanvas
   m_TagString: Untagged
@@ -23872,19 +23871,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1245560554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1245560549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b68c1cc3e6d8fe49bf5364aa45cb408, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PauseMenuUI: {fileID: 1914209543}
 --- !u!1001 &1291096398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34939,8 +34925,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1245560554}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+      - m_Target: {fileID: 1664934269}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
@@ -36621,9 +36607,37 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3714571407840263275, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714571407840263275, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714571407840263275, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1664934269}
+    - target: {fileID: 3714571407840263275, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714571407840263275, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714571407840263275, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Pause
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714571407840263275, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714571407840263275, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3816095830484137290, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -36682,9 +36696,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5056701997675025798}
     - target: {fileID: 4208996610224377573, guid: 9d15efe9e17310a4e95264e837b362f9, type: 3}
+      propertyPath: pausemenu
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4208996610224377573, guid: 9d15efe9e17310a4e95264e837b362f9, type: 3}
       propertyPath: gameCanvas
       value: 
       objectReference: {fileID: 1716289837}
+    - target: {fileID: 4208996610224377573, guid: 9d15efe9e17310a4e95264e837b362f9, type: 3}
+      propertyPath: PauseMenuUI
+      value: 
+      objectReference: {fileID: 1914209543}
     - target: {fileID: 4208996610224377573, guid: 9d15efe9e17310a4e95264e837b362f9, type: 3}
       propertyPath: shopButtonText
       value: 
@@ -36794,26 +36816,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3940081042261823212, guid: 9fec78db82b4a4b4d9cfd02301986729, type: 3}
-      propertyPath: knockback.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3940081042261823212, guid: 9fec78db82b4a4b4d9cfd02301986729, type: 3}
-      propertyPath: knockback.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4970045822870007866, guid: 9fec78db82b4a4b4d9cfd02301986729, type: 3}
-      propertyPath: knockback.x
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 5026011281492480642, guid: 9fec78db82b4a4b4d9cfd02301986729, type: 3}
       propertyPath: goldText
       value: 
       objectReference: {fileID: 2120075882}
-    - target: {fileID: 5070297304948003013, guid: 9fec78db82b4a4b4d9cfd02301986729, type: 3}
-      propertyPath: knockback.x
-      value: 10000000
-      objectReference: {fileID: 0}
     - target: {fileID: 8906958875669705308, guid: 9fec78db82b4a4b4d9cfd02301986729, type: 3}
       propertyPath: gameOver
       value: 

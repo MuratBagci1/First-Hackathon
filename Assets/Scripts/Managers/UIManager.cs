@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,9 +11,12 @@ public class UIManager : MonoBehaviour
     public GameObject damageArmorTextPrefab;
     public GameObject healthTextPrefab;
     public GameObject shop;
+    public GameObject PauseMenuUI;
     public TextMeshProUGUI shopButtonText;
     public Canvas gameCanvas;
 
+    public static bool isGamePaused = false;
+    
     private void OnEnable()
     {
         CharacterEvents.characterDamaged += CharacterDamaged;
@@ -23,6 +27,31 @@ public class UIManager : MonoBehaviour
     {
         CharacterEvents.characterDamaged -= CharacterDamaged;
         CharacterEvents.characterHealed -= CharacterHealed;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(!shop.activeSelf)
+            {
+                if (isGamePaused)
+                {
+                    PauseMenuUI.SetActive(false);
+                    Resume();
+                }
+                else
+                {
+                    PauseMenuUI.SetActive(true);
+                    Pause();
+                }
+            }
+            else if (shop.activeSelf)
+            {
+                shop.SetActive(false);
+                PauseMenuUI.SetActive(true);
+            }
+        }
     }
 
     public void CharacterDamaged(GameObject character, int damageReceivedHealth, int damageRecievedArmor)
@@ -58,6 +87,44 @@ public class UIManager : MonoBehaviour
         bool isActive = shop.activeSelf;
         shop.SetActive(!isActive);
         shopButtonText.text = isActive ? "Shop" : "Close";
+        if(isActive)
+        {
+            Resume();
+        }
+        else
+        {
+            Pause();
+        }
+    }
+
+    public void Pause()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().enabled = false;
+        Time.timeScale = 0f;
+        isGamePaused = true;
+    }
+
+    public void Resume()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().enabled = true;
+        Time.timeScale = 1f;
+        isGamePaused = false;
+        if(PauseMenuUI.activeSelf)
+        {
+            PauseMenuUI.SetActive(false);
+        }
+    }
+
+    public void LoadMenu()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quiting Game...");
+        Application.Quit();
     }
 
 }

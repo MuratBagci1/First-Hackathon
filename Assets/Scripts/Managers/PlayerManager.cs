@@ -145,7 +145,6 @@ public class PlayerManager : MonoBehaviour
         {
             rb.velocity = new Vector2(0, 0);
         }
-        animator.SetFloat(AnimationStrings.yVelocity, rb.velocity.y);
     }
 
     //Hareket fonksiyonlarýnýn isimleri Eventlerle ayný olmalýdýr.
