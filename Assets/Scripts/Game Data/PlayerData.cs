@@ -4,11 +4,13 @@ using TMPro;
 public class PlayerData : MonoBehaviour
 {
     public TextMeshProUGUI goldText;
+    public Damageable damageable;
+    public int weaponUpgrade = 0;
     public int gold = 0;
 
     private void Awake()
     {
-        AddGold(50);
+        damageable = transform.GetComponent<Damageable>();
     }
 
     public void AddGold(int amount)
@@ -21,7 +23,8 @@ public class PlayerData : MonoBehaviour
     {
         int upgradeCost = amount * 1; // Örnek maliyet hesaplama: Her saldýrý deðeri için 1 altýn
 
-        if (gold >= upgradeCost)
+
+        if (gold >= upgradeCost && weaponUpgrade != 5)
         {
             AddGold(-upgradeCost);
             foreach (Transform child in transform)
@@ -30,9 +33,11 @@ public class PlayerData : MonoBehaviour
                 if (attackScript != null)
                 {
                     attackScript.UpgradeAttackDamage(amount);
+                    weaponUpgrade++;
                 }
             }
         }
+
         //else
         //{
         //    Debug.Log("Not enough gold to upgrade.");
@@ -42,17 +47,23 @@ public class PlayerData : MonoBehaviour
     public void UpgradeArmor(int amount)
     {
         int upgradeCost = amount * 1;
-
-        if (gold >= upgradeCost)
+        if (damageable.Armor < 90)
         {
-            AddGold(-upgradeCost);
-            Damageable damageable = transform.GetComponent<Damageable>();
-
-            if (damageable != null)
+            if (gold >= upgradeCost)
             {
-                damageable.UpgradeArmor(amount);
+                AddGold(-upgradeCost);
+
+                if (damageable != null)
+                {
+                    damageable.UpgradeArmor(amount);
+                }
             }
         }
+        else
+        {
+            Debug.Log("Upgrade armor iþlemi baþarýsýz");
+        }
+            
         //else
         //{
         //    Debug.Log("Not enough gold to upgrade armor.");

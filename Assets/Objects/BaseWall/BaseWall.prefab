@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4098171358719954877}
   - component: {fileID: 1112495794838564212}
-  - component: {fileID: 4387805387265474246}
   - component: {fileID: 537281752485240639}
   - component: {fileID: 6466043471370560376}
   - component: {fileID: 667762999581063308}
@@ -88,33 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &4387805387265474246
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4747354935435621601}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &537281752485240639
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -192,7 +164,6 @@ MonoBehaviour:
       m_Calls: []
   _maxHealth: 500
   _maxArmor: 100
-  goldReward: 10
   _health: 500
   _armor: 0
   isInvincible: 0

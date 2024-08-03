@@ -206,9 +206,8 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void OnHit(int damage, Vector2 knockback)
+    public void OnHit()
     {
-        rb.velocity = new Vector2(knockback.x, rb.velocity.y + knockback.y);
         if(IsAlive == false)
         {
             OnGameOver();

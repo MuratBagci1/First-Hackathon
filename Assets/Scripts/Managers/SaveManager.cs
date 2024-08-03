@@ -30,6 +30,8 @@ public class SaveManager : MonoBehaviour
                 currentLevel = GameManager.Instance.currentLevel,
                 currentWave = GameManager.Instance.currentWave,
                 gold = FindObjectOfType<PlayerData>().gold,
+                armorUpgrade = (int)FindObjectOfType<PlayerData>().damageable.Armor,
+                weaponUpgrade = FindObjectOfType<PlayerData>().weaponUpgrade
                 // Diðer oyuncu verilerini de ekleyin
             };
 
@@ -60,7 +62,10 @@ public class SaveManager : MonoBehaviour
                     GameManager.Instance.currentLevel = data.currentLevel;
                     GameManager.Instance.currentWave = data.currentWave;
                     FindObjectOfType<PlayerData>().gold = data.gold;
+                    FindObjectOfType<PlayerData>().damageable.Armor = data.armorUpgrade;
+                    FindObjectOfType<PlayerData>().weaponUpgrade = data.weaponUpgrade;
                     Debug.Log("Save dosyasý okundu.");
+                    //file.Close();?
                 }
             }
             catch (SerializationException e)
@@ -74,6 +79,11 @@ public class SaveManager : MonoBehaviour
             Debug.LogWarning("Save dosyasý bulunamadý.");
             LoadDefaultValues();
         }
+    }
+
+    public void deleteSave()
+    {
+        File.Delete(GetFilePath());
     }
 
     private void LoadDefaultValues()

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
-    public UnityEvent<int, Vector2> damageableHit;
+    public UnityEvent damageableHit;
     public UnityEvent damageableDeath;
     public UnityEvent<int, int> healthChanged;
     public UnityEvent<int, int> baseHealthChanged;
@@ -141,7 +141,7 @@ public class Damageable : MonoBehaviour
         }
     }
 
-    public bool Hit(int damage, Vector2 knockback)
+    public bool Hit(int damage)
     {
         if (IsAlive && !isInvincible)
         {
@@ -153,8 +153,7 @@ public class Damageable : MonoBehaviour
                 {
                     animator.SetTrigger(AnimationStrings.hitTrigger);
                 }
-                damageableHit?.Invoke(damage, knockback);
-
+                damageableHit?.Invoke();
                 CharacterEvents.characterDamaged.Invoke(gameObject, damage, 0);
 
                 return true;
@@ -170,7 +169,7 @@ public class Damageable : MonoBehaviour
                     {
                         animator.SetTrigger(AnimationStrings.hitTrigger);
                     }
-                    damageableHit?.Invoke(damage, knockback);
+                    damageableHit?.Invoke();
 
                     CharacterEvents.characterDamaged.Invoke(gameObject, 0, damage);
 
@@ -188,7 +187,7 @@ public class Damageable : MonoBehaviour
                     {
                         animator.SetTrigger(AnimationStrings.hitTrigger);
                     }
-                    damageableHit?.Invoke(damage, knockback);
+                    damageableHit?.Invoke();
 
                     CharacterEvents.characterDamaged.Invoke(gameObject, damage, damageToArmor);
 

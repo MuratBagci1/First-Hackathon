@@ -4,7 +4,6 @@ public class Attack : MonoBehaviour
 {
     Collider2D attackCollider;
     public int attackDamage = 10;
-    public Vector2 knockback = Vector2.zero;
 
     private void Awake()
     {
@@ -17,16 +16,13 @@ public class Attack : MonoBehaviour
         Damageable damageable = collision.GetComponent<Damageable>();
         if (damageable != null)
         {
- 
             string parentName = transform.parent != null ? transform.parent.name : "No Parent";
             Debug.Log("parentName " + parentName);
 
- 
             int updatedDamage = CalculateDamageBasedOnParent(parentName);
 
-            Vector2 deliveredKnockback = transform.parent.localScale.x > 0 ? knockback : new Vector2(-knockback.x, knockback.y);
             // Hedefe vuruþ yap
-            bool gotHit = damageable.Hit(updatedDamage, deliveredKnockback);
+            bool gotHit = damageable.Hit(updatedDamage);
             if (gotHit)
             {
                 Debug.Log(collision.name + " hit for " + updatedDamage);
