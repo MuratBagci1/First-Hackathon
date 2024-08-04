@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public Attack attack;
     public SaveManager saveManager;
     public List<GameObject> Bases;
+    public WavePopUp popUp;
 
 
     public int currentLevel = 1;
@@ -67,6 +68,8 @@ public class GameManager : MonoBehaviour
 
     private void LoadLevel()
     {
+        popUp.gameObject.SetActive(true);
+        popUp.PopUp("Level " + currentLevel.ToString());
         saveManager.LoadGame();
         if (KnightSpawners.Count == 2)
         {
