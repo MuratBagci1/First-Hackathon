@@ -7,15 +7,16 @@ public class GameManager : MonoBehaviour
     public List<KnightSpawner> KnightSpawners;
     public Attack attack;
     public SaveManager saveManager;
+    public List<GameObject> Bases;
 
 
     public int currentLevel = 1;
     public int currentWave = 1;
 
 
-    public int totalWavesPerLevel = 3;
-    public int enemyHealthMultiplier = 1;
-    public int enemyDamageMultiplier = 1;
+    public int totalWavesPerLevel = 1;
+    public int enemyHealthMultiplier = 0;
+    public int enemyDamageMultiplier = 0;
 
     private void Awake()
     {
@@ -57,7 +58,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("NextLevel");
         currentLevel++;
-        totalWavesPerLevel++;
+        totalWavesPerLevel += 1;
         enemyHealthMultiplier += 1;
         enemyDamageMultiplier += 1;
         // basler yenýlenmelý mý
@@ -71,7 +72,8 @@ public class GameManager : MonoBehaviour
         {
             KnightSpawners[0].StartSpawner();
             KnightSpawners[1].StartSpawner();
-        }else
+        }
+        else
         {
             Debug.LogError("KnightSpawners listesi eksik.");
         }
