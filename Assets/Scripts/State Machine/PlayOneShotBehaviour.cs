@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayOneShotBehaviour : StateMachineBehaviour
@@ -11,13 +9,24 @@ public class PlayOneShotBehaviour : StateMachineBehaviour
     public float playDelay = 0.40f;
     private float timeSinceEntered = 0;
     private bool hasDelayedSoundPlayed = false;
+    private Transform audioParent;
+
+    void Awake()
+    {
+        GameObject audioManager = GameObject.Find("AudioManager");
+        if (audioManager == null)
+        {
+            audioManager = new GameObject("AudioManager");
+        }
+        audioParent = audioManager.transform;
+    }
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(playOnEnter)
+        if (playOnEnter)
         {
-            AudioSource.PlayClipAtPoint(soundToPlay, animator.gameObject.transform.position, volume);
+            PlaySound(animator.gameObject.transform.position);
         }
 
         timeSinceEntered = 0f;
@@ -27,13 +36,13 @@ public class PlayOneShotBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(playAfterDelay && !hasDelayedSoundPlayed)
+        if (playAfterDelay && !hasDelayedSoundPlayed)
         {
             timeSinceEntered += Time.deltaTime;
 
-            if(timeSinceEntered > playDelay)
+            if (timeSinceEntered > playDelay)
             {
-                AudioSource.PlayClipAtPoint(soundToPlay, animator.gameObject.transform.position, volume);
+                PlaySound(animator.gameObject.transform.position);
                 hasDelayedSoundPlayed = true;
             }
         }
@@ -44,7 +53,22 @@ public class PlayOneShotBehaviour : StateMachineBehaviour
     {
         if (playOnExit)
         {
-            AudioSource.PlayClipAtPoint(soundToPlay, animator.gameObject.transform.position, volume);
+            PlaySound(animator.gameObject.transform.position);
         }
+    }
+
+    private void PlaySound(Vector3 position)
+    {
+        GameObject audioObject = new GameObject("OneShotAudio");
+        audioObject.transform.position = position;
+
+        audioObject.transform.parent = audioParent;
+
+        AudioSource audioSource = audioObject.AddComponent<AudioSource>();
+        audioSource.clip = soundToPlay;
+        audioSource.volume = volume;
+        audioSource.Play();
+
+        Destroy(audioObject, soundToPlay.length);
     }
 }
