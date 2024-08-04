@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public GameObject PauseMenuUI;
     public TextMeshProUGUI shopButtonText;
     public Canvas gameCanvas;
+    public GameObject textsParents;
 
     public static bool isGamePaused = false;
     
@@ -78,7 +79,7 @@ public class UIManager : MonoBehaviour
     private void CreateText(GameObject textPrefab, Vector3 position, string text)
     {
         Vector3 spawnPosition = Camera.main.WorldToScreenPoint(position);
-        TMP_Text tmpText = Instantiate(textPrefab, spawnPosition, Quaternion.identity, gameCanvas.transform).GetComponent<TMP_Text>();
+        TMP_Text tmpText = Instantiate(textPrefab, spawnPosition, Quaternion.identity,textsParents.transform).GetComponent<TMP_Text>();
         tmpText.text = text;
     }
 
