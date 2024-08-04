@@ -9,6 +9,13 @@ public class Attack : MonoBehaviour
     {
         attackCollider = GetComponent<Collider2D>();
     }
+    private void Start()
+    {
+        
+
+        CalculateDamageBasedOnParent( );
+
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,35 +23,31 @@ public class Attack : MonoBehaviour
         Damageable damageable = collision.GetComponent<Damageable>();
         if (damageable != null)
         {
-            string parentName = transform.parent != null ? transform.parent.name : "No Parent";
-            Debug.Log("parentName " + parentName);
-
-            int updatedDamage = CalculateDamageBasedOnParent(parentName);
-
+        
             // Hedefe vuruþ yap
-            bool gotHit = damageable.Hit(updatedDamage);
+            bool gotHit = damageable.Hit(attackDamage);
             if (gotHit)
             {
-                Debug.Log(collision.name + " hit for " + updatedDamage);
+                Debug.Log(collision.name + " hit for " + attackDamage);
             }
         }
     }
 
     // Parent adýna göre hasar hesaplama metodu
-    private int CalculateDamageBasedOnParent(string parentName)
+    private void CalculateDamageBasedOnParent()
     {
-        int damage = attackDamage;
-
-        if (parentName == "Player")
+        //int damage = attackDamage;
+        string  parentTag = transform.parent.tag; 
+        if (parentTag == "Player")
         {
             //damage += 50;  
         }
-        else  
+        else
         {
-            damage = attackDamage * GameManager.Instance.enemyDamageMultiplier;  
+            attackDamage = attackDamage + (2 * GameManager.Instance.enemyDamageMultiplier);
         }
 
-        return damage;
+        //return damage;
     }
 
     public void UpgradeAttackDamage(int amount)

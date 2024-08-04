@@ -17,13 +17,14 @@ public class SaveManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
     }
+
 
     public void SaveGame()
     {
@@ -107,7 +108,7 @@ public class SaveManager : MonoBehaviour
         File.Delete(GetFilePath());
     }
 
-    private void LoadDefaultValues()
+    public void LoadDefaultValues()
     {
         GameManager.Instance.currentLevel = 1;
         GameManager.Instance.currentWave = 1;

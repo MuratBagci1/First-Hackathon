@@ -74,9 +74,10 @@ public class GameManager : MonoBehaviour
 
     public void LoadLevel()
     {
+     
+        saveManager.LoadGame();
         popUp.gameObject.SetActive(true);
         popUp.StartCoroutine(popUp.LevelPopUp(currentLevel.ToString(), currentWave.ToString()));
-        saveManager.LoadGame();
         if (KnightSpawners.Count == 2)
         {
             KnightSpawners[0].StartSpawner();

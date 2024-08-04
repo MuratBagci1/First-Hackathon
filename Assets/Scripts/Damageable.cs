@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -100,7 +99,7 @@ public class Damageable : MonoBehaviour
             {
                 StartCoroutine(OnDeath());
                 damageableDeath.Invoke();
-                if(gameObject.CompareTag("Enemy"))
+                if (gameObject.CompareTag("Enemy"))
                 {
                     enemy.GiveReward();
                 }
@@ -117,6 +116,13 @@ public class Damageable : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         enemy = GetComponent<Knight>();
+        if (gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("enemy olustu caný guncellestý");
+            _health += (2 * GameManager.Instance.enemyDamageMultiplier);
+
+
+        }
     }
 
     private void Update()
