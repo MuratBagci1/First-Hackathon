@@ -1,3 +1,4 @@
+using DG.Tweening.Core.Easing;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -6,6 +7,10 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour
 {
     public static SaveManager Instance { get; private set; }
+
+
+    [SerializeField] private PlayerData playerData;
+
 
     private void Awake()
     {
@@ -30,13 +35,13 @@ public class SaveManager : MonoBehaviour
             {
                 currentLevel = gameManager.currentLevel,
                 currentWave = gameManager.currentWave,
-                gold = FindObjectOfType<PlayerData>().gold,
-                armor = (int)FindObjectOfType<PlayerData>().damageable.Armor,
-                health = (int)FindObjectOfType<PlayerData>().damageable.Health,
+                gold = playerData.gold,
+                armor = playerData.damageable.Armor,
+                health = playerData.damageable.Health,
                 baseHealth = gameManager.Bases[0].GetComponent<Damageable>().Health,
                 base1Health = gameManager.Bases[1].GetComponent<Damageable>().Health,
                 base2Health = gameManager.Bases[2].GetComponent<Damageable>().Health,
-                weaponUpgrade = FindObjectOfType<PlayerData>().weaponUpgrade
+                weaponUpgrade = playerData.weaponUpgrade
                 // Diðer oyuncu verilerini de ekleyin
             };
 
@@ -62,7 +67,7 @@ public class SaveManager : MonoBehaviour
             try
             {
                 GameManager gameManager = GameManager.Instance;
-                PlayerData playerData = FindObjectOfType<PlayerData>();
+                 
                 BinaryFormatter formatter = new BinaryFormatter();
                 using (FileStream file = File.Open(filePath, FileMode.Open))
                 {
@@ -106,7 +111,11 @@ public class SaveManager : MonoBehaviour
     {
         GameManager.Instance.currentLevel = 1;
         GameManager.Instance.currentWave = 1;
-        FindObjectOfType<PlayerData>().gold = 0;
+        playerData.gold = 0;
+        GameManager.Instance.Bases[0].GetComponent<Damageable>().Health = 1000;
+        GameManager.Instance.Bases[1].GetComponent<Damageable>().Health = 500;
+        GameManager.Instance.Bases[2].GetComponent<Damageable>().Health = 500;
+        Debug.Log("LoadDefaultValues fonksýyonu calýstý!!! ");
         // Diðer varsayýlan deðerler buraya eklenir
     }
 
