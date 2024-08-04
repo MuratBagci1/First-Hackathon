@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public Attack attack;
     public SaveManager saveManager;
     public List<GameObject> Bases;
-    public WavePopUp popUp;
+    public PopUp popUp;
 
 
     public int currentLevel = 1;
@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
         currentWave++;
         Debug.Log("NextWave");
 
+        popUp.gameObject.SetActive(true);
+        popUp.WavePopUp(currentWave.ToString());
 
         if (currentWave > totalWavesPerLevel)
         {
@@ -57,8 +59,12 @@ public class GameManager : MonoBehaviour
 
     private void NextLevel()
     {
-        Debug.Log("NextLevel");
         currentLevel++;
+        Debug.Log("NextLevel");
+
+        popUp.gameObject.SetActive(true);
+        popUp.StartCoroutine(popUp.LevelPopUp(currentLevel.ToString(), currentWave.ToString()));
+
         totalWavesPerLevel += 1;
         enemyHealthMultiplier += 1;
         enemyDamageMultiplier += 1;
@@ -69,7 +75,7 @@ public class GameManager : MonoBehaviour
     private void LoadLevel()
     {
         popUp.gameObject.SetActive(true);
-        popUp.PopUp("Level " + currentLevel.ToString());
+        popUp.StartCoroutine(popUp.LevelPopUp(currentLevel.ToString(), currentWave.ToString()));
         saveManager.LoadGame();
         if (KnightSpawners.Count == 2)
         {
@@ -85,7 +91,8 @@ public class GameManager : MonoBehaviour
 
     private void LoadWave()
     {
-
+        popUp.gameObject.SetActive(true);
+        popUp.WavePopUp(currentWave.ToString());
     }
 
 

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class WavePopUp : MonoBehaviour
+public class PopUp : MonoBehaviour
 {
     public TextMeshProUGUI text;
     // Start is called before the first frame update
@@ -28,9 +28,19 @@ public class WavePopUp : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void PopUp(string level)
+    public IEnumerator LevelPopUp(string level, string wave)
     {
-        text.text = level;
+        text.text = "Level " + level;
+        text.transform.localScale = Vector3.one;
+        text.transform.DOScale(2, 1f);
+        timeElapsed = 0;
+        yield return new WaitForSeconds(1f);
+        WavePopUp(wave);
+    }
+
+    public void WavePopUp(string wave)
+    {
+        text.text = "Wave " + wave;
         text.transform.localScale = Vector3.one;
         text.transform.DOScale(2, 1f);
         timeElapsed = 0;
