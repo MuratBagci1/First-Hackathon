@@ -1,7 +1,7 @@
-using UnityEngine;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
@@ -22,16 +22,20 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame()
     {
+        GameManager gameManager = GameManager.Instance;
         BinaryFormatter formatter = new BinaryFormatter();
         using (FileStream file = File.Create(GetFilePath()))
         {
             PlayerDataSave data = new PlayerDataSave
             {
-                currentLevel = GameManager.Instance.currentLevel,
-                currentWave = GameManager.Instance.currentWave,
+                currentLevel = gameManager.currentLevel,
+                currentWave = gameManager.currentWave,
                 gold = FindObjectOfType<PlayerData>().gold,
                 armor = (int)FindObjectOfType<PlayerData>().damageable.Armor,
                 health = (int)FindObjectOfType<PlayerData>().damageable.Health,
+                baseHealth = gameManager.Bases[0].GetComponent<Damageable>().Health,
+                base1Health = gameManager.Bases[1].GetComponent<Damageable>().Health,
+                base2Health = gameManager.Bases[2].GetComponent<Damageable>().Health,
                 weaponUpgrade = FindObjectOfType<PlayerData>().weaponUpgrade
                 // Diðer oyuncu verilerini de ekleyin
             };
@@ -57,16 +61,25 @@ public class SaveManager : MonoBehaviour
 
             try
             {
+                GameManager gameManager = GameManager.Instance;
+                PlayerData playerData = FindObjectOfType<PlayerData>();
                 BinaryFormatter formatter = new BinaryFormatter();
                 using (FileStream file = File.Open(filePath, FileMode.Open))
                 {
                     PlayerDataSave data = (PlayerDataSave)formatter.Deserialize(file);
-                    GameManager.Instance.currentLevel = data.currentLevel;
-                    GameManager.Instance.currentWave = data.currentWave;
-                    FindObjectOfType<PlayerData>().gold = data.gold;
-                    FindObjectOfType<PlayerData>().damageable.Armor = data.armor;
-                    FindObjectOfType<PlayerData>().damageable.Health = data.health;
-                    FindObjectOfType<PlayerData>().weaponUpgrade = data.weaponUpgrade;
+                    gameManager.currentLevel = data.currentLevel;
+                    gameManager.totalWavesPerLevel += data.currentLevel;
+                    gameManager.enemyHealthMultiplier += data.currentLevel;
+                    gameManager.enemyDamageMultiplier += data.currentLevel;
+                    gameManager.currentWave = data.currentWave;
+                    playerData.gold = data.gold;
+                    playerData.damageable.Armor = data.armor;
+                    playerData.damageable.Health = data.health; 
+                    gameManager.Bases[0].GetComponent<Damageable>().Health = data.baseHealth;
+                    gameManager.Bases[1].GetComponent<Damageable>().Health = data.base1Health;
+                    gameManager.Bases[2].GetComponent<Damageable>().Health = data.base2Health;
+                    playerData.weaponUpgrade = data.weaponUpgrade;
+
                     Debug.Log("Save dosyasý okundu.");
                     file.Close();
                 }

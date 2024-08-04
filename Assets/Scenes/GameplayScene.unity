@@ -23531,6 +23531,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &853077691 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8683243742615581990, guid: bf5179a7e48b4d6409bf5c8d4737c7ed, type: 3}
+  m_PrefabInstance: {fileID: 8422897570430749298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &876537272 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5637029459715031848, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
@@ -34790,7 +34795,12 @@ MonoBehaviour:
   KnightSpawners:
   - {fileID: 1016088572}
   - {fileID: 1392430577}
+  attack: {fileID: 0}
   saveManager: {fileID: 1087838550}
+  Bases:
+  - {fileID: 853077691}
+  - {fileID: 1596531590}
+  - {fileID: 1912487486}
   currentLevel: 1
   currentWave: 1
   totalWavesPerLevel: 3
@@ -35136,6 +35146,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 519420031}
   followTarget: {fileID: 1675553526}
+--- !u!1 &1596531590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4747354935435621601, guid: dc9e158a2fd0f0541819d4dc4532b2b1, type: 3}
+  m_PrefabInstance: {fileID: 2916821562324144628}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1616329535
 GameObject:
   m_ObjectHideFlags: 0
@@ -35441,6 +35456,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1912487486 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4747354935435621601, guid: dc9e158a2fd0f0541819d4dc4532b2b1, type: 3}
+  m_PrefabInstance: {fileID: 608207651}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1914209543
 GameObject:
   m_ObjectHideFlags: 0
@@ -36506,6 +36526,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1344136025764574240, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_text
+      value: Armor 100 / 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1474323958149353414, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -36665,6 +36689,10 @@ PrefabInstance:
     - target: {fileID: 6278032717479978694, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6998129165275030019, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_text
+      value: HP 1000 / 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7730369740857237208, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_Name
@@ -36837,6 +36865,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4410423852878550765, guid: bf5179a7e48b4d6409bf5c8d4737c7ed, type: 3}
+      propertyPath: m_text
+      value: Base HP 1000 / 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 4578676930350767634, guid: bf5179a7e48b4d6409bf5c8d4737c7ed, type: 3}
       propertyPath: _health
       value: 1000
