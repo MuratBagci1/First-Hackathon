@@ -13,9 +13,15 @@ public class GameOverScreen : MonoBehaviour
 
     public void RestartButton()
     {
-        Time.timeScale = 1;
+        Debug.Log("restart a týklandý");
+        SaveManager.Instance.LoadDefaultValues();
+        SaveManager.Instance.SaveGame();
+        GameManager.Instance.LoadLevel();
+        Time.timeScale = 1f;
+        UIManager.isGamePaused = false;
         SceneManager.LoadScene("GameplayScene");
-        Time.timeScale = 1;
+        Time.timeScale = 1f;
+
 
     }
 

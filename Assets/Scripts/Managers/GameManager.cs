@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
         //LoadLevel();
     }
 
-    private void LoadLevel()
+    public void LoadLevel()
     {
         popUp.gameObject.SetActive(true);
         popUp.StartCoroutine(popUp.LevelPopUp(currentLevel.ToString(), currentWave.ToString()));
