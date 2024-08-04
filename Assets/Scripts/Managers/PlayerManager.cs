@@ -8,7 +8,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
-    public GameOverScreen gameOver;
     public float walkSpeed = 5f;
     public float runSpeed = 8f;
     public float airWalkSpeed = 3f;
@@ -203,17 +202,5 @@ public class PlayerManager : MonoBehaviour
         {
             animator.SetTrigger(AnimationStrings.RangedAttackTrigger);
         }
-    }
-
-    public void OnHit()
-    {
-        if(IsAlive == false)
-        {
-            OnGameOver();
-        }
-    }
-    public void OnGameOver()
-    {
-        gameOver.Setup();
     }
 }

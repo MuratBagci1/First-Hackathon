@@ -13,7 +13,7 @@ public class Damageable : MonoBehaviour
     public UnityEvent<Collider2D> damageableDestroyed;
     Knight enemy;
 
-    private GameOverScreen gameOver;
+    public GameOverScreen gameOver;
 
     Animator animator;
 
@@ -98,6 +98,7 @@ public class Damageable : MonoBehaviour
             Debug.Log("IsAlive set " + value);
             if (!value)
             {
+                StartCoroutine(OnDeath());
                 damageableDeath.Invoke();
                 if(gameObject.CompareTag("Enemy"))
                 {
@@ -133,7 +134,7 @@ public class Damageable : MonoBehaviour
         }
         if (!IsAlive)
         {
-            if (gameObject.CompareTag("Base"))
+            if (gameObject.name == "Base" || gameObject.name == "Player")
             {
                 gameOver.Setup();
             }
@@ -230,11 +231,19 @@ public class Damageable : MonoBehaviour
         Armor += amount;
     }
 
-    public void OnDeath()
+    public IEnumerator OnDeath()
     {
-        damageableDestroyed?.Invoke(GetComponent<Collider2D>()); // Notify listeners before destruction
+        yield return new WaitForSeconds(1f);
+        if (gameObject.tag == "Base")
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            damageableDestroyed?.Invoke(GetComponent<Collider2D>()); // Notify listeners before destruction
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 
     private void OnDestroy()

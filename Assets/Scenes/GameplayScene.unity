@@ -22986,6 +22986,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4747354935435621601, guid: dc9e158a2fd0f0541819d4dc4532b2b1, type: 3}
+      propertyPath: m_TagString
+      value: Base
+      objectReference: {fileID: 0}
     - target: {fileID: 6466043471370560376, guid: dc9e158a2fd0f0541819d4dc4532b2b1, type: 3}
       propertyPath: _health
       value: 500
@@ -23759,6 +23763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 228bcee9673459040bcfc96a151368e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 1675553527}
 --- !u!4 &1087838551
 Transform:
   m_ObjectHideFlags: 0
@@ -36479,6 +36484,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4747354935435621601, guid: dc9e158a2fd0f0541819d4dc4532b2b1, type: 3}
+      propertyPath: m_TagString
+      value: Base
+      objectReference: {fileID: 0}
     - target: {fileID: 6466043471370560376, guid: dc9e158a2fd0f0541819d4dc4532b2b1, type: 3}
       propertyPath: _health
       value: 500
@@ -36848,6 +36857,10 @@ PrefabInstance:
       propertyPath: goldText
       value: 
       objectReference: {fileID: 2120075882}
+    - target: {fileID: 7369332681025464117, guid: 9fec78db82b4a4b4d9cfd02301986729, type: 3}
+      propertyPath: gameOver
+      value: 
+      objectReference: {fileID: 49481819}
     - target: {fileID: 8906958875669705308, guid: 9fec78db82b4a4b4d9cfd02301986729, type: 3}
       propertyPath: gameOver
       value: 
