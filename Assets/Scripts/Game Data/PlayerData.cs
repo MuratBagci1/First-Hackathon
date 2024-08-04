@@ -1,5 +1,5 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
@@ -10,12 +10,21 @@ public class PlayerData : MonoBehaviour
 
     private void Awake()
     {
-        damageable = transform.GetComponent<Damageable>();        
+        damageable = transform.GetComponent<Damageable>();
     }
 
     private void Start()
     {
         goldText.text = gold.ToString();
+
+        foreach (Transform child in transform)
+        {
+            Attack attackScript = child.GetComponent<Attack>();
+            if (attackScript != null)
+            {
+                attackScript.UpgradeAttackDamage(weaponUpgrade * 10);
+            }
+        }
     }
 
     public void AddGold(int amount)
@@ -32,13 +41,14 @@ public class PlayerData : MonoBehaviour
         if (gold >= upgradeCost && weaponUpgrade != 5)
         {
             AddGold(-upgradeCost);
+            weaponUpgrade++;
+
             foreach (Transform child in transform)
             {
                 Attack attackScript = child.GetComponent<Attack>();
                 if (attackScript != null)
                 {
                     attackScript.UpgradeAttackDamage(amount);
-                    weaponUpgrade++;
                 }
             }
         }
@@ -68,7 +78,7 @@ public class PlayerData : MonoBehaviour
         {
             Debug.Log("Upgrade armor iþlemi baþarýsýz");
         }
-            
+
         //else
         //{
         //    Debug.Log("Not enough gold to upgrade armor.");
