@@ -8,6 +8,11 @@ public class PopUp : MonoBehaviour
     public TextMeshProUGUI text;
     public bool isRunning = false;
 
+    private void Start()
+    {
+        GameManager.Instance.popUp = gameObject.GetComponent<PopUp>();
+        GameManager.Instance.gameRestarted = true;
+    }
     public IEnumerator LevelPopUp(string level, string wave)
     {
         if (isRunning)

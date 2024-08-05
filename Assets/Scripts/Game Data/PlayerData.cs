@@ -10,6 +10,7 @@ public class PlayerData : MonoBehaviour
 
     private void Awake()
     {
+        SaveManager.Instance.playerData = gameObject.GetComponent<PlayerData>();
         damageable = transform.GetComponent<Damageable>();
     }
 

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -10,6 +12,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> Bases;
     public PopUp popUp;
 
+    public bool gameRestarted = false;
 
     public int currentLevel = 1;
     public int currentWave = 1;
@@ -33,9 +36,41 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Initializer()
+    {
+        KnightSpawners = FindObjectsOfType<KnightSpawner>().ToList<KnightSpawner>();
+        for(int i =0; i < KnightSpawners.Count; i++)
+        {
+            if(KnightSpawners[i].name == "ArcherSpawner")
+            {
+                KnightSpawners.RemoveAt(i);
+            }
+        }
+        try
+        {
+            Bases = GameObject.FindGameObjectsWithTag("Base").ToList<GameObject>();
+        }
+        catch (Exception e)
+        {
+
+            Debug.Log("Hata");
+        }
+        //gameRestarted = false;
+    }
+
     private void Start()
     {
-        LoadLevel();
+        
+    }
+
+    private void Update()
+    {
+        if(gameRestarted)
+        {
+            Initializer();
+            LoadLevel();
+            gameRestarted = false;
+        }
     }
 
     public void NextWave()
