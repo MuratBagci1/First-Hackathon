@@ -40,34 +40,39 @@ public class GameManager : MonoBehaviour
 
     public void NextWave()
     {
-        currentWave++;
-        Debug.Log("NextWave");
-
-        popUp.gameObject.SetActive(true);
-        popUp.WavePopUp(currentWave.ToString());
-
         if (currentWave > totalWavesPerLevel)
         {
             currentWave = 1;
             NextLevel();
-
         }
-        saveManager.SaveGame();
+
+        currentWave++;
+        Debug.Log("NextWave");
+
+        if(!popUp.isRunning)
+        {
+            popUp.gameObject.SetActive(true);
+            popUp.StartCoroutine(popUp.WavePopUp(currentWave.ToString()));
+        }     
         //LoadWave(); //KnightSpawner.cs scriptindeki SpawnEnemy() metodu
         //calýsmaya devam ettýgý ýcýn bu fonksýyonu burada calýstýrmýyoruz.
     }
 
     private void NextLevel()
     {
-        currentLevel++;
-        Debug.Log("NextLevel");
-
-        popUp.gameObject.SetActive(true);
-        popUp.StartCoroutine(popUp.LevelPopUp(currentLevel.ToString(), currentWave.ToString()));
-
         totalWavesPerLevel += 1;
         enemyHealthMultiplier += 1;
         enemyDamageMultiplier += 1;
+        currentLevel++;
+        saveManager.SaveGame();
+
+        Debug.Log("NextLevel");
+        
+        if(!popUp.isRunning)
+        {
+            popUp.gameObject.SetActive(true);
+            popUp.StartCoroutine(popUp.LevelPopUp(currentLevel.ToString(), currentWave.ToString()));
+        }
         // basler yenýlenmelý mý
         //LoadLevel();
     }
@@ -76,8 +81,11 @@ public class GameManager : MonoBehaviour
     {
      
         saveManager.LoadGame();
-        popUp.gameObject.SetActive(true);
-        popUp.StartCoroutine(popUp.LevelPopUp(currentLevel.ToString(), currentWave.ToString()));
+        if(!popUp.isRunning)
+        {
+            popUp.gameObject.SetActive(true);
+            popUp.StartCoroutine(popUp.LevelPopUp(currentLevel.ToString(), currentWave.ToString()));
+        }
         if (KnightSpawners.Count == 2)
         {
             KnightSpawners[0].StartSpawner();
@@ -87,13 +95,13 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("KnightSpawners listesi eksik.");
         }
-
     }
 
     private void LoadWave()
     {
-        popUp.gameObject.SetActive(true);
-        popUp.WavePopUp(currentWave.ToString());
+        popUp.gameObject.SetActive(true); 
+        popUp.StartCoroutine(popUp.WavePopUp(currentWave.ToString()));
+
     }
 
 

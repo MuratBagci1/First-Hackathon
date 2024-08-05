@@ -119,7 +119,7 @@ public class Damageable : MonoBehaviour
         if (gameObject.CompareTag("Enemy"))
         {
             Debug.Log("enemy olustu caný guncellestý");
-            _health += (2 * GameManager.Instance.enemyDamageMultiplier);
+            _health += (2 * GameManager.Instance.enemyHealthMultiplier);
 
 
         }
