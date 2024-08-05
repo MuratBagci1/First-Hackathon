@@ -14,7 +14,7 @@ public class PlayerData : MonoBehaviour
         damageable = transform.GetComponent<Damageable>();
     }
 
-    private void Start()
+    public void GameLoaded()
     {
         goldText.text = gold.ToString();
 

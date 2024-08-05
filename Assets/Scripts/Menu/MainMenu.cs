@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     public void OnQuitPressed()
     {
         Application.Quit();
+        SaveManager.Instance.SaveGame();
         Debug.Log("Exited game");
     }
 

@@ -39,36 +39,39 @@ public class GameManager : MonoBehaviour
     public void Initializer()
     {
         KnightSpawners = FindObjectsOfType<KnightSpawner>().ToList<KnightSpawner>();
-        for(int i =0; i < KnightSpawners.Count; i++)
+        for (int i = 0; i < KnightSpawners.Count; i++)
         {
-            if(KnightSpawners[i].name == "ArcherSpawner")
+            if (KnightSpawners[i].name == "ArcherSpawner")
             {
                 KnightSpawners.RemoveAt(i);
             }
         }
-        try
+        Bases = GameObject.FindGameObjectsWithTag("Base").ToList<GameObject>();
+        for (int i = 0; i < Bases.Count; i++)
         {
-            Bases = GameObject.FindGameObjectsWithTag("Base").ToList<GameObject>();
+            if (Bases[i].name == "Base")
+            {
+                GameObject temp = Bases[i];
+                Bases[i] = Bases[0];
+                Bases[0] = temp;
+            }
         }
-        catch (Exception e)
-        {
 
-            Debug.Log("Hata");
-        }
         //gameRestarted = false;
     }
 
     private void Start()
     {
-        
+
     }
 
     private void Update()
     {
-        if(gameRestarted)
+        if (gameRestarted)
         {
             Initializer();
             LoadLevel();
+            saveManager.playerData.GameLoaded();
             gameRestarted = false;
         }
     }
@@ -84,11 +87,11 @@ public class GameManager : MonoBehaviour
         currentWave++;
         Debug.Log("NextWave");
 
-        if(!popUp.isRunning)
+        if (!popUp.isRunning)
         {
             popUp.gameObject.SetActive(true);
             popUp.StartCoroutine(popUp.WavePopUp(currentWave.ToString()));
-        }     
+        }
         //LoadWave(); //KnightSpawner.cs scriptindeki SpawnEnemy() metodu
         //calýsmaya devam ettýgý ýcýn bu fonksýyonu burada calýstýrmýyoruz.
     }
@@ -102,8 +105,8 @@ public class GameManager : MonoBehaviour
         saveManager.SaveGame();
 
         Debug.Log("NextLevel");
-        
-        if(!popUp.isRunning)
+
+        if (!popUp.isRunning)
         {
             popUp.gameObject.SetActive(true);
             popUp.StartCoroutine(popUp.LevelPopUp(currentLevel.ToString(), currentWave.ToString()));
@@ -114,9 +117,9 @@ public class GameManager : MonoBehaviour
 
     public void LoadLevel()
     {
-     
+
         saveManager.LoadGame();
-        if(!popUp.isRunning)
+        if (!popUp.isRunning)
         {
             popUp.gameObject.SetActive(true);
             popUp.StartCoroutine(popUp.LevelPopUp(currentLevel.ToString(), currentWave.ToString()));
@@ -134,7 +137,7 @@ public class GameManager : MonoBehaviour
 
     private void LoadWave()
     {
-        popUp.gameObject.SetActive(true); 
+        popUp.gameObject.SetActive(true);
         popUp.StartCoroutine(popUp.WavePopUp(currentWave.ToString()));
 
     }
