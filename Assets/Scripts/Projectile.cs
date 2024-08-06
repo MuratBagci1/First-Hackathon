@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+
+// TODO: oklarýn hasarlarý artacak
 
 public class Projectile : MonoBehaviour
 {
-    public int damage = 25;
+    public int damage = 15;
     public Vector2 moveSpeed = new Vector2(30f, 0);
 
     Rigidbody2D rb;
@@ -17,6 +18,8 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         rb.velocity = new Vector2(moveSpeed.x * transform.localScale.x, moveSpeed.y);
+        PlayerData playerData = FindAnyObjectByType<PlayerData>();
+        damage = damage + (playerData.weaponUpgrade * 10);
     }
 
 
