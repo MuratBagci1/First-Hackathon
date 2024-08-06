@@ -14,6 +14,7 @@ public class SaveManager : MonoBehaviour
 
     private void Awake()
     {
+        deleteSave();
         if (Instance == null)
         {
             Instance = this;

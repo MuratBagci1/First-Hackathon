@@ -214,7 +214,7 @@ public class Damageable : MonoBehaviour
         {
             int maxHeal = Mathf.Max((MaxHealth - Health), 0);
             int actualHeal = Mathf.Min(maxHeal, healthRestore);
-            Health += healthRestore;
+            Health += actualHeal;
 
             CharacterEvents.characterHealed(gameObject, actualHeal);
             return true;
@@ -224,6 +224,7 @@ public class Damageable : MonoBehaviour
             return false;
         }
     }
+
     public void GiveGoldToPlayer(int gold)
     {
         PlayerData playerData = FindObjectOfType<PlayerData>();

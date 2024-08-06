@@ -83,8 +83,11 @@ public class GameManager : MonoBehaviour
             currentWave = 1;
             NextLevel();
         }
-
-        currentWave++;
+        else
+        {
+            currentWave++;
+        }
+        
         Debug.Log("NextWave");
 
         if (!popUp.isRunning)
