@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,9 +13,10 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI shopButtonText;
     public Canvas gameCanvas;
     public GameObject textsParents;
+    public GameObject Buttons;
 
     public static bool isGamePaused = false;
-    
+
     private void OnEnable()
     {
         CharacterEvents.characterDamaged += CharacterDamaged;
@@ -34,30 +33,34 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(!shop.activeSelf)
+            if (!shop.activeSelf)
             {
                 if (isGamePaused)
                 {
                     PauseMenuUI.SetActive(false);
+
                     Resume();
                 }
                 else
                 {
                     PauseMenuUI.SetActive(true);
+
+
                     Pause();
                 }
             }
             else if (shop.activeSelf)
             {
                 shop.SetActive(false);
+
                 PauseMenuUI.SetActive(true);
             }
         }
     }
 
     public void CharacterDamaged(GameObject character, int damageReceivedHealth, int damageRecievedArmor)
-    {        
-        if( damageRecievedArmor == 0)
+    {
+        if (damageRecievedArmor == 0)
         {
             CreateText(damageTextPrefab, character.transform.position, damageReceivedHealth.ToString());
         }
@@ -79,7 +82,7 @@ public class UIManager : MonoBehaviour
     private void CreateText(GameObject textPrefab, Vector3 position, string text)
     {
         Vector3 spawnPosition = Camera.main.WorldToScreenPoint(position);
-        TMP_Text tmpText = Instantiate(textPrefab, spawnPosition, Quaternion.identity,textsParents.transform).GetComponent<TMP_Text>();
+        TMP_Text tmpText = Instantiate(textPrefab, spawnPosition, Quaternion.identity, textsParents.transform).GetComponent<TMP_Text>();
         tmpText.text = text;
     }
 
@@ -88,29 +91,34 @@ public class UIManager : MonoBehaviour
         bool isActive = shop.activeSelf;
         shop.SetActive(!isActive);
         shopButtonText.text = isActive ? "Shop" : "Close";
-        if(isActive)
+        if (isActive)
         {
+
             Resume();
         }
         else
         {
+
+
             Pause();
         }
     }
 
     public void Pause()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().enabled = false;
+        Buttons.SetActive(false);
+        //GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().enabled = false;
         Time.timeScale = 0f;
         isGamePaused = true;
     }
 
     public void Resume()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().enabled = true;
+        Buttons.SetActive(true);
+        //GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().enabled = true;
         Time.timeScale = 1f;
         isGamePaused = false;
-        if(PauseMenuUI.activeSelf)
+        if (PauseMenuUI.activeSelf)
         {
             PauseMenuUI.SetActive(false);
         }

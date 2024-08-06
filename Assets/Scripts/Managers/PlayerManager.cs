@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -43,7 +40,7 @@ public class PlayerManager : MonoBehaviour
     {
         get
         {
-            if(CanMove)
+            if (CanMove)
             {
                 if (IsRunning)
                 {
@@ -145,13 +142,32 @@ public class PlayerManager : MonoBehaviour
             rb.velocity = new Vector2(0, 0);
         }
     }
+    public void Right()
+    {
+        moveInput.x = 1;
+        SetFacingDirection(moveInput);
+        IsMoving = true;
+
+    }
+    public void Left()
+    {
+        moveInput.x = -1;
+        SetFacingDirection(moveInput);
+        IsMoving = true;
+    }
+
+    public void Stop()
+    {
+        moveInput.x = 0;
+        IsMoving = false;
+    }
 
     //Hareket fonksiyonlarýnýn isimleri Eventlerle ayný olmalýdýr.
     public void OnMove(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
 
-        if(IsAlive)
+        if (IsAlive)
         {
             IsMoving = moveInput != Vector2.zero;
             SetFacingDirection(moveInput);
