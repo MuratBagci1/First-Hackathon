@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -71,6 +70,16 @@ public class GameManager : MonoBehaviour
         {
             Initializer();
             LoadLevel();
+
+            if (totalWavesPerLevel != 1)
+            {
+                if (currentLevel > 1)
+                {
+                    totalWavesPerLevel += currentLevel;
+                    enemyHealthMultiplier += currentLevel;
+                    enemyDamageMultiplier += currentLevel;
+                }
+            }
             saveManager.playerData.GameLoaded();
             gameRestarted = false;
         }
@@ -87,7 +96,7 @@ public class GameManager : MonoBehaviour
         {
             currentWave++;
         }
-        
+
         Debug.Log("NextWave");
 
         if (!popUp.isRunning)
@@ -104,7 +113,7 @@ public class GameManager : MonoBehaviour
         totalWavesPerLevel += 1;
         enemyHealthMultiplier += 1;
         enemyDamageMultiplier += 1;
-        currentLevel++;
+        currentLevel += 1;
         saveManager.SaveGame();
 
         Debug.Log("NextLevel");
