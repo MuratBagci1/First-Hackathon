@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 6419381918100905876}
   m_Layer: 14
   m_Name: Archer
-  m_TagString: Untagged
+  m_TagString: Archer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -205,6 +205,7 @@ MonoBehaviour:
   damageableDestroyed:
     m_PersistentCalls:
       m_Calls: []
+  gameOver: {fileID: 0}
   _maxHealth: 100
   _maxArmor: 100
   _health: 10
@@ -244,6 +245,7 @@ MonoBehaviour:
   _hasTarget: 0
   waypointReachDistance: 0.1
   waypoints: []
+  randomf: 0
 --- !u!1 &258021892959116331
 GameObject:
   m_ObjectHideFlags: 0
