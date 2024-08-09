@@ -23,9 +23,9 @@ public class Projectile : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - 9.8f * Time.deltaTime);
+        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - 5f * Time.deltaTime);
         Debug.Log("oky " + gameObject.transform.localPosition .y);
-        if (gameObject.transform.position.y < -5)
+        if (gameObject.transform.position.y < -3)
         {
             Destroy(gameObject);
         }
