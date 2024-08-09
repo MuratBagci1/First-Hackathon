@@ -10,6 +10,7 @@ public class Archer : Dummy
     public List<Transform> waypoints;
     Transform nextWaypoint;
     int waypointNum = 0;
+    public float randomf = 0.0f;
 
     Damageable damageable;
 
@@ -18,6 +19,7 @@ public class Archer : Dummy
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
         this.damageable = GetComponent<Damageable>();
+          randomf = UnityEngine.Random.Range(0.0f, 1.0f);
 
         GameObject[] waypointObjects = GameObject.FindGameObjectsWithTag("WayPoint");
         foreach (GameObject waypointObject in waypointObjects)
@@ -63,8 +65,8 @@ public class Archer : Dummy
 
         Vector2 directionToWaypoint = (nextWaypoint.position - transform.position).normalized;
         float distance = Vector2.Distance(nextWaypoint.position, transform.position);
-
-        rb.velocity = directionToWaypoint * maxSpeed;
+      
+        rb.velocity = directionToWaypoint * (maxSpeed + randomf);
 
         if (distance <= waypointReachDistance)
         {
