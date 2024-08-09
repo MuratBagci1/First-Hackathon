@@ -55,7 +55,7 @@ public class SaveManager : MonoBehaviour
             gameManager.Bases[1].GetComponent<Damageable>().Health = PlayerPrefs.GetInt("base1Health");
             gameManager.Bases[2].GetComponent<Damageable>().Health = PlayerPrefs.GetInt("base2Health");
             playerData.weaponUpgrade = PlayerPrefs.GetInt("weaponUpgrade");
-           gameManager.archerCount = PlayerPrefs.GetInt("archerCount");
+            gameManager.archerCount = PlayerPrefs.GetInt("archerCount");
 
 
             Debug.Log("Oyun yüklendi.");
