@@ -9,6 +9,7 @@ TagManager:
   - WayPoint
   - ArcherArrows
   - Coins
+  - Ground
   layers:
   - Default
   - TransparentFX

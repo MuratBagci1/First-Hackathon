@@ -21,6 +21,15 @@ public class Projectile : MonoBehaviour
         PlayerData playerData = FindAnyObjectByType<PlayerData>();
         damage = damage + (playerData.weaponUpgrade * 10);
     }
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - 9.8f * Time.deltaTime);
+        Debug.Log("oky " + gameObject.transform.localPosition .y);
+        if (gameObject.transform.position.y < -5)
+        {
+            Destroy(gameObject);
+        }
+    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -36,6 +45,7 @@ public class Projectile : MonoBehaviour
                 Debug.Log($"{collision.name} hit for {damage}");
             }
         }
+     
     }
 
     //private Vector2 GetKnockback()
