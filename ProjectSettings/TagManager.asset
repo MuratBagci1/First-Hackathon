@@ -10,6 +10,7 @@ TagManager:
   - ArcherArrows
   - Coins
   - Ground
+  - Archer
   layers:
   - Default
   - TransparentFX
