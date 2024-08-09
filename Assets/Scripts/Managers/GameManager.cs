@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public List<KnightSpawner> KnightSpawners;
+    public KnightSpawner ArcherSpawner;
     public Attack attack;
     public SaveManager saveManager;
     public List<GameObject> Bases;
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour
     public int totalWavesPerLevel = 1;
     public int enemyHealthMultiplier = 0;
     public int enemyDamageMultiplier = 0;
+
+    public int archerCount = 1;
 
     private void Awake()
     {
@@ -42,6 +45,7 @@ public class GameManager : MonoBehaviour
         {
             if (KnightSpawners[i].name == "ArcherSpawner")
             {
+                ArcherSpawner = KnightSpawners[i];
                 KnightSpawners.RemoveAt(i);
             }
         }
@@ -55,6 +59,7 @@ public class GameManager : MonoBehaviour
                 Bases[0] = temp;
             }
         }
+       
 
         //gameRestarted = false;
     }
@@ -81,6 +86,10 @@ public class GameManager : MonoBehaviour
                 }
             }
             saveManager.playerData.GameLoaded();
+            for (int i = 1; i < archerCount; i++)
+            {
+                ArcherSpawner.SpawnSingleEnemy(buy: false);
+            }
             gameRestarted = false;
             Time.timeScale = 1f;
         }

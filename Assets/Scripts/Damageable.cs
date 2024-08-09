@@ -235,7 +235,15 @@ public class Damageable : MonoBehaviour
     }
     public void UpgradeArmor(int amount)
     {
-        Armor += amount;
+        if (Armor + amount <= 100)
+        {
+            Armor += amount;
+
+        }
+        else
+        {
+            Armor = 100;
+        }
     }
 
     public IEnumerator OnDeath()
@@ -250,6 +258,11 @@ public class Damageable : MonoBehaviour
             damageableDestroyed?.Invoke(GetComponent<Collider2D>()); // Notify listeners before destruction
 
             Destroy(gameObject);
+            if (gameObject.tag =="Archer" )
+            {
+                GameManager.Instance.archerCount--;
+
+            }
         }
     }
 

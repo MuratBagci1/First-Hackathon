@@ -23144,7 +23144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6466043471370560376, guid: dc9e158a2fd0f0541819d4dc4532b2b1, type: 3}
       propertyPath: invinciblityTime
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -34961,6 +34961,7 @@ MonoBehaviour:
   totalWavesPerLevel: 3
   enemyHealthMultiplier: 1
   enemyDamageMultiplier: 1
+  archerCount: 1
 --- !u!4 &1428719587
 Transform:
   m_ObjectHideFlags: 0
@@ -36793,7 +36794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6466043471370560376, guid: dc9e158a2fd0f0541819d4dc4532b2b1, type: 3}
       propertyPath: invinciblityTime
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4387805387265474246, guid: dc9e158a2fd0f0541819d4dc4532b2b1, type: 3}
@@ -36875,9 +36876,17 @@ PrefabInstance:
       value: -78.78052
       objectReference: {fileID: 0}
     - target: {fileID: 1474323958149353414, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1474323958149353414, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 778317992}
+    - target: {fileID: 1474323958149353414, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2170876940694685102, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -37328,6 +37337,10 @@ PrefabInstance:
       objectReference: {fileID: 49481819}
     - target: {fileID: 4578676930350767634, guid: bf5179a7e48b4d6409bf5c8d4737c7ed, type: 3}
       propertyPath: isInvincible
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578676930350767634, guid: bf5179a7e48b4d6409bf5c8d4737c7ed, type: 3}
+      propertyPath: invinciblityTime
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5158437925719727711, guid: bf5179a7e48b4d6409bf5c8d4737c7ed, type: 3}

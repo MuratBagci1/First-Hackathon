@@ -63,7 +63,7 @@ public class PlayerData : MonoBehaviour
     public void UpgradeArmor(int amount)
     {
         int upgradeCost = amount * 1;
-        if (damageable.Armor < 90)
+        if (damageable.Armor < 100)
         {
             if (gold >= upgradeCost)
             {

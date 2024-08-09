@@ -24,8 +24,7 @@ public class KnightSpawner : MonoBehaviour
             int randomIndex = Random.Range(0, enemyPrefabs.Length); // Rastgele bir prefab seç
             GameObject randomEnemy = enemyPrefabs[randomIndex];
             Instantiate(randomEnemy, transform.position, Quaternion.identity, knightParent);
-            //if (quantity>=5)
-            if (quantity >= 2)
+            if (quantity >= 5)
             {
                 spawnInterval = 20f;
                 yield return new WaitForSeconds(spawnInterval);
@@ -43,21 +42,31 @@ public class KnightSpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
         }
     }
-    public void SpawnSingleEnemy()
+    public void SpawnSingleEnemy(bool buy = true)
     {
-
+        Debug.Log("buy " + buy);
         PlayerData playerData = FindObjectOfType<PlayerData>();
         if (playerData != null)
         {
-            if (playerData.gold >= 50)
+            if (!buy)
             {
-                quantity++;
-                playerData.AddGold(-50);
-
                 GameObject randomEnemy = enemyPrefabs[0];
                 Instantiate(randomEnemy, transform.position, Quaternion.identity, knightParent);
-
             }
+            else
+            {
+                if (playerData.gold >= 50)
+                {
+                    GameManager.Instance.archerCount++;
+                    quantity++;
+                    playerData.AddGold(-50);
+
+                    GameObject randomEnemy = enemyPrefabs[0];
+                    Instantiate(randomEnemy, transform.position, Quaternion.identity, knightParent);
+
+                }
+            }
+
         }
     }
 }

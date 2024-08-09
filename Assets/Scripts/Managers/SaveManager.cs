@@ -33,6 +33,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("base1Health", gameManager.Bases[1].GetComponent<Damageable>().Health);
         PlayerPrefs.SetInt("base2Health", gameManager.Bases[2].GetComponent<Damageable>().Health);
         PlayerPrefs.SetInt("weaponUpgrade", playerData.weaponUpgrade);
+        PlayerPrefs.SetInt("archerCount", gameManager.archerCount);
         // Diðer oyuncu verilerini de ekleyin
 
         PlayerPrefs.Save();
@@ -54,6 +55,8 @@ public class SaveManager : MonoBehaviour
             gameManager.Bases[1].GetComponent<Damageable>().Health = PlayerPrefs.GetInt("base1Health");
             gameManager.Bases[2].GetComponent<Damageable>().Health = PlayerPrefs.GetInt("base2Health");
             playerData.weaponUpgrade = PlayerPrefs.GetInt("weaponUpgrade");
+           gameManager.archerCount = PlayerPrefs.GetInt("archerCount");
+
 
             Debug.Log("Oyun yüklendi.");
         }
@@ -75,6 +78,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.DeleteKey("base1Health");
         PlayerPrefs.DeleteKey("base2Health");
         PlayerPrefs.DeleteKey("weaponUpgrade");
+        PlayerPrefs.DeleteKey("archerCount");
         // Diðer oyuncu verilerini de silin
 
         PlayerPrefs.Save();
@@ -91,6 +95,7 @@ public class SaveManager : MonoBehaviour
         GameManager.Instance.Bases[0].GetComponent<Damageable>().Health = 1000;
         GameManager.Instance.Bases[1].GetComponent<Damageable>().Health = 500;
         GameManager.Instance.Bases[2].GetComponent<Damageable>().Health = 500;
+        GameManager.Instance.archerCount  = 1;
         Debug.Log("Varsayýlan deðerler yüklendi.");
         // Diðer varsayýlan deðerler buraya eklenir
     }
