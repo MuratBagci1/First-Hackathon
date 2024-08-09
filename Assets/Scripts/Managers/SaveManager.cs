@@ -86,6 +86,8 @@ public class SaveManager : MonoBehaviour
         GameManager.Instance.currentLevel = 1;
         GameManager.Instance.currentWave = 1;
         playerData.gold = 0;
+        playerData.damageable.Health = 1000;
+        playerData.damageable.Armor = 100;
         GameManager.Instance.Bases[0].GetComponent<Damageable>().Health = 1000;
         GameManager.Instance.Bases[1].GetComponent<Damageable>().Health = 500;
         GameManager.Instance.Bases[2].GetComponent<Damageable>().Health = 500;

@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
             }
             saveManager.playerData.GameLoaded();
             gameRestarted = false;
+            Time.timeScale = 1f;
         }
     }
 
