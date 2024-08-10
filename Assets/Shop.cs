@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -36,11 +34,11 @@ public class Shop : MonoBehaviour
         baseDamageable = GameManager.Instance.Bases[0].GetComponent<Damageable>();
         for (int i = 0; i < texts.Length; i++)
         {
-            if(texts[i].name == "Wall Price Text")
+            if (texts[i].name == "Wall Price Text")
             {
                 wallPriceText = texts[i];
             }
-            else if(texts[i].name == "Base Price Text")
+            else if (texts[i].name == "Base Price Text")
             {
                 basePriceText = texts[i];
             }
@@ -52,11 +50,11 @@ public class Shop : MonoBehaviour
     {
         Wall wallStatus;
         Base baseStatus;
-        if(GameManager.Instance.Bases[1].activeSelf && GameManager.Instance.Bases[1].activeSelf)
+        if (GameManager.Instance.Bases[1].activeSelf && GameManager.Instance.Bases[2].activeSelf)
         {
             wallStatus = Wall.zeroWallDestroyed;
         }
-        else if(!GameManager.Instance.Bases[1].activeSelf && !GameManager.Instance.Bases[1].activeSelf)
+        else if (!GameManager.Instance.Bases[1].activeSelf && !GameManager.Instance.Bases[2].activeSelf)
         {
             wallStatus = Wall.twoWallDestroyed;
         }
@@ -81,15 +79,15 @@ public class Shop : MonoBehaviour
                 break;
         }
 
-        if(baseDamageable.Health < 100)
+        if (baseDamageable.Health < 100)
         {
             baseStatus = Base.heavilyDamaged;
         }
-        else if(baseDamageable.Health < 500)
+        else if (baseDamageable.Health < 500)
         {
             baseStatus = Base.moderatelyDamaged;
         }
-        else if(baseDamageable.Health < 900)
+        else if (baseDamageable.Health < 900)
         {
             baseStatus = Base.slightlyDamaged;
         }
@@ -98,7 +96,7 @@ public class Shop : MonoBehaviour
             baseStatus = Base.unDamaged;
         }
 
-        switch(baseStatus)
+        switch (baseStatus)
         {
             case Base.heavilyDamaged:
                 basePriceText.text = "250";
@@ -121,22 +119,39 @@ public class Shop : MonoBehaviour
     public void RenewWalls()
     {
         int price = int.Parse(wallPriceText.text);
-        if(data.gold > price)
+        bool paid = false;
+        if (data.gold >= price)
         {
             foreach (GameObject bases in GameManager.Instance.Bases)
             {
-                if(!bases.activeSelf)
+                if (!bases.activeSelf)
                 {
                     bases.SetActive(true);
                     bases.GetComponent<Damageable>().IsAlive = true;
-                    bases.GetComponent<Damageable>().Heal(1000);
+                    if (bases.name == "Base")
+                    {
+                        bases.GetComponent<Damageable>().Heal(1000);
+                        Debug.Log("base RenewWalls");
+
+                    }
+                    else
+                    {
+                        Debug.Log("walls RenewWalls");
+                        bases.GetComponent<Damageable>().Heal(500);
+
+                    }
                     SpriteRenderer renderer = bases.GetComponent<SpriteRenderer>();
                     Color alpha = renderer.color;
                     alpha.a = 1;
                     renderer.color = alpha;
-                }                
+                }
+               
             }
-            data.AddGold(-price);
+            if (!paid)
+            {
+                data.AddGold(-price); 
+                paid = true;
+            }
         }
         else
         {
@@ -147,10 +162,14 @@ public class Shop : MonoBehaviour
     public void RepairBase()
     {
         int price = int.Parse(basePriceText.text);
-        if(data.gold > price)
+        if (data.gold >= price)
         {
-            baseDamageable.Heal(baseDamageable.MaxHealth);
-            data.AddGold(-price);
+            if (baseDamageable.Health != 1000)
+            {
+                baseDamageable.Heal(baseDamageable.MaxHealth);
+                data.AddGold(-price);
+
+            }
         }
         else
         {
@@ -161,6 +180,6 @@ public class Shop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
