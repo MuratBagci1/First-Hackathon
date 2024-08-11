@@ -1,42 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BaseHealthBar : MonoBehaviour
 {
-     public Slider healthSlider;
+    public Slider healthSlider;
     public TMP_Text healthBarText;
 
-    private Damageable playerDamageable;
+    private Damageable baseDamageable;
+    public GameObject _base ;
 
     private void Awake()
     {
-      
-            GameObject player = GameObject.FindGameObjectWithTag("Base");
-            if (player == null)
-            {
-                Debug.Log("No player found in the scene. Make sure it has tag 'player'");
-            }
 
-            playerDamageable = player.GetComponent<Damageable>(); 
+        
+        if (_base == null)
+        {
+            Debug.Log("No player found in the scene. Make sure it has tag 'player'");
+        }
 
-    } 
+        baseDamageable = _base.GetComponent<Damageable>();
+
+    }
     void Start()
-    {        
-        healthSlider.value = CalculateSliderPercentage(playerDamageable.Health, playerDamageable.MaxHealth);
-        healthBarText.text = "Base HP " + playerDamageable.Health + " / " + playerDamageable.MaxHealth;
+    {
+        healthSlider.value = CalculateSliderPercentage(baseDamageable.Health, baseDamageable.MaxHealth);
+        healthBarText.text = "Base HP " + baseDamageable.Health + " / " + baseDamageable.MaxHealth;
     }
 
     private void OnEnable()
     {
-        playerDamageable.healthChanged.AddListener(OnPlayerHealthChanged);
+        baseDamageable.healthChanged.AddListener(OnBaseHealthChanged);
     }
 
     private void OnDisable()
     {
-        playerDamageable.healthChanged.RemoveListener(OnPlayerHealthChanged);
+        baseDamageable.healthChanged.RemoveListener(OnBaseHealthChanged);
     }
 
     private float CalculateSliderPercentage(float currentHealth, float maxHealth)
@@ -44,10 +43,10 @@ public class BaseHealthBar : MonoBehaviour
         return currentHealth / maxHealth;
     }
 
-    public void OnPlayerHealthChanged(int currentHealth, int maxHealth)
+    public void OnBaseHealthChanged(int currentHealth, int maxHealth)
     {
         healthSlider.value = CalculateSliderPercentage(currentHealth, maxHealth);
-        healthBarText.text = "Base HP " + playerDamageable.Health + " / " + playerDamageable.MaxHealth;
+        healthBarText.text = "Base HP " + baseDamageable.Health + " / " + baseDamageable.MaxHealth;
     }
-     
+
 }
