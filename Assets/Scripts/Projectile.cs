@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public int damage = 15;
-    public Vector2 moveSpeed = new Vector2(30f, 0);
+    public int damage = 10;
 
     Rigidbody2D rb;
 
@@ -17,13 +16,12 @@ public class Projectile : MonoBehaviour
 
     void Start()
     {
-        rb.velocity = new Vector2(moveSpeed.x * transform.localScale.x, moveSpeed.y);
         PlayerData playerData = FindAnyObjectByType<PlayerData>();
-        if (gameObject.tag == "Player")
+        if (gameObject.name == "Arrow(Clone)")
         {
             damage = damage + (playerData.weaponUpgrade * 10);
         }
-        else if (gameObject.tag == "Archer")
+        else if (gameObject.tag == "Archer Arrow(Clone)")
         {
             damage = damage + (GameManager.Instance.archerUpgrade * 10);
 
@@ -53,7 +51,10 @@ public class Projectile : MonoBehaviour
                 Debug.Log($"{collision.name} hit for {damage}");
             }
         }
-
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     //private Vector2 GetKnockback()

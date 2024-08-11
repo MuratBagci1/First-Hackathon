@@ -33,8 +33,4 @@ public class PlayerData : MonoBehaviour
         gold += amount;
         goldText.text = gold.ToString();
     }
-
-   
-
- 
 }

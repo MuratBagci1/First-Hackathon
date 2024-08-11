@@ -42,9 +42,9 @@ public class KnightSpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
         }
     }
-    public void SpawnSingleEnemy(bool buy = true)
+
+    public void SpawnSingleEnemy(bool buy = true, int price = 0)
     {
-        Debug.Log("buy " + buy);
         PlayerData playerData = FindObjectOfType<PlayerData>();
         if (playerData != null)
         {
@@ -55,11 +55,10 @@ public class KnightSpawner : MonoBehaviour
             }
             else
             {
-                if (playerData.gold >= 50)
+                if (playerData.gold >= price)
                 {
                     GameManager.Instance.archerCount++;
-                    quantity++;
-                    playerData.AddGold(-50);
+                    playerData.AddGold(-price);
 
                     GameObject randomEnemy = enemyPrefabs[0];
                     Instantiate(randomEnemy, transform.position, Quaternion.identity, knightParent);
@@ -69,4 +68,5 @@ public class KnightSpawner : MonoBehaviour
 
         }
     }
+    
 }

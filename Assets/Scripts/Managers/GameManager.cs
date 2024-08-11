@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public List<KnightSpawner> KnightSpawners;
-    public KnightSpawner ArcherSpawner;
+    public KnightSpawner archerSpawner;
     public Attack attack;
     public SaveManager saveManager;
     public List<GameObject> Bases;
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
         {
             if (KnightSpawners[i].name == "ArcherSpawner")
             {
-                ArcherSpawner = KnightSpawners[i];
+                archerSpawner = KnightSpawners[i];
                 KnightSpawners.RemoveAt(i);
             }
         }
@@ -58,6 +58,12 @@ public class GameManager : MonoBehaviour
                 GameObject temp = Bases[i];
                 Bases[i] = Bases[0];
                 Bases[0] = temp;
+            }
+            else if(Bases[i].name == "BaseWallLeft")
+            {
+                GameObject temp = Bases[i];
+                Bases[i] = Bases[1];
+                Bases[1] = temp;
             }
         }
        
@@ -89,7 +95,7 @@ public class GameManager : MonoBehaviour
             saveManager.playerData.GameLoaded();
             for (int i = 1; i < archerCount; i++)
             {
-                ArcherSpawner.SpawnSingleEnemy(buy: false);
+                archerSpawner.SpawnSingleEnemy(buy: false);
             }
             gameRestarted = false;
             Time.timeScale = 1f;
@@ -108,7 +114,7 @@ public class GameManager : MonoBehaviour
             currentWave++;
         }
 
-        Debug.Log("NextWave");
+        //Debug.Log("NextWave");
 
         if (!popUp.isRunning)
         {
@@ -127,7 +133,7 @@ public class GameManager : MonoBehaviour
         currentLevel += 1;
         saveManager.SaveGame();
 
-        Debug.Log("NextLevel");
+        //Debug.Log("NextLevel");
 
         if (!popUp.isRunning)
         {

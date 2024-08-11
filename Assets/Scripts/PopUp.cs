@@ -17,29 +17,29 @@ public class PopUp : MonoBehaviour
     {
         if (isRunning)
         {
-            Debug.Log("LevelPopUp is already running.");
+            //Debug.Log("LevelPopUp is already running.");
             yield break;
         }
 
         isRunning = true;
-        Debug.Log("LevelPopUp started.");
+        //Debug.Log("LevelPopUp started.");
 
         text.text = "Level " + level;
         text.transform.localScale = Vector3.one;
         text.transform.DOScale(2, 1f);
         yield return new WaitForSeconds(1f);
 
-        Debug.Log("Starting WavePopUp.");
+        //Debug.Log("Starting WavePopUp.");
         yield return StartCoroutine(WavePopUp(wave));
 
         isRunning = false;
         gameObject.SetActive(false);
-        Debug.Log("LevelPopUp finished.");
+        //Debug.Log("LevelPopUp finished.");
     }
 
     public IEnumerator WavePopUp(string wave)
     {
-        Debug.Log("WavePopUp started.");
+        //Debug.Log("WavePopUp started.");
 
         text.text = "Wave " + wave;
         text.transform.localScale = Vector3.one;
@@ -49,6 +49,6 @@ public class PopUp : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
-        Debug.Log("WavePopUp finished.");
+        //Debug.Log("WavePopUp finished.");
     }
 }

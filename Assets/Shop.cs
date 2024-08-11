@@ -5,14 +5,15 @@ public class Shop : MonoBehaviour
 {
     public KnightSpawner archerSpawner;
     public GameObject archersParent;
-    public PlayerData data;
-    public TextMeshProUGUI[] texts;
+    public PlayerData playerData;
     public TextMeshProUGUI wallPriceText;
     public TextMeshProUGUI basePriceText;
     public Damageable baseDamageable;
     public Damageable playerDamageable;
     public GameObject player;
     public GameManager gameManager;
+    public Transform archerBow;
+    public Transform playerBow;
 
     enum Wall
     {
@@ -34,23 +35,9 @@ public class Shop : MonoBehaviour
     {
         gameManager = GameManager.Instance;
         player = GameObject.FindWithTag("Player");
-        data = player.GetComponent<PlayerData>();
-        playerDamageable = data.GetComponent<Damageable>();
-        archerSpawner = GetComponent<KnightSpawner>();
-        texts = gameObject.transform.GetComponentsInChildren<TextMeshProUGUI>();
+        playerData = player.GetComponent<PlayerData>();
+        playerDamageable = playerData.GetComponent<Damageable>();
         baseDamageable = gameManager.Bases[0].GetComponent<Damageable>();
-        for (int i = 0; i < texts.Length; i++)
-        {
-            if (texts[i].name == "Wall Price Text")
-            {
-                wallPriceText = texts[i];
-            }
-            else if (texts[i].name == "Base Price Text")
-            {
-                basePriceText = texts[i];
-            }
-        }
-        data.AddGold(1000);
     }
 
     private void OnEnable()
@@ -127,7 +114,7 @@ public class Shop : MonoBehaviour
     {
         int price = int.Parse(wallPriceText.text);
 
-        if (data.gold >= price)
+        if (playerData.gold >= price)
         {
             foreach (GameObject bases in gameManager.Bases)
             {
@@ -155,7 +142,7 @@ public class Shop : MonoBehaviour
 
             }
 
-            data.AddGold(-price);
+            playerData.AddGold(-price);
             wallPriceText.text = "0";
 
         }
@@ -168,12 +155,12 @@ public class Shop : MonoBehaviour
     public void RepairBase()
     {
         int price = int.Parse(basePriceText.text);
-        if (data.gold >= price)
+        if (playerData.gold >= price)
         {
             if (baseDamageable.Health != 1000)
             {
                 baseDamageable.Heal(baseDamageable.MaxHealth);
-                data.AddGold(-price);
+                playerData.AddGold(-price);
 
             }
         }
@@ -189,9 +176,9 @@ public class Shop : MonoBehaviour
 
         if (playerDamageable.Armor < 100)
         {
-            if (data.gold >= upgradeCost)
+            if (playerData.gold >= upgradeCost)
             {
-                data.AddGold(-upgradeCost);
+                playerData.AddGold(-upgradeCost);
 
                 if (playerDamageable != null)
                 {
@@ -214,12 +201,12 @@ public class Shop : MonoBehaviour
         int upgradeCost = amount * 5; // Örnek maliyet hesaplama: Her saldýrý deðeri için 1 altýn
 
 
-        if (data.gold >= upgradeCost && data.weaponUpgrade != 5)
+        if (playerData.gold >= upgradeCost && playerData.weaponUpgrade != 5)
         {
-            data.AddGold(-upgradeCost);
-            data.weaponUpgrade++;
+            playerData.AddGold(-upgradeCost);
+            playerData.weaponUpgrade++;
 
-            foreach (Transform child in data.transform)
+            foreach (Transform child in playerData.transform)
             {
                 Attack attackScript = child.GetComponent<Attack>();
                 if (attackScript != null)
@@ -239,9 +226,9 @@ public class Shop : MonoBehaviour
         int upgradeCost = amount * 5;  
 
 
-        if (data.gold >= upgradeCost && gameManager.archerUpgrade != 5)
+        if (playerData.gold >= upgradeCost && gameManager.archerUpgrade != 5)
         {
-            data.AddGold(-upgradeCost);
+            playerData.AddGold(-upgradeCost);
             gameManager.archerUpgrade++;
 
             foreach (Transform child in archersParent.transform)
@@ -261,7 +248,10 @@ public class Shop : MonoBehaviour
         //}
     }
 
-
+    public void BuyArcher()
+    {
+        archerSpawner.SpawnSingleEnemy(buy: true, GameManager.Instance.archerCount * 5);
+    }
 
     // Update is called once per frame
     void Update()
