@@ -19,12 +19,20 @@ public class Projectile : MonoBehaviour
     {
         rb.velocity = new Vector2(moveSpeed.x * transform.localScale.x, moveSpeed.y);
         PlayerData playerData = FindAnyObjectByType<PlayerData>();
-        damage = damage + (playerData.weaponUpgrade * 10);
+        if (gameObject.tag == "Player")
+        {
+            damage = damage + (playerData.weaponUpgrade * 10);
+        }
+        else if (gameObject.tag == "Archer")
+        {
+            damage = damage + (GameManager.Instance.archerUpgrade * 10);
+
+        }
     }
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - 5f * Time.deltaTime);
-        Debug.Log("oky " + gameObject.transform.localPosition .y);
+        Debug.Log("oky " + gameObject.transform.localPosition.y);
         if (gameObject.transform.position.y < -3)
         {
             Destroy(gameObject);
@@ -45,7 +53,7 @@ public class Projectile : MonoBehaviour
                 Debug.Log($"{collision.name} hit for {damage}");
             }
         }
-     
+
     }
 
     //private Vector2 GetKnockback()

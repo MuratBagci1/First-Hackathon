@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &11400242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8683243742615581990, guid: bf5179a7e48b4d6409bf5c8d4737c7ed, type: 3}
+  m_PrefabInstance: {fileID: 8422897570430749298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &34991667
 GameObject:
   m_ObjectHideFlags: 0
@@ -34974,6 +34979,7 @@ MonoBehaviour:
   enemyHealthMultiplier: 1
   enemyDamageMultiplier: 1
   archerCount: 1
+  archerUpgrade: 0
 --- !u!4 &1428719587
 Transform:
   m_ObjectHideFlags: 0
@@ -35189,7 +35195,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4578676930350767634, guid: bf5179a7e48b4d6409bf5c8d4737c7ed, type: 3}
   m_PrefabInstance: {fileID: 8422897570430749298}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 11400242}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08c76b07677932d42b1b845b2a758b99, type: 3}
@@ -36911,7 +36917,15 @@ PrefabInstance:
     - target: {fileID: 609908382068983024, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1675553527}
+      objectReference: {fileID: 5056701997675025799}
+    - target: {fileID: 609908382068983024, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpgradeChildAttackDamage
+      objectReference: {fileID: 0}
+    - target: {fileID: 609908382068983024, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Shop, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1259352985956820991, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 180
@@ -37067,7 +37081,15 @@ PrefabInstance:
     - target: {fileID: 3816095830484137290, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1675553527}
+      objectReference: {fileID: 5056701997675025799}
+    - target: {fileID: 3816095830484137290, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpgradeArmor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816095830484137290, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Shop, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 3921232380698338572, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -37083,6 +37105,18 @@ PrefabInstance:
     - target: {fileID: 4066184554403307979, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -78.78052
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177329799557798031, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5056701997675025799}
+    - target: {fileID: 4177329799557798031, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpgradeArcher
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177329799557798031, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Shop, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4440329113959372376, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_VerticalAlignment
@@ -37202,7 +37236,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8360919272535603418, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_Name
-      value: Base Price Tex
+      value: Base Price Text
       objectReference: {fileID: 0}
     - target: {fileID: 8839717488738065398, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: data
@@ -37213,20 +37247,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 778317992}
     - target: {fileID: 8839717488738065398, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: archersParent
+      value: 
+      objectReference: {fileID: 1942676744}
+    - target: {fileID: 8839717488738065398, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: basePriceText
       value: 
-      objectReference: {fileID: 1290152951}
+      objectReference: {fileID: 0}
     - target: {fileID: 8839717488738065398, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: wallPriceText
       value: 
-      objectReference: {fileID: 1898724312}
+      objectReference: {fileID: 0}
     - target: {fileID: 8839717488738065398, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: baseDamageable
       value: 
       objectReference: {fileID: 1523693905}
     - target: {fileID: 8839717488738065398, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: texts.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8839717488738065398, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: texts.Array.data[0]
@@ -37444,6 +37482,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3271736885268436449, guid: bf5179a7e48b4d6409bf5c8d4737c7ed, type: 3}
+      propertyPath: _base
+      value: 
+      objectReference: {fileID: 11400242}
     - target: {fileID: 4410423852878550765, guid: bf5179a7e48b4d6409bf5c8d4737c7ed, type: 3}
       propertyPath: m_text
       value: Base HP 1000 / 1000

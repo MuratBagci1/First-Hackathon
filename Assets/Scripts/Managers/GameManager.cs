@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public int enemyDamageMultiplier = 0;
 
     public int archerCount = 1;
+    public int archerUpgrade = 0;
 
     private void Awake()
     {

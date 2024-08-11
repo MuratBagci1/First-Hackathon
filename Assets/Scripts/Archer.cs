@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +17,7 @@ public class Archer : Dummy
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
         this.damageable = GetComponent<Damageable>();
-          randomf = UnityEngine.Random.Range(0.0f, 1.0f);
+        randomf = UnityEngine.Random.Range(0.0f, 1.0f);
 
         GameObject[] waypointObjects = GameObject.FindGameObjectsWithTag("WayPoint");
         foreach (GameObject waypointObject in waypointObjects)
@@ -35,6 +33,15 @@ public class Archer : Dummy
         {
             Debug.LogWarning("No waypoints set for Archer.");
         }
+    }
+    private void Start()
+    {
+        for (int i = 1; i <= GameManager.Instance.archerUpgrade; i++)
+        {
+
+            this.damageable.Health += i * 5;
+        }
+
     }
 
     void Update()
@@ -65,7 +72,7 @@ public class Archer : Dummy
 
         Vector2 directionToWaypoint = (nextWaypoint.position - transform.position).normalized;
         float distance = Vector2.Distance(nextWaypoint.position, transform.position);
-      
+
         rb.velocity = directionToWaypoint * (maxSpeed + randomf);
 
         if (distance <= waypointReachDistance)

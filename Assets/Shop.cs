@@ -4,6 +4,7 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     public KnightSpawner archerSpawner;
+    public GameObject archersParent;
     public PlayerData data;
     public TextMeshProUGUI[] texts;
     public TextMeshProUGUI wallPriceText;
@@ -11,6 +12,7 @@ public class Shop : MonoBehaviour
     public Damageable baseDamageable;
     public Damageable playerDamageable;
     public GameObject player;
+    public GameManager gameManager;
 
     enum Wall
     {
@@ -30,12 +32,13 @@ public class Shop : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        gameManager = GameManager.Instance;
         player = GameObject.FindWithTag("Player");
         data = player.GetComponent<PlayerData>();
         playerDamageable = data.GetComponent<Damageable>();
         archerSpawner = GetComponent<KnightSpawner>();
         texts = gameObject.transform.GetComponentsInChildren<TextMeshProUGUI>();
-        baseDamageable = GameManager.Instance.Bases[0].GetComponent<Damageable>();
+        baseDamageable = gameManager.Bases[0].GetComponent<Damageable>();
         for (int i = 0; i < texts.Length; i++)
         {
             if (texts[i].name == "Wall Price Text")
@@ -54,11 +57,11 @@ public class Shop : MonoBehaviour
     {
         Wall wallStatus;
         Base baseStatus;
-        if (GameManager.Instance.Bases[1].activeSelf && GameManager.Instance.Bases[2].activeSelf)
+        if (gameManager.Bases[1].activeSelf && gameManager.Bases[2].activeSelf)
         {
             wallStatus = Wall.zeroWallDestroyed;
         }
-        else if (!GameManager.Instance.Bases[1].activeSelf && !GameManager.Instance.Bases[2].activeSelf)
+        else if (!gameManager.Bases[1].activeSelf && !gameManager.Bases[2].activeSelf)
         {
             wallStatus = Wall.twoWallDestroyed;
         }
@@ -126,7 +129,7 @@ public class Shop : MonoBehaviour
 
         if (data.gold >= price)
         {
-            foreach (GameObject bases in GameManager.Instance.Bases)
+            foreach (GameObject bases in gameManager.Bases)
             {
                 if (!bases.activeSelf)
                 {
@@ -208,7 +211,7 @@ public class Shop : MonoBehaviour
     }
     public void UpgradeChildAttackDamage(int amount)
     {
-        int upgradeCost = amount * 1; // Örnek maliyet hesaplama: Her saldýrý deðeri için 1 altýn
+        int upgradeCost = amount * 5; // Örnek maliyet hesaplama: Her saldýrý deðeri için 1 altýn
 
 
         if (data.gold >= upgradeCost && data.weaponUpgrade != 5)
@@ -231,6 +234,34 @@ public class Shop : MonoBehaviour
         //    Debug.Log("Not enough gold to upgrade.");
         //}
     }
+    public void UpgradeArcher(int amount)
+    {
+        int upgradeCost = amount * 5;  
+
+
+        if (data.gold >= upgradeCost && gameManager.archerUpgrade != 5)
+        {
+            data.AddGold(-upgradeCost);
+            gameManager.archerUpgrade++;
+
+            foreach (Transform child in archersParent.transform)
+            {
+                Damageable archerDamageable = child.GetComponent<Damageable>();
+                if (archerDamageable != null)
+                {
+                    archerDamageable.Health += gameManager.archerUpgrade * 5;
+                    Debug.Log("arcer ýn caný arttý");
+                }
+            }
+        }
+
+        //else
+        //{
+        //    Debug.Log("Not enough gold to upgrade.");
+        //}
+    }
+
+
 
     // Update is called once per frame
     void Update()
