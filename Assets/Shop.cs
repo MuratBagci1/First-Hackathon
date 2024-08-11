@@ -119,7 +119,7 @@ public class Shop : MonoBehaviour
     public void RenewWalls()
     {
         int price = int.Parse(wallPriceText.text);
-        bool paid = false;
+
         if (data.gold >= price)
         {
             foreach (GameObject bases in GameManager.Instance.Bases)
@@ -145,13 +145,12 @@ public class Shop : MonoBehaviour
                     alpha.a = 1;
                     renderer.color = alpha;
                 }
-               
+
             }
-            if (!paid)
-            {
-                data.AddGold(-price); 
-                paid = true;
-            }
+
+            data.AddGold(-price);
+            wallPriceText.text = "0";
+
         }
         else
         {
