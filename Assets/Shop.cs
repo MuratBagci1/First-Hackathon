@@ -9,6 +9,8 @@ public class Shop : MonoBehaviour
     public TextMeshProUGUI wallPriceText;
     public TextMeshProUGUI basePriceText;
     public Damageable baseDamageable;
+    public Damageable playerDamageable;
+    public GameObject player;
 
     enum Wall
     {
@@ -28,7 +30,9 @@ public class Shop : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        data = GameObject.FindWithTag("Player").GetComponent<PlayerData>();
+        player = GameObject.FindWithTag("Player");
+        data = player.GetComponent<PlayerData>();
+        playerDamageable = data.GetComponent<Damageable>();
         archerSpawner = GetComponent<KnightSpawner>();
         texts = gameObject.transform.GetComponentsInChildren<TextMeshProUGUI>();
         baseDamageable = GameManager.Instance.Bases[0].GetComponent<Damageable>();
@@ -174,6 +178,58 @@ public class Shop : MonoBehaviour
         {
             Debug.Log("not enough gold");
         }
+    }
+
+    public void UpgradeArmor(int amount)
+    {
+        int upgradeCost = amount * 1;
+
+        if (playerDamageable.Armor < 100)
+        {
+            if (data.gold >= upgradeCost)
+            {
+                data.AddGold(-upgradeCost);
+
+                if (playerDamageable != null)
+                {
+                    playerDamageable.UpgradeArmor(amount);
+                }
+            }
+        }
+        else
+        {
+            Debug.Log("Upgrade armor iþlemi baþarýsýz");
+        }
+
+        //else
+        //{
+        //    Debug.Log("Not enough gold to upgrade armor.");
+        //}
+    }
+    public void UpgradeChildAttackDamage(int amount)
+    {
+        int upgradeCost = amount * 1; // Örnek maliyet hesaplama: Her saldýrý deðeri için 1 altýn
+
+
+        if (data.gold >= upgradeCost && data.weaponUpgrade != 5)
+        {
+            data.AddGold(-upgradeCost);
+            data.weaponUpgrade++;
+
+            foreach (Transform child in data.transform)
+            {
+                Attack attackScript = child.GetComponent<Attack>();
+                if (attackScript != null)
+                {
+                    attackScript.UpgradeAttackDamage(amount);
+                }
+            }
+        }
+
+        //else
+        //{
+        //    Debug.Log("Not enough gold to upgrade.");
+        //}
     }
 
     // Update is called once per frame
