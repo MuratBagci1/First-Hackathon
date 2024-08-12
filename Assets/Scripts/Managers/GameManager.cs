@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> Bases;
     public PopUp popUp;
 
+    public bool unlockShop = true;
+
     public bool gameRestarted = false;
 
     public int currentLevel = 1;
@@ -132,7 +134,17 @@ public class GameManager : MonoBehaviour
         enemyDamageMultiplier += 1;
         currentLevel += 1;
         saveManager.SaveGame();
-
+        KnightSpawners[0].StartSpawner(false);
+        KnightSpawners[1].StartSpawner(false);
+        if (KnightSpawners.Count == 2)
+        {
+            KnightSpawners[0].StartSpawner(true);
+            KnightSpawners[1].StartSpawner(true);
+        }
+        else
+        {
+            Debug.LogError("KnightSpawners listesi eksik.");
+        }
         //Debug.Log("NextLevel");
 
         if (!popUp.isRunning)
@@ -155,8 +167,8 @@ public class GameManager : MonoBehaviour
         }
         if (KnightSpawners.Count == 2)
         {
-            KnightSpawners[0].StartSpawner();
-            KnightSpawners[1].StartSpawner();
+            KnightSpawners[0].StartSpawner(true);
+            KnightSpawners[1].StartSpawner(true);
         }
         else
         {

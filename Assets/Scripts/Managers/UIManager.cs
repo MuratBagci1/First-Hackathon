@@ -88,19 +88,19 @@ public class UIManager : MonoBehaviour
 
     public void OpenCloseShop()
     {
-        bool isActive = shop.activeSelf;
-        shop.SetActive(!isActive);
-        shopButtonText.text = isActive ? "Shop" : "Close";
-        if (isActive)
+        if(GameManager.Instance.unlockShop)
         {
-
-            Resume();
-        }
-        else
-        {
-
-
-            Pause();
+            bool isActive = shop.activeSelf;
+            shop.SetActive(!isActive);
+            shopButtonText.text = isActive ? "Shop" : "Close";
+            if (isActive)
+            {
+                Resume();
+            }
+            else
+            {
+                Pause();
+            }
         }
     }
 

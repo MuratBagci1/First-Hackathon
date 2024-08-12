@@ -6,6 +6,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public int damage = 10;
+    public Vector2 moveSpeed = new Vector2(50f, 0);
 
     Rigidbody2D rb;
 
@@ -16,6 +17,7 @@ public class Projectile : MonoBehaviour
 
     void Start()
     {
+        rb.velocity = new Vector2(moveSpeed.x * transform.localScale.x, moveSpeed.y);
         PlayerData playerData = FindAnyObjectByType<PlayerData>();
         if (gameObject.name == "Arrow(Clone)")
         {
@@ -29,7 +31,7 @@ public class Projectile : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - 5f * Time.deltaTime);
+        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
         Debug.Log("oky " + gameObject.transform.localPosition.y);
         if (gameObject.transform.position.y < -3)
         {

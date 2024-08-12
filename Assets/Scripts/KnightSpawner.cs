@@ -7,17 +7,33 @@ public class KnightSpawner : MonoBehaviour
     public float spawnInterval = 5f; // Spawn interval süresi (saniye cinsinden)
     public Transform knightParent; // Düþman nesnelerinin ekleneceði parent nesne
     public int quantity;
+    public UIManager uiManager;
 
-    public void StartSpawner()
+    public void StartSpawner(bool set)
     {
         quantity = 0;
-        if (gameObject.name != "ArcherSpawner")
+        if (set)
         {
-            StartCoroutine(SpawnEnemy());
+            if (gameObject.name != "ArcherSpawner")
+            {
+                StartCoroutine(SpawnEnemy());
+            }
+        }
+        else
+        {
+            if (gameObject.name != "ArcherSpawner")
+            {
+                StopCoroutine(SpawnEnemy());
+            }
         }
     }
     private IEnumerator SpawnEnemy()
     {
+        spawnInterval = 5f;
+        GameManager.Instance.unlockShop = true;
+        yield return new WaitForSeconds(spawnInterval);
+        GameManager.Instance.unlockShop = false;
+
         while (true)
         {
             quantity++;
@@ -26,18 +42,13 @@ public class KnightSpawner : MonoBehaviour
             Instantiate(randomEnemy, transform.position, Quaternion.identity, knightParent);
             if (quantity >= 5)
             {
-                spawnInterval = 20f;
+                yield return new WaitUntil(() => knightParent.childCount == 0);
                 yield return new WaitForSeconds(spawnInterval);
-                spawnInterval = 5f;
                 quantity = 0;
                 if (gameObject.name == "RightSpawner")
                 {
                     GameManager.Instance.NextWave();
                 }
-            }
-            else
-            {
-                spawnInterval = 5f;
             }
             yield return new WaitForSeconds(spawnInterval);
         }
@@ -68,5 +79,5 @@ public class KnightSpawner : MonoBehaviour
 
         }
     }
-    
+
 }

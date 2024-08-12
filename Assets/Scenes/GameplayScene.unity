@@ -13439,6 +13439,7 @@ MonoBehaviour:
   spawnInterval: 5
   knightParent: {fileID: 1942676745}
   quantity: 0
+  uiManager: {fileID: 0}
 --- !u!4 &778317993
 Transform:
   m_ObjectHideFlags: 0
@@ -13500,6 +13501,7 @@ MonoBehaviour:
   spawnInterval: 5
   knightParent: {fileID: 419131240}
   quantity: 0
+  uiManager: {fileID: 1664934269}
 --- !u!4 &1016088573
 Transform:
   m_ObjectHideFlags: 0
@@ -15018,6 +15020,7 @@ MonoBehaviour:
   spawnInterval: 5
   knightParent: {fileID: 419131240}
   quantity: 0
+  uiManager: {fileID: 1664934269}
 --- !u!4 &1392430578
 Transform:
   m_ObjectHideFlags: 0
@@ -15065,7 +15068,7 @@ MonoBehaviour:
   KnightSpawners:
   - {fileID: 0}
   - {fileID: 0}
-  ArcherSpawner: {fileID: 0}
+  archerSpawner: {fileID: 0}
   attack: {fileID: 0}
   saveManager: {fileID: 1087838550}
   Bases:
@@ -15073,6 +15076,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   popUp: {fileID: 0}
+  unlockShop: 0
   gameRestarted: 0
   currentLevel: 1
   currentWave: 1
@@ -17137,12 +17141,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1474323958149353414, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1474323958149353414, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 778317992}
+      objectReference: {fileID: 5056701997675025799}
+    - target: {fileID: 1474323958149353414, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyArcher
+      objectReference: {fileID: 0}
+    - target: {fileID: 1474323958149353414, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Shop, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1474323958149353414, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 1
@@ -17284,9 +17296,17 @@ PrefabInstance:
       value: Shop, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3714571407840263275, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3714571407840263275, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1664934269}
+    - target: {fileID: 3714571407840263275, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3816095830484137290, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -17418,6 +17438,10 @@ PrefabInstance:
     - target: {fileID: 6628946493950967581, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 6938951005778069114, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6984387648341293291, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_HorizontalAlignment
@@ -17592,6 +17616,10 @@ PrefabInstance:
     - target: {fileID: 5362675406221633451, guid: 9d15efe9e17310a4e95264e837b362f9, type: 3}
       propertyPath: m_Name
       value: UIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281202024713450796, guid: 9d15efe9e17310a4e95264e837b362f9, type: 3}
+      propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9045946609429073014, guid: 9d15efe9e17310a4e95264e837b362f9, type: 3}
       propertyPath: m_LocalPosition.x
