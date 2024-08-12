@@ -39,7 +39,7 @@ public class Archer : Dummy
         for (int i = 1; i <= GameManager.Instance.archerUpgrade; i++)
         {
 
-            this.damageable.Health += i * 5;
+            this.damageable.Health += i * 10;
         }
 
     }

@@ -9,6 +9,8 @@ public class Shop : MonoBehaviour
     public TextMeshProUGUI wallPriceText;
     public TextMeshProUGUI basePriceText;
     public TextMeshProUGUI archerBuyPriceText;
+    public TextMeshProUGUI archerUpgradePriceText;
+    public TextMeshProUGUI weaponpgradePriceText;
     public Damageable baseDamageable;
     public Damageable playerDamageable;
     public GameObject player;
@@ -82,7 +84,7 @@ public class Shop : MonoBehaviour
         {
             baseStatus = Base.moderatelyDamaged;
         }
-        else if (baseDamageable.Health < 900)
+        else if (baseDamageable.Health < 800)
         {
             baseStatus = Base.slightlyDamaged;
         }
@@ -94,13 +96,13 @@ public class Shop : MonoBehaviour
         switch (baseStatus)
         {
             case Base.heavilyDamaged:
-                basePriceText.text = "250";
+                basePriceText.text = "500";
                 break;
             case Base.moderatelyDamaged:
-                basePriceText.text = "100";
+                basePriceText.text = "250";
                 break;
             case Base.slightlyDamaged:
-                basePriceText.text = "25";
+                basePriceText.text = "100";
                 break;
             case Base.unDamaged:
                 basePriceText.text = "0";
@@ -110,7 +112,7 @@ public class Shop : MonoBehaviour
                 break;
         }
 
-        archerBuyPriceText.text = (50 + GameManager.Instance.archerCount * 5).ToString();
+        RenewPrice();
     }
 
     public void RenewWalls()
@@ -204,7 +206,7 @@ public class Shop : MonoBehaviour
         int upgradeCost = amount * 5; // Örnek maliyet hesaplama: Her saldýrý deðeri için 1 altýn
 
 
-        if (playerData.gold >= upgradeCost && playerData.weaponUpgrade != 5)
+        if (playerData.gold >= upgradeCost && playerData.weaponUpgrade < 5)
         {
             playerData.AddGold(-upgradeCost);
             playerData.weaponUpgrade++;
@@ -217,6 +219,7 @@ public class Shop : MonoBehaviour
                     attackScript.UpgradeAttackDamage(amount);
                 }
             }
+            RenewPrice();
         }
 
         //else
@@ -226,10 +229,10 @@ public class Shop : MonoBehaviour
     }
     public void UpgradeArcher(int amount)
     {
-        int upgradeCost = amount * 5;  
+        int upgradeCost = amount * 5;
 
 
-        if (playerData.gold >= upgradeCost && gameManager.archerUpgrade != 5)
+        if (playerData.gold >= upgradeCost && gameManager.archerUpgrade < 5)
         {
             playerData.AddGold(-upgradeCost);
             gameManager.archerUpgrade++;
@@ -239,10 +242,11 @@ public class Shop : MonoBehaviour
                 Damageable archerDamageable = child.GetComponent<Damageable>();
                 if (archerDamageable != null)
                 {
-                    archerDamageable.Health += gameManager.archerUpgrade * 5;
+                    archerDamageable.Health += gameManager.archerUpgrade * 10;
                     Debug.Log("arcer ýn caný arttý");
                 }
             }
+            RenewPrice();
         }
 
         //else
@@ -253,20 +257,21 @@ public class Shop : MonoBehaviour
 
     public void BuyArcher()
     {
-        int archerPrice = 50 + GameManager.Instance.archerCount * 5;
-        if(playerData.gold >= archerPrice && GameManager.Instance.archerCount < 10)
+        int archerPrice = 50 + gameManager.archerCount * 5;
+        if (playerData.gold >= archerPrice && gameManager.archerCount < 10)
         {
             archerSpawner.SpawnSingleEnemy();
             playerData.AddGold(-archerPrice);
 
-            GameManager.Instance.archerCount++;
-            archerBuyPriceText.text = (50 + GameManager.Instance.archerCount * 5).ToString();
+            gameManager.archerCount++;
+            RenewPrice();
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RenewPrice()
     {
-
+        archerBuyPriceText.text = (50 + gameManager.archerCount * 5).ToString();
+        archerUpgradePriceText.text = (50 * (gameManager.archerUpgrade + 1)).ToString();
+        weaponpgradePriceText.text = (50 + playerData.weaponUpgrade * 50).ToString();
     }
 }
