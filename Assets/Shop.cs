@@ -8,6 +8,7 @@ public class Shop : MonoBehaviour
     public PlayerData playerData;
     public TextMeshProUGUI wallPriceText;
     public TextMeshProUGUI basePriceText;
+    public TextMeshProUGUI archerBuyPriceText;
     public Damageable baseDamageable;
     public Damageable playerDamageable;
     public GameObject player;
@@ -108,6 +109,8 @@ public class Shop : MonoBehaviour
                 basePriceText.text = "0";
                 break;
         }
+
+        archerBuyPriceText.text = (50 + GameManager.Instance.archerCount * 5).ToString();
     }
 
     public void RenewWalls()
@@ -250,7 +253,15 @@ public class Shop : MonoBehaviour
 
     public void BuyArcher()
     {
-        archerSpawner.SpawnSingleEnemy(buy: true, GameManager.Instance.archerCount * 5);
+        int archerPrice = 50 + GameManager.Instance.archerCount * 5;
+        if(playerData.gold >= archerPrice && GameManager.Instance.archerCount < 10)
+        {
+            archerSpawner.SpawnSingleEnemy();
+            playerData.AddGold(-archerPrice);
+
+            GameManager.Instance.archerCount++;
+            archerBuyPriceText.text = (50 + GameManager.Instance.archerCount * 5).ToString();
+        }
     }
 
     // Update is called once per frame

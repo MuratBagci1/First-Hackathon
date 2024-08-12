@@ -13449,7 +13449,7 @@ Transform:
   m_GameObject: {fileID: 778317991}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.42, y: -2.79, z: 0}
+  m_LocalPosition: {x: 21.42, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15131,6 +15131,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1616329536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1497054703 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6713068873932807469, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+  m_PrefabInstance: {fileID: 5428214313167015188}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1505903921
 GameObject:
   m_ObjectHideFlags: 0
@@ -17471,6 +17482,10 @@ PrefabInstance:
       propertyPath: m_HorizontalAlignment
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7999615231805614205, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_Name
+      value: Archer Buy Price Text
+      objectReference: {fileID: 0}
     - target: {fileID: 8047066591708222343, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -17527,6 +17542,10 @@ PrefabInstance:
       propertyPath: texts.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8839717488738065398, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: archerBuyPriceText
+      value: 
+      objectReference: {fileID: 1497054703}
     - target: {fileID: 8839717488738065398, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: texts.Array.data[0]
       value: 

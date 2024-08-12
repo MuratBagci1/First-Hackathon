@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
             saveManager.playerData.GameLoaded();
             for (int i = 1; i < archerCount; i++)
             {
-                archerSpawner.SpawnSingleEnemy(buy: false);
+                archerSpawner.SpawnSingleEnemy();
             }
             gameRestarted = false;
             Time.timeScale = 1f;

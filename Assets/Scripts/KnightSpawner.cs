@@ -54,30 +54,11 @@ public class KnightSpawner : MonoBehaviour
         }
     }
 
-    public void SpawnSingleEnemy(bool buy = true, int price = 0)
+    public void SpawnSingleEnemy()
     {
-        PlayerData playerData = FindObjectOfType<PlayerData>();
-        if (playerData != null)
-        {
-            if (!buy)
-            {
-                GameObject randomEnemy = enemyPrefabs[0];
-                Instantiate(randomEnemy, transform.position, Quaternion.identity, knightParent);
-            }
-            else
-            {
-                if (playerData.gold >= price)
-                {
-                    GameManager.Instance.archerCount++;
-                    playerData.AddGold(-price);
+        GameObject randomEnemy = enemyPrefabs[0];
+        Instantiate(randomEnemy, transform.position, Quaternion.identity, knightParent);
 
-                    GameObject randomEnemy = enemyPrefabs[0];
-                    Instantiate(randomEnemy, transform.position, Quaternion.identity, knightParent);
-
-                }
-            }
-
-        }
     }
 
 }
