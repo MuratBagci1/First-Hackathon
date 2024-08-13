@@ -9,6 +9,8 @@ public class KnightSpawner : MonoBehaviour
     public int quantity;
     public UIManager uiManager;
 
+    bool isSpawning = false;
+
     public void StartSpawner(bool set)
     {
         quantity = 0;
@@ -16,6 +18,7 @@ public class KnightSpawner : MonoBehaviour
         {
             if (gameObject.name != "ArcherSpawner")
             {
+                isSpawning = false;
                 StartCoroutine(SpawnEnemy());
             }
         }
@@ -23,34 +26,45 @@ public class KnightSpawner : MonoBehaviour
         {
             if (gameObject.name != "ArcherSpawner")
             {
+                isSpawning = false;
                 StopCoroutine(SpawnEnemy());
             }
         }
     }
     private IEnumerator SpawnEnemy()
     {
-        spawnInterval = 5f;
+        if (isSpawning)
+        {
+            yield break;
+        }
+        
+        isSpawning = true;
+        spawnInterval = 7f;
+
         GameManager.Instance.unlockShop = true;
         yield return new WaitForSeconds(spawnInterval);
         GameManager.Instance.unlockShop = false;
+        
+        spawnInterval = 3f;
 
         while (true)
         {
+
+            yield return new WaitForSeconds(spawnInterval);
             quantity++;
             int randomIndex = Random.Range(0, enemyPrefabs.Length); // Rastgele bir prefab seç
             GameObject randomEnemy = enemyPrefabs[randomIndex];
             Instantiate(randomEnemy, transform.position, Quaternion.identity, knightParent);
-            if (quantity >= 5)
+            if (quantity >= GameManager.Instance.enemyPerWave || quantity >= 10)
             {
                 yield return new WaitUntil(() => knightParent.childCount == 0);
-                yield return new WaitForSeconds(spawnInterval);
                 quantity = 0;
                 if (gameObject.name == "RightSpawner")
                 {
                     GameManager.Instance.NextWave();
                 }
+                break;
             }
-            yield return new WaitForSeconds(spawnInterval);
         }
     }
 

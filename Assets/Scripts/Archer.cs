@@ -16,7 +16,6 @@ public class Archer : Dummy
     {
         this.rb = GetComponent<Rigidbody2D>();
         this.animator = GetComponent<Animator>();
-        this.damageable = GetComponent<Damageable>();
         randomf = UnityEngine.Random.Range(0.0f, 1.0f);
 
         GameObject[] waypointObjects = GameObject.FindGameObjectsWithTag("WayPoint");
@@ -36,12 +35,12 @@ public class Archer : Dummy
     }
     private void Start()
     {
+        this.damageable = GetComponent<Damageable>();
         for (int i = 1; i <= GameManager.Instance.archerUpgrade; i++)
         {
 
             this.damageable.Health += i * 10;
         }
-
     }
 
     void Update()

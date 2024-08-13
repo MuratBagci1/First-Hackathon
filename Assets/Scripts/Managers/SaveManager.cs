@@ -35,6 +35,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.SetInt("weaponUpgrade", playerData.weaponUpgrade);
         PlayerPrefs.SetInt("archerCount", gameManager.archerCount);
         PlayerPrefs.SetInt("archerUpgrade", gameManager.archerUpgrade);
+        PlayerPrefs.SetInt("enemyPerWave", gameManager.enemyPerWave);
         // Diðer oyuncu verilerini de ekleyin
 
         PlayerPrefs.Save();
@@ -58,7 +59,7 @@ public class SaveManager : MonoBehaviour
             playerData.weaponUpgrade = PlayerPrefs.GetInt("weaponUpgrade");
             gameManager.archerCount = PlayerPrefs.GetInt("archerCount");
             gameManager.archerUpgrade = PlayerPrefs.GetInt("archerUpgrade");
-
+            gameManager.enemyPerWave = PlayerPrefs.GetInt("enemyPerWave");
 
             Debug.Log("Oyun yüklendi.");
         }
@@ -82,6 +83,7 @@ public class SaveManager : MonoBehaviour
         PlayerPrefs.DeleteKey("weaponUpgrade");
         PlayerPrefs.DeleteKey("archerCount");
         PlayerPrefs.DeleteKey("archerUpgrade");
+        PlayerPrefs.DeleteKey("enemyPerWave");
         // Diðer oyuncu verilerini de silin
 
         PlayerPrefs.Save();
@@ -99,6 +101,7 @@ public class SaveManager : MonoBehaviour
         GameManager.Instance.Bases[1].GetComponent<Damageable>().Health = 500;
         GameManager.Instance.Bases[2].GetComponent<Damageable>().Health = 500;
         GameManager.Instance.archerCount  = 1;
+        GameManager.Instance.enemyPerWave = 2;
         Debug.Log("Varsayýlan deðerler yüklendi.");
         // Diðer varsayýlan deðerler buraya eklenir
     }

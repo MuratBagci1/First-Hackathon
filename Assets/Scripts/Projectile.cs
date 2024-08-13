@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
         {
             damage = damage + (playerData.weaponUpgrade * 10);
         }
-        else if (gameObject.tag == "Archer Arrow(Clone)")
+        else if (gameObject.name == "Archer Arrow(Clone)")
         {
             damage = damage + (GameManager.Instance.archerUpgrade * 10);
 

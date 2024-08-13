@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance { get; private set; }
     public GameObject damageTextPrefab;
     public GameObject damageArmorTextPrefab;
     public GameObject healthTextPrefab;
@@ -16,6 +17,20 @@ public class UIManager : MonoBehaviour
     public GameObject Buttons;
 
     public static bool isGamePaused = false;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            Debug.Log("GameManager initialized.");
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void OnEnable()
     {

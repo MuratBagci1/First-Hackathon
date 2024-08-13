@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public int totalWavesPerLevel = 1;
     public int enemyHealthMultiplier = 0;
     public int enemyDamageMultiplier = 0;
+    public int enemyPerWave = 2;
 
     public int archerCount = 1;
     public int archerUpgrade = 0;
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
 
     public void Initializer()
     {
+        popUp = GameObject.FindObjectOfType<PopUp>();
         KnightSpawners = FindObjectsOfType<KnightSpawner>().ToList<KnightSpawner>();
         for (int i = 0; i < KnightSpawners.Count; i++)
         {
@@ -95,7 +97,7 @@ public class GameManager : MonoBehaviour
                 }
             }
             saveManager.playerData.GameLoaded();
-            for (int i = 1; i < archerCount; i++)
+            for (int i = 0; i < archerCount; i++)
             {
                 archerSpawner.SpawnSingleEnemy();
             }
@@ -106,14 +108,18 @@ public class GameManager : MonoBehaviour
 
     public void NextWave()
     {
-        if (currentWave > totalWavesPerLevel)
+        if (currentWave >= totalWavesPerLevel)
         {
             currentWave = 1;
+            enemyPerWave = 2;
             NextLevel();
         }
         else
         {
             currentWave++;
+            enemyPerWave++;
+            KnightSpawners[0].StartSpawner(true);
+            KnightSpawners[1].StartSpawner(true);
         }
 
         //Debug.Log("NextWave");

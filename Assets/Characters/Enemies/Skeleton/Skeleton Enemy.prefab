@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6212a90086c1a4ca1177e16f084439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 25
+  attackDamage: 10
 --- !u!1 &5617926390703095010
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   gameOver: {fileID: 0}
   _maxHealth: 150
   _maxArmor: 100
-  _health: 150
+  _health: 95
   _armor: 0
   isInvincible: 0
   invinciblityTime: 0

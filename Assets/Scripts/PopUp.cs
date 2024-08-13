@@ -13,6 +13,7 @@ public class PopUp : MonoBehaviour
         GameManager.Instance.popUp = gameObject.GetComponent<PopUp>();
         GameManager.Instance.gameRestarted = true;
     }
+
     public IEnumerator LevelPopUp(string level, string wave)
     {
         if (isRunning)
@@ -45,7 +46,18 @@ public class PopUp : MonoBehaviour
         text.transform.localScale = Vector3.one;
         text.transform.DOScale(2, 1f);
         yield return new WaitForSeconds(1f);
-        if(!isRunning)
+
+        text.fontSize = 50;
+        text.text = "You can shop before enemies come";
+        text.transform.localScale = Vector3.one;
+        text.transform.DOScale(2, 1f);
+        yield return new WaitForSeconds(1.2f);
+
+        UIManager.Instance.OpenCloseShop(); // Open shop after popup
+        //Shop shop = GameObject.FindAnyObjectByType<Shop>(FindObjectsInactive.Include);
+        //shop.gameObject.SetActive(true);
+        text.fontSize = 100;
+        if (!isRunning)
         {
             gameObject.SetActive(false);
         }

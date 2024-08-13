@@ -11,10 +11,7 @@ public class Attack : MonoBehaviour
     }
     private void Start()
     {
-        
-
         CalculateDamageBasedOnParent( );
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,13 +35,10 @@ public class Attack : MonoBehaviour
     {
         //int damage = attackDamage;
         string  parentTag = transform.parent.tag; 
-        if (parentTag == "Player")
+        if (parentTag == "Enemy")
         {
             //damage += 50;  
-        }
-        else
-        {
-            attackDamage = attackDamage + (2 * GameManager.Instance.enemyDamageMultiplier);
+            attackDamage += (2 * GameManager.Instance.enemyDamageMultiplier);
         }
 
         //return damage;

@@ -147,6 +147,7 @@ public class PlayerManager : MonoBehaviour
         moveInput.x = 1;
         SetFacingDirection(moveInput);
         IsMoving = true;
+        IsRunning = true;
 
     }
     public void Left()
@@ -154,6 +155,7 @@ public class PlayerManager : MonoBehaviour
         moveInput.x = -1;
         SetFacingDirection(moveInput);
         IsMoving = true;
+        IsRunning = true;
     }
 
     public void Stop()
