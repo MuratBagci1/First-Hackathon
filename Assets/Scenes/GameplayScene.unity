@@ -14882,6 +14882,7 @@ MonoBehaviour:
   totalWavesPerLevel: 3
   enemyHealthMultiplier: 1
   enemyDamageMultiplier: 1
+  enemyPerWave: 2
   archerCount: 1
   archerUpgrade: 0
 --- !u!4 &1428719587
@@ -16971,6 +16972,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1675553533}
+    - target: {fileID: 3007517205247677869, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 1664934269}
     - target: {fileID: 3627161143422526369, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
@@ -17558,7 +17563,6 @@ SceneRoots:
   - {fileID: 1515392270}
   - {fileID: 1528631988}
   - {fileID: 5428214313167015188}
-  - {fileID: 6283782798103837944}
   - {fileID: 1616329536}
   - {fileID: 1791892583}
   - {fileID: 1245560553}
@@ -17568,5 +17572,6 @@ SceneRoots:
   - {fileID: 8422897570430749298}
   - {fileID: 2916821562324144628}
   - {fileID: 608207651}
+  - {fileID: 6283782798103837944}
   - {fileID: 1087838551}
   - {fileID: 1428719587}

@@ -18,19 +18,6 @@ public class UIManager : MonoBehaviour
 
     public static bool isGamePaused = false;
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            Debug.Log("GameManager initialized.");
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     private void OnEnable()
     {

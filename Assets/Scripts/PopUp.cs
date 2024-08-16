@@ -7,6 +7,7 @@ public class PopUp : MonoBehaviour
 {
     public TextMeshProUGUI text;
     public bool isRunning = false;
+    public UIManager uiManager;
 
     private void Start()
     {
@@ -53,7 +54,7 @@ public class PopUp : MonoBehaviour
         text.transform.DOScale(2, 1f);
         yield return new WaitForSeconds(1.2f);
 
-        UIManager.Instance.OpenCloseShop(); // Open shop after popup
+        uiManager.OpenCloseShop(); // Open shop after popup
         //Shop shop = GameObject.FindAnyObjectByType<Shop>(FindObjectsInactive.Include);
         //shop.gameObject.SetActive(true);
         text.fontSize = 100;
