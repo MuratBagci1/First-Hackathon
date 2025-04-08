@@ -17033,6 +17033,10 @@ PrefabInstance:
       value: -78.78052
       objectReference: {fileID: 0}
     - target: {fileID: 4177329799557798031, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4177329799557798031, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5056701997675025799}
@@ -17151,6 +17155,10 @@ PrefabInstance:
     - target: {fileID: 7074130205614516235, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_Name
       value: Wall Price Text
+      objectReference: {fileID: 0}
+    - target: {fileID: 7271853179557190525, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7314598474083184073, guid: ca9b3b06b94e54e44b287a1fd78b6361, type: 3}
       propertyPath: m_AnchoredPosition.x

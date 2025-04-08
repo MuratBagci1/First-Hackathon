@@ -206,7 +206,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   gameOver: {fileID: 0}
-  _maxHealth: 100
+  _maxHealth: 160
   _maxArmor: 100
   _health: 10
   _armor: 10

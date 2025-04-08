@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
-{
+{    
     public KnightSpawner archerSpawner;
     public GameObject archersParent;
     public PlayerData playerData;
@@ -32,8 +32,7 @@ public class Shop : MonoBehaviour
         moderatelyDamaged,
         heavilyDamaged
     }
-
-    // Start is called before the first frame update
+     
     void Awake()
     {
         gameManager = GameManager.Instance;
@@ -177,7 +176,7 @@ public class Shop : MonoBehaviour
 
     public void UpgradeArmor(int amount)
     {
-        int upgradeCost = amount * 1;
+        int upgradeCost = amount * 5;
 
         if (playerDamageable.Armor < 100)
         {
@@ -203,7 +202,7 @@ public class Shop : MonoBehaviour
     }
     public void UpgradeChildAttackDamage(int amount)
     {
-        int upgradeCost = amount * 5; // Örnek maliyet hesaplama: Her saldýrý deðeri için 1 altýn
+        int upgradeCost = 50 + playerData.weaponUpgrade * 50; 
 
 
         if (playerData.gold >= upgradeCost && playerData.weaponUpgrade < 5)
@@ -227,13 +226,14 @@ public class Shop : MonoBehaviour
         //    Debug.Log("Not enough gold to upgrade.");
         //}
     }
-    public void UpgradeArcher(int amount)
+    public void UpgradeArcher()
     {
-        int upgradeCost = amount * 5;
+        int upgradeCost = 50 * (gameManager.archerUpgrade + 1);
 
 
         if (playerData.gold >= upgradeCost && gameManager.archerUpgrade < 5)
         {
+            
             playerData.AddGold(-upgradeCost);
             gameManager.archerUpgrade++;
 
@@ -249,10 +249,10 @@ public class Shop : MonoBehaviour
             RenewPrice();
         }
 
-        //else
-        //{
-        //    Debug.Log("Not enough gold to upgrade.");
-        //}
+        else
+        {
+            Debug.Log("Not enough gold to upgrade.");
+        }
     }
 
     public void BuyArcher()
