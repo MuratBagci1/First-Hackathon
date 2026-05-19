@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
@@ -90,7 +89,7 @@ public class UIManager : MonoBehaviour
 
     public void OpenCloseShop()
     {
-        if(GameManager.Instance.unlockShop)
+        if (GameManager.Instance.unlockShop)
         {
             bool isActive = shop.activeSelf;
             shop.SetActive(!isActive);
@@ -109,6 +108,10 @@ public class UIManager : MonoBehaviour
     public void Pause()
     {
         Buttons.SetActive(false);
+        PlayerManager player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
+
+        player.StopMovementImmediately();
+
         //GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInput>().enabled = false;
         Time.timeScale = 0f;
         isGamePaused = true;

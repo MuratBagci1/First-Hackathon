@@ -164,6 +164,16 @@ public class PlayerManager : MonoBehaviour
         IsMoving = false;
     }
 
+    public void StopMovementImmediately()
+    {
+        moveInput = Vector2.zero;
+
+        rb.velocity = new Vector2(0, rb.velocity.y);
+
+        IsMoving = false;
+        IsRunning = false;
+    }
+
     //Hareket fonksiyonlarýnýn isimleri Eventlerle ayný olmalýdýr.
     public void OnMove(InputAction.CallbackContext context)
     {
